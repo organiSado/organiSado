@@ -1,0 +1,28 @@
+/* 
+    Document   : intro
+    Created on : Mar 26, 2013, 2:31:34 AM
+    Author     : joelquatro
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+*
+{
+    margin:0;
+    padding:0;
+}
+
+body
+{
+    background: #fdfdfd;
+}
+
+div#logo
+{
+    margin: 30px auto;
+    min-width: 200px;
+    min-height: 155px;
+    max-width: 900px;
+    background: url(logo.png) center center no-repeat;
+}
+
