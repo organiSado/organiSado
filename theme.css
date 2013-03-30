@@ -15,6 +15,8 @@
 body
 {
     background: #fdfdfd;
+    padding: 0!important;
+    margin: 0!important;
 }
 
 h1,h2,h3
@@ -30,7 +32,7 @@ p
 .wrapped
 {
     margin: 0 auto!important;
-    padding:15px 25px;
+    padding: 6px 10px;
     max-width: 1150px;
 }
 
@@ -40,7 +42,7 @@ div#header
     top: 0;
     z-index: 9;
     width: 100%;
-    height: 64px;
+    height: 49px;
     opacity:0.9;
     filter: alpha(opacity=90);
 
@@ -51,14 +53,12 @@ div#header
 
 a#logo
 {
-    position: relative;
-    left:0;
-    margin: 20px 0;
+    margin:4px 0;
 }
 
 a#logo img
 {
-    max-width: 170px; 
+    max-width: 140px; 
 }
 
 ul#menu
@@ -73,23 +73,81 @@ ul#menu
 
 a#menuToggle
 {
-    background-image: url(/img/i/nav.svg);
+    width: 28px;
+    margin: 5px 0;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
-div#myCarousel
+a#menuToggle .jQ-i-bar
+{
+    display: block;
+    background: #444444;
+    height: 3px;
+    /*width: 100%;*/
+    border-radius: 5px;
+    margin:4px;
+}
+
+.navbar .nav li a
+{
+    color: #1aa9d8;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+    color: #ffffff;
+    background-color: #1aa9d8;
+}
+
+.collapse.in #menu 
+{
+    margin-top: 20px;
+    width:100%;
+    color:#ffffff;
+    background-color: #1aa9d8;
+    border-radius:5px;
+    overflow: hidden;
+    /*box-shadow: rgb(68, 68, 6*/
+}
+
+.collapse.in #menu a 
+{
+    color:#ffffff;
+    font-weight: normal;
+}
+
+.collapse.in #menu a:hover
+{
+    color:#555;
+}
+
+.collapse.in #menu li.active a 
+{
+    color:#ffffff;
+    font-weight: bold;
+    text-shadow: 0 0 7px #ffffff;
+    box-shadow: none;
+}
+
+
+div#jQSlide
 {
     height: 675px;
 }
 
-div#myCarousel .imgContainer
+div#jQSlide .imgContainer
 {
-    height: 675px;
+    height: 675px; /* rDfy*/
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-div#myCarousel h1
+div#jQSlide h1
 {
     color:#ffffff;
 }
@@ -100,6 +158,11 @@ div#myCarousel h1
     border: none;
     font-size: 170px;
     text-shadow: 0 0 15px #000;
+}
+
+.carousel-caption
+{
+    position: absolute;
 }
 
 div.marketing
@@ -125,8 +188,8 @@ div.marketing
 
 .marketing .imgHolder img
 {
-    max-height: 300px;
-    max-width: 300px;
+    max-height: 85%;
+    max-width: 85%;
 }
 
 footer#mainFooter
@@ -138,7 +201,9 @@ footer#mainFooter
 
 footer#mainFooter #goTop
 {
-    font-size: 40px;
+    font-size: 30px;
+    line-height: 20px;
+    margin: 25px 0 0 0;
 }
 
 footer#mainFooter #goTop:hover

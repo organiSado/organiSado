@@ -35,50 +35,55 @@ foreach ($entries as $entry) {
         <!--header-->
         <div id="header">
             <div class="wrapped">
-                <a href="/" id="logo">
+                <a href="/" id="logo" class="pull-left">
                     <img src="logo_small.png">
                 </a>
 
-                <ul id="menu" class="nav nav-pills pull-right hidden-phone">
-                    <li class="active"><a href="#">inicio</a></li>
-                    <li><a href="#">login</a></li>
-                    <li><a href="#">registro</a></li>
-                    <li><a href="#">contacto</a></li>
-                </ul>
+                <div class="navbar">
+                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                    <a id="menuToggle" class="btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="jQ-i-bar"></span>
+                        <span class="jQ-i-bar"></span>
+                        <span class="jQ-i-bar"></span>
+                    </a>
 
-                <a id="menuToggle" class="btn btn-small pull-right visible-phone" href="#"></a>
+                    <div class="nav-collapse collapse">
+                        <ul id="menu" class="nav nav-pills pull-right">
+                            <li class="active"><a href="#">inicio</a></li>
+                            <li><a href="#">login</a></li>
+                            <li><a href="#">registro</a></li>
+                            <li><a href="#">contacto</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-
 
         <!-- slider -->
         <?
         if (count($photos)) {
             shuffle($photos);
             ?>
-            <div id="myCarousel" class="carousel slide">
+            <div id="jQSlide" class="carousel slide">
                 <div class="carousel-inner">
                     <?
                     foreach ($photos as $photo) {
                         ?>
                         <div class="item<? echo ($photo == $photos[0] ? ' active' : ''); ?>">
-                            <!--<img src="" alt="">-->
                             <div class="imgContainer" style="background-image:url('<? echo $headerImgPath . $photo ?>');"></div>
-                            <div class="container">
-                                <div class="carousel-caption">
-                                    <h1>Un aplauso para el organizador...</h1>
-                                    <p class="lead">Ahora, vas a poder descansar y ahorrar tiempo, mucho tiempo!</p>
-                                    <br>
-                                    <a class="btn btn-large btn-primary" href="#">registrate</a>
-                                </div>
+                            <div class="carousel-caption">
+                                <h1>Un aplauso para el organizador...</h1>
+                                <p class="lead">Ahora, vas a poder descansar y ahorrar tiempo, mucho tiempo!</p>
+                                <br>
+                                <a class="btn btn-large btn-primary" href="#">registrate</a>
                             </div>
                         </div>
                         <?
                     }
                     ?>
                 </div>
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                <a class="left carousel-control" href="#jQSlide" data-slide="prev">‹</a>
+                <a class="right carousel-control" href="#jQSlide" data-slide="next">›</a>
             </div>
             <?
         }
@@ -126,7 +131,7 @@ foreach ($entries as $entry) {
         <!-- FOOTER -->
         <footer id="mainFooter">
             <div class="wrapped">
-                <p class="pull-right"><a id="goTop" href="#">⌃</a></p>
+                <p class="pull-right"><a id="goTop" href="#">^</a></p>
                 <p>© 2013 organiSado  ·  <a href="#">privacidad y términos</a></p>
             </div>
         </footer>
