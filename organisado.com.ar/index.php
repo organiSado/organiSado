@@ -29,7 +29,7 @@ foreach ($entries as $entry) {
         <!-- Bootstrap (http://www.bootstrapcdn.com, resposive + icons)-->
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="theme.css" />
+        <link rel="stylesheet" type="text/css" href="css/theme.css" />
     </head>
     <body>
         <!--header-->
