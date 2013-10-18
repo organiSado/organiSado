@@ -1,4 +1,4 @@
-<?
+﻿<?
 $imgPath = "img/";
 $headerImgPath = $imgPath . "header/";
 // obtenemos todas las fotos subidas a la carpeta dedicada header
@@ -50,9 +50,9 @@ foreach ($entries as $entry) {
                     <div class="nav-collapse collapse">
                         <ul id="menu" class="nav nav-pills pull-right">
                             <li class="active"><a href="index.php">inicio</a></li>
-                            <li><a href="#">login</a></li>
-                            <li><a href="#">registro</a></li>
-                            <li><a href="#">contacto</a></li>
+                            <li><a href="login.php">login</a></li>
+                            <li><a href="registro.php">registro</a></li>
+                            <li><a href="contacto.php">contacto</a></li>
                             <li><a href="nosotros.php">nosotros</a></li>
                         </ul>
                     </div>
@@ -76,7 +76,7 @@ foreach ($entries as $entry) {
                                 <h1>Un aplauso para el organizador...</h1>
                                 <p class="lead">Ahora, vas a poder descansar y ahorrar tiempo, mucho tiempo!</p>
                                 <br>
-                                <a class="btn btn-large btn-primary" href="#">registrate</a>
+                                <a class="btn btn-large btn-primary" href="registro.php">registrate</a>
                             </div>
                         </div>
                         <?

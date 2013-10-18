@@ -1,4 +1,4 @@
-<?
+﻿<?
 $imgPath = "img/";
 $headerImgPath = $imgPath . "header/";
 // obtenemos todas las fotos subidas a la carpeta dedicada header
@@ -49,47 +49,18 @@ foreach ($entries as $entry) {
 
                     <div class="nav-collapse collapse">
                         <ul id="menu" class="nav nav-pills pull-right">
-                            <li class="active"><a href="index.php">inicio</a></li>
-                            <li><a href="#">login</a></li>
-                            <li><a href="#">registro</a></li>
-                            <li><a href="#">contacto</a></li>
-                            <li><a href="nosotros.php">nosotros</a></li>
+                            <li><a href="index.php">inicio</a></li>
+                            <li><a href="login.php">login</a></li>
+                            <li><a href="Registro.php">registro</a></li>
+                            <li><a href="contacto.php">contacto</a></li>
+                            <li class="active"><a href="nosotros.php">nosotros</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- slider -->
-        <?
-        if (count($photos)) {
-            shuffle($photos);
-            ?>
-            <div id="jQSlide" class="carousel slide">
-                <div class="carousel-inner">
-                    <?
-                    foreach ($photos as $photo) {
-                        ?>
-                        <div class="item<? echo ($photo == $photos[0] ? ' active' : ''); ?>">
-                            <div class="imgContainer" style="background-image:url('<? echo $headerImgPath . $photo ?>');"></div>
-                            <div class="carousel-caption">
-                                <h1>Un aplauso para el organizador...</h1>
-                                <p class="lead">Ahora, vas a poder descansar y ahorrar tiempo, mucho tiempo!</p>
-                                <br>
-                                <a class="btn btn-large btn-primary" href="#">registrate</a>
-                            </div>
-                        </div>
-                        <?
-                    }
-                    ?>
-                </div>
-                <a class="left carousel-control" href="#jQSlide" data-slide="prev">‹</a>
-                <a class="right carousel-control" href="#jQSlide" data-slide="next">›</a>
-            </div>
-            <?
-        }
-        ?>
-
+        
 
         <div class="container marketing">
             <div class="row">
@@ -143,7 +114,7 @@ foreach ($entries as $entry) {
 
         <!-- FOOTER -->
         <footer id="mainFooter">
-            <div class="wrapped">
+            <div class="wrapped">  
                 <p class="pull-right"><a id="goTop" href="#">^</a></p>
                 <p>© 2013 organiSado  ·  <a href="#">privacidad y términos</a></p>
             </div>
