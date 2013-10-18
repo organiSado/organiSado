@@ -50,7 +50,6 @@ foreach ($entries as $entry) {
                     <div class="nav-collapse collapse">
                         <ul id="menu" class="nav nav-pills pull-right">
                             <li class="active"><a href="index.php">inicio</a></li>
-                            <li><a href="login.php">login</a></li>
                             <li><a href="registro.php">registro</a></li>
                             <li><a href="contacto.php">contacto</a></li>
                             <li><a href="nosotros.php">nosotros</a></li>
@@ -89,7 +88,68 @@ foreach ($entries as $entry) {
             <?
         }
         ?>
-
+		
+        <div id="login-container">
+    	<!-- Modal -->
+        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+        <div class="modal-header" id="modlogin">
+           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+           <h3 id="myModalLabel">Iniciar Seción</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal">
+            
+                <div class="control-group">
+                    <label class="control-label" for="inputEmail">Email</label>
+                    
+                    <div class="controls">
+                        <input type="text" id="inputEmail" placeholder="Email" onfocus="#F60" >
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">Contraseña</label>
+                    
+                    <div class="controls">
+                        <input type="password" id="inputPassword" placeholder="Contraseña">
+                    </div>
+                </div>
+            
+                <div class="control-group">
+                    <div class="controls">
+                        <label class="checkbox">
+                            <input type="checkbox"> Recordarme
+                        </label>
+            
+                        <button id="bttn-entrar" type="submit" class="btn btn-large">Entrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  
+	<div class="container" align="center">
+	  <div class="content">
+		<div class="row">
+		  <div class="login-form">
+			<h2>Login</h2>
+			<form action="">
+			  <fieldset>
+				<div class="control-group">
+				  <input type="text" placeholder="Email">
+				</div>
+				<div class="control-group">
+				  <input type="password" placeholder="Contraseña">
+				</div>
+				<button class="btn btn-primary" type="submit">Entrar</button>
+				
+			  </fieldset>
+			</form>
+		  </div>
+		</div>
+	  </div>
+	</div> <!-- /container -->
+	
 
         <div class="container marketing">
             <div class="row">
