@@ -50,9 +50,10 @@ foreach ($entries as $entry) {
                     <div class="nav-collapse collapse">
                         <ul id="menu" class="nav nav-pills pull-right">
                             <li class="active"><a href="index.php">inicio</a></li>
-                            <li><a href="registro.php">registro</a></li>
-                            <li><a href="contacto.php">contacto</a></li>
-                            <li><a href="nosotros.php">nosotros</a></li>
+                            <li><a href="login.php">Login</a></li>
+                            <li><a href="registro.php">Registro</a></li>
+                            <li><a href="contacto.php">Contacto</a></li>
+                            <li><a href="nosotros.php">Nosotros</a></li>
                         </ul>
                     </div>
                 </div>
@@ -128,27 +129,6 @@ foreach ($entries as $entry) {
         </div>
     </div>
   
-	<div class="container" align="center">
-	  <div class="content">
-		<div class="row">
-		  <div class="login-form">
-			<h2>Login</h2>
-			<form action="">
-			  <fieldset>
-				<div class="control-group">
-				  <input type="text" placeholder="Email">
-				</div>
-				<div class="control-group">
-				  <input type="password" placeholder="Contraseña">
-				</div>
-				<button class="btn btn-primary" type="submit">Entrar</button>
-				
-			  </fieldset>
-			</form>
-		  </div>
-		</div>
-	  </div>
-	</div> <!-- /container -->
 	
 
         <div class="container marketing">
