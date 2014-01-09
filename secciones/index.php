@@ -54,6 +54,7 @@ foreach ($entries as $entry) {
                             <li><a href="registro.php">Registro</a></li>
                             <li><a href="contacto.php">Contacto</a></li>
                             <li><a href="nosotros.php">Nosotros</a></li>
+                            <li><a href="about.php">¿qué es?</a></li>
                         </ul>
                     </div>
                 </div>
