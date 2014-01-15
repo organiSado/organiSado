@@ -14,26 +14,28 @@
  * path to projects in server
  **/
 define('PROJECTS_PATH', '/home/joelquatro/');
-/**
- * server key for authentication
- **/
-define('SERVER_KEY', md5("organiSado"));
 
 // parse the json payload
 $payload = json_decode($_REQUEST['payload']);
+ob_start();
+var_dump($payload);
+$payload_str = ob_get_clean();
 
-if (!$payload) exit();
+//if (!$payload) exit();
 
-// check for payload and server key
-if ( $payload->ref === 'refs/heads/master' && $_REQUEST['key'] == SERVER_KEY ) {
-    // parse the payload for the project name
-    $project_name = /*strtolower(*/$payload->{'repository'}->{'name'}/*)*/;
+// parse the payload for the project name
+$project_name = $payload->{'repository'}->{'name'};
+
+/* debug */ $project_name = "organiSado";$payload->ref = 'refs/heads/master';
+
+// check for payload and server key for authentication
+if ( $payload->ref === 'refs/heads/master' && $_REQUEST['key'] == md5($project_name) )
+{
     // define the cd directory based on config and project name
     $project_directory = PROJECTS_PATH . $project_name;
 
     // cd into the project dir, git reset and pull changes
-    $message = nl2br( shell_exec('cd ' . $project_directory . '/ && git reset --hard HEAD && git pull 2>&1') );
-
+    exec('cd ' . $project_directory . '/ && git reset --hard HEAD && git pull', $out);
 
 	/** email notification 
 	 * @author Joel Quatrocchi
@@ -41,9 +43,8 @@ if ( $payload->ref === 'refs/heads/master' && $_REQUEST['key'] == SERVER_KEY ) {
 	*/
 	$emails = array(/*"mjheredia88@gmail.com", "martinmatus100@gmail.com", "leonardo_celedon@hotmail.com",*/ "joel.quatro@gmail.com");
 	$subject = "Nuevo commit en organiSado!";
-	//$message = implode(", <br>\n\n", $_POST);
 	$plain_hr = "\n\n - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n\n";
-	$message = "El ultimo PUSH ya se encuentra disponible en organisado.com.ar...$plain_hr Console Out:\n\n".$message."$plain_hr Commit Data:\n\n".$payload;
+	$message = "El ultimo PUSH ya se encuentra disponible en organisado.com.ar...$plain_hr Console Out:\n\n".implode("\n", $out)."$plain_hr Commit Data:\n\n".$payload_str;
 
 	foreach ($emails as $email)
 	{
