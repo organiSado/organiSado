@@ -27,7 +27,7 @@ if (!$payload) exit();
 // check for payload and server key
 if ( $payload->ref === 'refs/heads/master' && $_REQUEST['key'] == SERVER_KEY ) {
     // parse the payload for the project name
-    $project_name = strtolower($payload->{'repository'}->{'name'});
+    $project_name = /*strtolower(*/$payload->{'repository'}->{'name'}/*)*/;
     // define the cd directory based on config and project name
     $project_directory = PROJECTS_PATH . $project_name;
 
