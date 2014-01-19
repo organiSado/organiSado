@@ -41,7 +41,7 @@ if ( $payload->ref === 'refs/heads/master' && $_REQUEST['key'] == md5($project_n
 	 * @author Joel Quatrocchi
 	 * @version 0.1
 	*/
-	$emails = array(/*"mjheredia88@gmail.com", "martinmatus100@gmail.com", "leonardo_celedon@hotmail.com",*/ "joel.quatro@gmail.com");
+	$emails = array("mjheredia88@gmail.com", "martinmatus100@gmail.com", "leonardo_celedon@hotmail.com", "joel.quatro@gmail.com");
 	$subject = "Nuevo commit en organiSado!";
 	$plain_hr = "\n\n - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n\n";
 	$message = "El ultimo PUSH ya se encuentra disponible en organisado.com.ar...$plain_hr Console Out:\n\n".implode("\n", $out)."$plain_hr Commit Data:\n\n".$payload_str;
