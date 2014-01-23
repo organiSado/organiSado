@@ -1,13 +1,14 @@
-<?php
-/* @var $this SiteController */
-/* @var $model ContactForm */
-/* @var $form CActiveForm */
+<!DOCTYPE html>
+<html>
+    <head>
+       
 
-$this->pageTitle=Yii::app()->name . ' - Contact Us';
-$this->breadcrumbs=array(
-	'Contact',
-);
-?>
+        <!-- Bootstrap (http://www.bootstrapcdn.com, resposive + icons)-->
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/theme.css" />
+    </head>
+    <body>
 
 <h1>Contact Us</h1>
 
@@ -83,3 +84,10 @@ If you have business inquiries or other questions, please fill out the following
 </div><!-- form -->
 
 <?php endif; ?>
+
+<!-- bootstrap -->
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+        <script src="js/intro.js"></script>
+</body>
+</html>

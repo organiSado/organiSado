@@ -1,13 +1,28 @@
-<?php
-/* @var $this SiteController */
-/* @var $model LoginForm */
-/* @var $form CActiveForm  */
-
-$this->pageTitle=Yii::app()->name . ' - Login';
-$this->breadcrumbs=array(
-	'Login',
-);
+<?
+$imgPath = "img/";
+$headerImgPath = $imgPath . "header/";
+// obtenemos todas las fotos subidas a la carpeta dedicada header
+$entries = scandir($headerImgPath);
+$photos = array();
+foreach ($entries as $entry) {
+    if (is_file($headerImgPath . $entry)) {
+        if (preg_match("/\.(jpe?g|png|gif)$/", $entry)) {
+            $photos[] = $entry;
+        }
+    }
+}
 ?>
+<!DOCTYPE html>
+<html>
+    <head>
+       
+
+        <!-- Bootstrap (http://www.bootstrapcdn.com, resposive + icons)-->
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/theme.css" />
+    </head>
+    <body>
 
 <h1>Login</h1>
 
@@ -44,10 +59,19 @@ $this->breadcrumbs=array(
 		<?php echo $form->label($model,'rememberMe'); ?>
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
-
+	
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Login'); ?>
 	</div>
-
+	
 <?php $this->endWidget(); ?>
 </div><!-- form -->
+
+
+<!-- bootstrap -->
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+        <script src="js/intro.js"></script>
+</body>
+</html>

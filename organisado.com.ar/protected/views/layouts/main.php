@@ -23,16 +23,39 @@
 <div class="container" id="page">
 
 	<div id="header">
+		 <!--header-->
+        <div id="header">
+            <div class="wrapped">
+                <a href="/" id="logo" class="pull-left">
+                    <img src="logo_small.png">
+                </a>
+
+                <div class="navbar">
+                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+                    <a id="menuToggle" class="btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="jQ-i-bar"></span>
+                        <span class="jQ-i-bar"></span>
+                        <span class="jQ-i-bar"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+		
+		
+		
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				array('label'=>'Inicio', 'url'=>array('/site/index')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Registro', 'url'=>array('/site/registro')),
+				array('label'=>'Contacto', 'url'=>array('/site/contact')),
+				array('label'=>'Nosotros', 'url'=>array('/site/Nosotros')),
+				array('label'=>'¿que es?', 'url'=>array('/site/about')),
+				
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
@@ -48,9 +71,13 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		<!-- FOOTER -->
+        <footer id="mainFooter">
+            <div class="wrapped">
+                <p class="pull-right"><a id="goTop" href="#">^</a></p>
+                <p>© 2013 organiSado  ·  <a href="#">privacidad y términos</a></p>
+            </div>
+        </footer>
 	</div><!-- footer -->
 
 </div><!-- page -->
