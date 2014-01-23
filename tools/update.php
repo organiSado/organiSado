@@ -56,7 +56,7 @@ if ( $payload->ref === 'refs/heads/master' && $_REQUEST['key'] == md5($project_n
 
 		$message .= "- \"".array_shift($ci_message)."\":\n";
 		array_shift($ci_message); // elimino un salto de linea, elemento vacio
-		$message .= implode("\n", $ci_message);."\n";
+		$message .= implode("\n", $ci_message)."\n";
 		$message .= "por ".$commit->author->name.", ".str_replace("T", " ", $commit->timestamp)."\n";
 		$message .= $commit->url."\n\n";
 	}
