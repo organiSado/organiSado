@@ -47,14 +47,16 @@ if ( $payload->ref === 'refs/heads/master' && $_REQUEST['key'] == md5($project_n
 	$plain_hr = "\n\n - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n\n";
 	$message = "El ultimo PUSH ya se encuentra disponible en http://organisado.com.ar por ".$payload->pusher->name.".";
 	$message .= $plain_hr;
+	$message .= "Commits en este Push:\n\n";
+
 
 	foreach ($payload->commits as $commit)
 	{
 		$ci_message = explode("\n", $commit->message);
 
-		$message .= "- \"".$ci_message[0]."\"\n\n";
-		$message .= $ci_message[2]."\n\n";
-		$message .= "por ".$commit->author->name.", ".$commit->timestamp;
+		$message .= "- \"".$ci_message[0]."\":\n";
+		$message .= $ci_message[2]."\n";
+		$message .= "por ".$commit->author->name.", ".str_replace("T", " ", $commit->timestamp)."\n";
 		$message .= $commit->url."\n\n";
 	}
 
