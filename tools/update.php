@@ -52,8 +52,10 @@ if ( $payload->ref === 'refs/heads/master' && $_REQUEST['key'] == md5($project_n
 	{
 		$ci_message = explode("\n", $commit->message);
 
-		$message .= "> ".$commit->timestamp.": \"".$ci_message[0]."\" (".$commit->author->name.", ".$commit->url.")\n";
-		$message .= $ci_message[1]."\n\n";
+		$message .= "- \"".$ci_message[0]."\"\n\n";
+		$message .= $ci_message[2]."\n\n";
+		$message .= "por ".$commit->author->name.", ".$commit->timestamp;
+		$message .= $commit->url."\n\n";
 	}
 
 	$message .= $plain_hr;
