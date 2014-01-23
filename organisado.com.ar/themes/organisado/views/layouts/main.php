@@ -5,61 +5,70 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
+	<!-- rompe el slide link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" / -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
 	<!--[if lt IE 8]>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
 
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+	<!-- contiene css del CMenu link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" / -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+
+	<!-- Bootstrap (http://www.bootstrapcdn.com, resposive + icons)-->
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/theme.css" />
+
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <body>
 
-<div class="container" id="page">
-
+	<!--header-->
 	<div id="header">
-		 <!--header-->
-        <div id="header">
-            <div class="wrapped">
-                <a href="/" id="logo" class="pull-left">
-                    <img src="logo_small.png">
-                </a>
+		<div class="wrapped">
+			<a href="/" id="logo" class="pull-left"><!-- usar 'url'=>array('/site/index')) -->
+				<img src="logo_small.png">
+			</a>
 
-                <div class="navbar">
-                    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                    <a id="menuToggle" class="btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="jQ-i-bar"></span>
-                        <span class="jQ-i-bar"></span>
-                        <span class="jQ-i-bar"></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-		
-		
-		
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+			<div id="mainmenu" class="navbar">
+			<?php $this->widget('zii.widgets.CMenu',array(
+				'items'=>array(
+					array('label'=>'inicio', 'url'=>array('/site/index')),
+					array('label'=>'login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+					array('label'=>'registro', 'url'=>array('/site/registro')),
+					array('label'=>'contacto', 'url'=>array('/site/contact')),
+					array('label'=>'nosotros', 'url'=>array('/site/nosotros')),
+					array('label'=>'¿qué es?', 'url'=>array('/site/about')),
+
+					array('label'=>'salir ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				),
+				'encodeLabel' => false,
+				'htmlOptions' => array(
+					'class'=>'nav pull-right',
+				),
+				'submenuHtmlOptions' => array(
+					'class' => 'dropdown-menu',
+				),
+				)); ?>
+
+				<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+				<a id="menuToggle" class="btn-navbar pull-right" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="jQ-i-bar"></span>
+					<span class="jQ-i-bar"></span>
+					<span class="jQ-i-bar"></span>
+				</a>
+			</div>
+		</div>
 	</div><!-- header -->
 
-	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Inicio', 'url'=>array('/site/index')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Registro', 'url'=>array('/site/registro')),
-				array('label'=>'Contacto', 'url'=>array('/site/contact')),
-				array('label'=>'Nosotros', 'url'=>array('/site/Nosotros')),
-				array('label'=>'¿que es?', 'url'=>array('/site/about')),
-				
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
-		)); ?>
-	</div><!-- mainmenu -->
+
+
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
@@ -79,8 +88,6 @@
             </div>
         </footer>
 	</div><!-- footer -->
-
-</div><!-- page -->
 
 </body>
 </html>

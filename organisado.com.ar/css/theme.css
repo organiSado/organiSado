@@ -101,6 +101,7 @@ a#menuToggle .jQ-i-bar
 .navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
     color: #ffffff;
     background-color: #1aa9d8;
+    border-bottom:3px solid #1aa9d8;
 }
 
 .collapse.in #menu 

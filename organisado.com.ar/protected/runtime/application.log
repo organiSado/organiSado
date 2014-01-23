@@ -433,3 +433,60 @@ REQUEST_URI=/organiSado/organisado.com.ar/index.php?r=site/index
 in /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/protected/views/site/index.php (5)
 in /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/protected/controllers/SiteController.php (32)
 in /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/index.php (13)
+2014/01/23 04:43:01 [error] [exception.CException] exception 'CException' with message 'Property "CThemeManager.theme" is read only.' in /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CComponent.php:170
+Stack trace:
+#0 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/YiiBase.php(220): CComponent->__set('theme', 'organisado')
+#1 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CModule.php(386): YiiBase::createComponent(Array)
+#2 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(248): CModule->getComponent('themeManager')
+#3 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(257): CWebApplication->getThemeManager()
+#4 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(586): CWebApplication->getTheme()
+#5 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(867): CController->getViewFile('index')
+#6 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#7 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/protected/controllers/SiteController.php(32): CController->render('index')
+#8 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#9 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(282): CController->run('')
+#13 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#14 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/
+HTTP_REFERER=http://localhost:8888/organiSado/
+---
+2014/01/23 04:54:55 [error] [php] Use of undefined constant php - assumed 'php' (/Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/themes/organisado/views/layouts/main.php:70)
+Stack trace:
+#0 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
+#1 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
+#2 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
+#3 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CBaseController.php(214): CContentDecorator->run()
+#4 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CBaseController.php(308): SiteController->endWidget()
+#5 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/protected/views/layouts/column1.php(6): SiteController->endContent()
+#6 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CBaseController.php(126): require()
+#7 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#8 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(784): SiteController->renderFile()
+#9 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/protected/controllers/SiteController.php(32): SiteController->render()
+#10 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#11 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#12 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(286): SiteController->runAction()
+#13 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#14 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#15 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#16 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#17 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/index.php(13): CWebApplication->run()
+REQUEST_URI=/organiSado/organisado.com.ar/index.php?r=site/index
+in /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/themes/organisado/views/layouts/main.php (70)
+in /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/protected/views/layouts/column1.php (6)
+in /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/protected/controllers/SiteController.php (32)
+2014/01/23 05:20:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "inicio".' in /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(270): CController->missingAction('inicio')
+#1 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(282): CController->run('inicio')
+#2 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/inicio')
+#3 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado//organisado.com.ar/index.php?r=site/inicio
+HTTP_REFERER=http://localhost:8888/organiSado//organisado.com.ar/index.php?r=
+---
