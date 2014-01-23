@@ -26,7 +26,8 @@ $payload_str = ob_get_clean();
 // parse the payload for the project name
 $project_name = $payload->{'repository'}->{'name'};
 
-/* debug */ $project_name = "organiSado";$payload->ref = 'refs/heads/master';
+/* debug $project_name = "organiSado";$payload->ref = 'refs/heads/master';
+ */
 
 // check for payload and server key for authentication
 if ( $payload->ref === 'refs/heads/master' && $_REQUEST['key'] == md5($project_name) )
@@ -41,15 +42,24 @@ if ( $payload->ref === 'refs/heads/master' && $_REQUEST['key'] == md5($project_n
 	 * @author Joel Quatrocchi
 	 * @version 0.1
 	*/
-	$emails = array("mjheredia88@gmail.com", "martinmatus100@gmail.com", "leonardo_celedon@hotmail.com", "joel.quatro@gmail.com");
+	$emails = "mjheredia88@gmail.com, martinmatus100@gmail.com, leonardo_celedon@hotmail.com, joel.quatro@gmail.com");
 	$subject = "Nuevo commit en organiSado!";
 	$plain_hr = "\n\n - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n\n";
-	$message = "El ultimo PUSH ya se encuentra disponible en organisado.com.ar...$plain_hr Console Out:\n\n".implode("\n", $out)."$plain_hr Commit Data:\n\n".$payload_str;
+	$message = "El ultimo PUSH ya se encuentra disponible en http://organisado.com.ar por ".$payload->pusher->name.".";
+	$message .= $plain_hr;
 
-	foreach ($emails as $email)
+	foreach ($payload->commits as $commit)
 	{
-	        mail($email, $subject, $message);
+		$ci_message = explode("\n", $commit->message);
+
+		$message .= "> ".$commit->timestamp.": \"".$ci_message[0]."\" (".$commit->author->name.", ".$commit->url.")\n";
+		$message .= $ci_message[1]."\n\n";
 	}
+
+	$message .= $plain_hr;
+	$message .= "Console Out:\n\n".implode("\n", $out);
+
+	mail($emails, $subject, $message);
 }
 
 ?>
