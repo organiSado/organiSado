@@ -29,7 +29,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('Index');
+		$this->render('index');
 	}
 
 	/**
@@ -111,21 +111,21 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('Nosotros');
+		$this->render('nosotros');
 	}
 	
 	public function actionRegistro()
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('Registro');
+		$this->render('registro');
 	}
 	
 	public function actionAbout()
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('About');
+		$this->render('about');
 	}
 }
 
