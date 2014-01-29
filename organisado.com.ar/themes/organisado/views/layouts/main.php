@@ -41,7 +41,7 @@
 				'items'=>array(
 					array('label'=>'inicio', 'url'=>array('/site/index')),
 					array('label'=>'login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-					array('label'=>'registro', 'url'=>array('/site/registro')),
+					array('label'=>'registro', 'url'=>array('/site/registro'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'contacto', 'url'=>array('/site/contact')),
 					array('label'=>'nosotros', 'url'=>array('/site/nosotros')),
 					array('label'=>'¿qué es?', 'url'=>array('/site/about')),
@@ -68,14 +68,24 @@
 	</div><!-- header -->
 
 
-
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
-	<?php echo $content; ?>
+	
+	<?php
+		if (Yii::app()->controller->id == 'site' && Yii::app()->controller->action->id == 'index')
+		{
+			echo $content;
+		}
+		else
+		{
+			echo '<div class="container marketing">'.$content.'</div>';
+		}
+	?>
+	
 
 	<div class="clear"></div>
 
