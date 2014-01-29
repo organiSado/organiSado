@@ -5,12 +5,16 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'organiSado',
 
 	// enable theme
 	'theme'=> 'organisado',
+	//'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -22,6 +26,12 @@ return array(
 	),
 
 	'modules'=>array(
+
+		'gii'=>array(
+            'generatorPaths'=>array(
+                'bootstrap.gii',
+            ),
+        ),
 		// uncomment the following to enable the Gii tool
 		/*
 		'gii'=>array(
@@ -35,6 +45,11 @@ return array(
 
 	// application components
 	'components'=>array(
+
+  		'bootstrap'=>array(
+            'class'=>'bootstrap.components.Bootstrap',
+        ),
+
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
