@@ -1,4 +1,13 @@
-﻿<div class="row">
+﻿<?php
+/* @var $this SiteController */
+
+$this->pageTitle=Yii::app()->name . ' | ¿qué es?';
+$this->breadcrumbs=array(
+        '¿qué es?',
+);
+?>
+
+<div class="row">
 	<div class="span4 pull-right imgHolder ">
 	    <img src="img/i/users.png">
 	</div>

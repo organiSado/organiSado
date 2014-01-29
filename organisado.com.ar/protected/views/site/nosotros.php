@@ -1,4 +1,13 @@
-﻿<div class="row">
+﻿<?php
+/* @var $this SiteController */
+
+$this->pageTitle=Yii::app()->name . ' | nosotros';
+$this->breadcrumbs=array(
+        'nosotros',
+);
+?>
+
+<div class="row">
     <div class="span4 pull-right imgHolder">
         <img src="img/authors/jq.png">                
     </div>

@@ -600,3 +600,33 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/organiSado/organisado.com.ar/index.php?r=site/indexz
 ---
+2014/01/28 23:02:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "indexz".' in /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(270): CController->missingAction('indexz')
+#1 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(282): CController->run('indexz')
+#2 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/indexz')
+#3 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/index.php?r=site/indexz
+---
+2014/01/28 23:02:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "indexz".' in /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(270): CController->missingAction('indexz')
+#1 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(282): CController->run('indexz')
+#2 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/indexz')
+#3 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/index.php?r=site/indexz
+---
+2014/01/28 23:05:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "indexz".' in /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(270): CController->missingAction('indexz')
+#1 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(282): CController->run('indexz')
+#2 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/indexz')
+#3 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/index.php?r=site/indexz
+---

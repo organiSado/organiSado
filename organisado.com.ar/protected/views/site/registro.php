@@ -1,3 +1,12 @@
+<?php
+/* @var $this SiteController */
+
+$this->pageTitle=Yii::app()->name . ' | registro';
+$this->breadcrumbs=array(
+        'registro',
+);
+?>
+
 <div class="row">
   <div class="login-form">
     <h1>Registrarse</h1>
