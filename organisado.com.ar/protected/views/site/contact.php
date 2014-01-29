@@ -75,7 +75,7 @@ $this->breadcrumbs=array(
 		<?php endif; ?>
 
 		<div class="row buttons">
-			<?php echo CHtml::submitButton('Submit'); ?>
+			<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>'Enviar')); ?>	
 		</div>
 
 	<?php $this->endWidget(); ?>
