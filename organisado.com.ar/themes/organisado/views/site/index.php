@@ -24,27 +24,27 @@ if (count($photos))
 ?>
 <div id="jQSlide" class="carousel slide">
     <div class="carousel-inner">
-<?
+<?php
         foreach ($photos as $photo)
         {
 ?>
-            <div class="item<? echo ($photo == $photos[0] ? ' active' : ''); ?>">
+            <div class="item<?php echo ($photo == $photos[0] ? ' active' : ''); ?>">
                 <div class="imgContainer" style="background-image:url('<? echo $headerImgPath . $photo ?>');"></div>
                 <div class="carousel-caption">
                     <h1>Un aplauso para el organizador...</h1>
                     <p class="lead">Ahora, vas a poder descansar y ahorrar tiempo, mucho tiempo!</p>
                     <br>
-                    <a class="btn btn-large btn-primary" href="<? echo $this->createUrl('/site/registro') ?>">registrate</a>
+                    <a class="btn btn-large btn-primary" href="<?php echo $this->createUrl('/site/registro') ?>">registrate</a>
                 </div>
             </div>
-<?
+<?php
         }
 ?>
     </div>
     <a class="left carousel-control" href="#jQSlide" data-slide="prev">‹</a>
     <a class="right carousel-control" href="#jQSlide" data-slide="next">›</a>
 </div>
-<?
+<?php
 }
 ?>
 		
