@@ -126,6 +126,7 @@ if (count($photos))
 </div>
 
 
+
 <!-- jQuery -->
 <script src="http://code.jquery.com/jquery.js"></script>
 <!-- bootstrap -->

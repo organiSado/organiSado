@@ -45,6 +45,8 @@ div#header
     height: 49px;
     opacity:0.9;
     filter: alpha(opacity=90);
+    box-shadow: 0 7px 10px -7px #777;
+    
 
     border-bottom: 3px solid #1aa9d8;
 
@@ -166,9 +168,18 @@ div#jQSlide h1
     position: absolute;
 }
 
+div.breadcrumbs
+{
+	margin: 50px 0 10px 0;
+    padding:7px;
+    border-bottom: 1px solid #dddddd;
+    background: #f7f7f7;
+    /*box-shadow: 0 -7px 7px -7px #ccc inset;*/
+}
+
 div.marketing
 {
-    padding:30px;
+    padding:0px;
     max-width: 1050px;
 }
 
@@ -179,7 +190,7 @@ div.marketing
 
 .marketing .row
 {
-    margin: 50px 0;
+    margin: 40px 0;
 }
 
 .marketing .imgHolder
