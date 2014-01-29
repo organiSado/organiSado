@@ -490,3 +490,55 @@ Stack trace:
 REQUEST_URI=/organiSado//organisado.com.ar/index.php?r=site/inicio
 HTTP_REFERER=http://localhost:8888/organiSado//organisado.com.ar/index.php?r=
 ---
+2014/01/28 21:11:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "pages".' in /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(270): CController->missingAction('pages')
+#1 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(282): CController->run('pages')
+#2 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/pages/abou...')
+#3 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/index.php?r=site/pages/about
+---
+2014/01/28 21:11:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "pages/about".' in /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('pages/about')
+#1 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/index.php?r=pages/about
+---
+2014/01/28 21:11:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "pages".' in /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(270): CController->missingAction('pages')
+#1 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(282): CController->run('pages')
+#2 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/pages/abou...')
+#3 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/index.php?r=site/pages/about
+---
+2014/01/28 21:16:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "pages".' in /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(270): CController->missingAction('pages')
+#1 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(282): CController->run('pages')
+#2 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/pages')
+#3 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/index.php?r=site/pages&view=about
+---
+2014/01/28 21:16:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested view "index" was not found.' in /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/actions/CViewAction.php:112
+Stack trace:
+#0 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/actions/CViewAction.php(123): CViewAction->resolveView('index')
+#1 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/actions/CAction.php(76): CViewAction->run()
+#2 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(308): CAction->runWithParams(Array)
+#3 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(286): CController->runAction(Object(CViewAction))
+#4 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CViewAction), Array)
+#5 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(282): CController->run('page')
+#6 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/page')
+#7 /Users/joelquatro/Desktop/Joel/Sites/organiSado/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#8 /Users/joelquatro/Desktop/Joel/Sites/organiSado/organisado.com.ar/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/index.php?r=site/page
+---

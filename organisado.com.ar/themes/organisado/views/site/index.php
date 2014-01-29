@@ -30,7 +30,7 @@ foreach ($entries as $entry) {
                                 <h1>Un aplauso para el organizador...</h1>
                                 <p class="lead">Ahora, vas a poder descansar y ahorrar tiempo, mucho tiempo!</p>
                                 <br>
-                                <a class="btn btn-large btn-primary" href="registro.php">registrate</a>
+                                <a class="btn btn-large btn-primary" href="<? echo $this->createUrl('/site/registro') ?>">registrate</a>
                             </div>
                         </div>
                         <?
