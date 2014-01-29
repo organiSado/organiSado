@@ -94,7 +94,7 @@
         <footer id="mainFooter">
             <div class="wrapped">
                 <p class="pull-right"><a id="goTop" href="#">^</a></p>
-                <p>© 2013 organiSado  ·  <a href="#">privacidad y términos</a></p>
+                <p>© 2013 organiSado  ·  <a href="<?php echo $this->createUrl('/site/terminos') ?>">privacidad y términos</a></p>
             </div>
         </footer>
 	</div><!-- footer -->
