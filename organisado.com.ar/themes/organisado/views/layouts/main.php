@@ -28,7 +28,7 @@
 	<!--header-->
 	<div id="header">
 		<div class="wrapped">
-			<a href="<?php echo Yii::app()->request->baseUrl; ?>" id="logo" class="pull-left">
+			<a href="<?php echo Yii::app()->request->baseUrl; ?>/" id="logo" class="pull-left">
 				<img src="<?php echo Yii::app()->request->baseUrl; ?>/logo_small.png">
 			</a>
 
