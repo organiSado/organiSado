@@ -1,0 +1,35 @@
+Anoche charlando un poco con joel nos pusimos a detallar mas o menos lo que falta 
+
+Agregar los links en el texto marquetinero, y links a redes sociales (si quieren)
+
+Completar la pagina, Que es? con muestras dela funcionalidad del proyecto, pero eso es cuando se termine.
+
+Completar la informacion de la pagina sobre nsotros.
+
+En el formlario de registro, cambiar el imput text de sexo por un un radiobutton, o el que vaya
+
+Agregar los terminos y condiciones para ser aceptados por medio de un iframe. 
+
+Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo propongo dejarlo asi y usar ajax en otra cosa)
+
+hacer que en la barra de arriba aparezca el boton "eventos" cuando un usuario esta logeado.
+
+Terminar la pagina de creacion de eventos.
+
+Terminar los detalles de la base de datos, pero esto cuando el profe le conteste un mail a joel.
+
+Hacer las dos o tres querys que faltan, para mostrar las tablas que pide la pgina de eventos, 
+con invitados, items, etc etc.
+
+ver como vamos a manejar la logica de la asignacion de item.
+
+
+hacer un view aparte con el manejo de el precio que debe pagar cada quien. 
+
+Conectar ala base de datos y hacer que el form login cargue los datos en ella.
+
+
+si se me paso algo, agreguenlo.
+
+a medida que vayamos completndo cosas, que se marquen con un asterisco.
+
