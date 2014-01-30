@@ -90,7 +90,9 @@
         <footer id="mainFooter">
             <div class="wrapped">
                 <p class="pull-right"><a id="goTop" href="#">^</a></p>
-                <p>© 2013 organiSado  ·  <a href="<?php echo $this->createUrl('/site/terminos') ?>">privacidad y términos</a></p>
+                <p>© 2013 organiSado  ·  <a href="<?php echo $this->createUrl('/site/terminos') ?>">privacidad y términos</a> · Seguinos en
+                	<a href="http://facebook.com">Facebook</a> y en <a href="http://twitter.com">Twitter</a>.
+                </p>
             </div>
         </footer>
 	</div><!-- footer -->
