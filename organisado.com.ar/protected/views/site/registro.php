@@ -22,7 +22,10 @@ $this->breadcrumbs=array(
           <input type="date" placeholder="Fecha de nacimiento">
         </div>
         <div class="control-group">
-          <input type="text" placeholder="Sexo">
+          <select class="selectpicker">
+            <option>Masculino</option>
+            <option>Femenino</option>
+          </select>
         </div>
         <div class="control-group">
           <input type="text" placeholder="Email">
