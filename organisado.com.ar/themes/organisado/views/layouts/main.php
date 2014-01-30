@@ -87,7 +87,7 @@
 	?>
 	
 
-	<div class="clear"></div>
+	<div id="footer-clear"></div>
 
 	<div id="footer">
 		<!-- FOOTER -->

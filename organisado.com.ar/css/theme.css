@@ -204,6 +204,11 @@ div.marketing
     max-width: 85%;
 }
 
+#footer-clear
+{
+	height: 50px;
+}
+
 footer#mainFooter
 {
 	color: #777;
