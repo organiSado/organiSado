@@ -36,13 +36,14 @@
 			<?php $this->widget('zii.widgets.CMenu',array(
 				'items'=>array(
 					array('label'=>'inicio', 'url'=>array('/site/index')),
+					array('label'=>'EVENTOS', 'url'=>"#", 'visible'=>!Yii::app()->user->isGuest),
 					array('label'=>'login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'registro', 'url'=>array('/site/registro'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'contacto', 'url'=>array('/site/contact')),
 					array('label'=>'nosotros', 'url'=>array('/site/nosotros')),
 					array('label'=>'¿qué es?', 'url'=>array('/site/about')),
 
-					array('label'=>'salir ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+					array('label'=>'salir ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
 				),
 				'encodeLabel' => false,
 				'htmlOptions' => array(
