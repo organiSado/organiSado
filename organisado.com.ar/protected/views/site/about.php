@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 ?>
 
 <div class="row">
-	<div class="span4 pull-right imgHolder ">
-	    <img src="img/i/users.png">
+	<div class="span4 pull-right imgHolder">
+	    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/i/users.png">
 	</div>
 
 	<div class="span6 description">

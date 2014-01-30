@@ -29,7 +29,7 @@ if (count($photos))
         {
 ?>
             <div class="item<?php echo ($photo == $photos[0] ? ' active' : ''); ?>">
-                <div class="imgContainer" style="background-image:url('<? echo $headerImgPath . $photo ?>');"></div>
+                <div class="imgContainer" style="background-image:url('<? echo Yii::app()->request->baseUrl."/".$headerImgPath . $photo ?>');"></div>
                 <div class="carousel-caption">
                     <h1>Un aplauso para el organizador...</h1>
                     <p class="lead">Ahora, vas a poder descansar y ahorrar tiempo, mucho tiempo!</p>
@@ -91,7 +91,7 @@ if (count($photos))
 <div class="container marketing">
     <div class="row">
         <div class="span4 pull-right imgHolder">
-            <img src="img/i/clock.png">                
+            <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/i/clock.png">                
         </div>
 
         <div class="span6 description">
@@ -104,7 +104,7 @@ if (count($photos))
 
     <div class="row">
         <div class="span4 pull-left imgHolder">
-            <img src="img/i/users.png">
+            <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/i/users.png">
         </div>
         <div class="span6 description">
             <h2 class="featurette-heading">Invitá<span class="muted"> y hacé un seguimiento.</span></h2>
@@ -116,7 +116,7 @@ if (count($photos))
 
     <div class="row">
         <div class="span4 pull-right imgHolder">
-            <img src="img/i/wine.png">
+            <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/i/wine.png">
         </div>
         <div class="span6 description">
             <h2 class="featurette-heading">Relajate<span class="muted">, nosotros hacemos el resto.</span></h2>
@@ -132,4 +132,4 @@ if (count($photos))
 <!-- bootstrap -->
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 
-<script src="js/intro.js"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/intro.js"></script>

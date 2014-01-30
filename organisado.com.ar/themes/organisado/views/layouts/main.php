@@ -3,9 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
-
+	<meta name="language" content="es" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Bootstrap (http://www.bootstrapcdn.com, resposive + icons)-->
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
 
 	<!-- blueprint CSS framework -->
 	<!-- rompe el slide link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" / -->
@@ -13,17 +16,10 @@
 	<!--[if lt IE 8]>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
-
 	<!-- contiene css del CMenu link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" / -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 
-	<!-- Bootstrap (http://www.bootstrapcdn.com, resposive + icons)-->
-	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-	<link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
-
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/theme.css" />
-
-
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
@@ -32,8 +28,8 @@
 	<!--header-->
 	<div id="header">
 		<div class="wrapped">
-			<a href="/" id="logo" class="pull-left"><!-- usar 'url'=>array('/site/index')) -->
-				<img src="logo_small.png">
+			<a href="<?php echo Yii::app()->request->baseUrl; ?>" id="logo" class="pull-left">
+				<img src="<?php echo Yii::app()->request->baseUrl; ?>/logo_small.png">
 			</a>
 
 			<div id="mainmenu" class="navbar">

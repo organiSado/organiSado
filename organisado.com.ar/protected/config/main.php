@@ -14,7 +14,6 @@ return array(
 
 	// enable theme
 	'theme'=> 'organisado',
-	//'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -55,8 +54,9 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
-		/*
+		
 		'urlManager'=>array(
+			'showScriptName'=>false,
 			'urlFormat'=>'path',
 			'rules'=>array(
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
@@ -64,7 +64,6 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		*/
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),

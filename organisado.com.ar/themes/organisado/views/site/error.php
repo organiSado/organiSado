@@ -17,13 +17,13 @@ $this->breadcrumbs=array(
 </div>
 */ ?>
 
-<link rel="stylesheet" media="screen" type="text/css" href="css/error.css">
+<link rel="stylesheet" media="screen" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/error.css">
 <div id="error" class="sixteen columns clearfix">
 	<div id="error-monster-1" class="five columns alpha">
-		<img id="error-monster-2" src="img/error/hanging.png">
+		<img id="error-monster-2" src="<?php echo Yii::app()->request->baseUrl; ?>/img/error/hanging.png">
 	</div>
 	<div class="eleven columns omega">
 		<h1>Lo sentimos, no podemos encontrar lo que nos pedís.</h1>
-		<img id="error-monster-3" src="img/error/monstersRight.png">
+		<img id="error-monster-3" src="<?php echo Yii::app()->request->baseUrl; ?>/img/error/monstersRight.png">
 	</div>
 </div>
