@@ -14,7 +14,7 @@ Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo prop
 
 ****hacer que en la barra de arriba aparezca el boton "eventos" cuando un usuario esta logeado.**************
 
-Terminar la pagina de creacion de eventos.
+Terminar la pagina de creacion de eventos.***** (esta comenzada)
 
 Terminar los detalles de la base de datos, pero esto cuando el profe le conteste un mail a joel.
 

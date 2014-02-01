@@ -120,6 +120,13 @@ class SiteController extends Controller
 		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('registro');
 	}
+
+		public function actionEventos()
+	{
+		// renders the view file 'protected/views/site/index.php'
+		// using the default layout 'protected/views/layouts/main.php'
+		$this->render('eventos');
+	}
 	
 	public function actionAbout()
 	{
