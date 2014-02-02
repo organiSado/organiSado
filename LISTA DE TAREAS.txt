@@ -8,7 +8,7 @@ Completar la informacion de la pagina sobre nsotros.
 
 ****En el formlario de registro, cambiar el imput text de sexo por un un radiobutton, o el que vaya******
 
-Agregar los terminos y condiciones para ser aceptados por medio de un iframe. 
+*****Agregar los terminos y condiciones para ser aceptados por medio de un iframe. 
 
 Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo propongo dejarlo asi y usar ajax en otra cosa)
 

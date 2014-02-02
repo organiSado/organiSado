@@ -33,8 +33,42 @@ $this->breadcrumbs=array(
         <div class="control-group">
           <input type="Password" placeholder="Contraseña">
         </div>
-        <button class="btn btn-primary" type="submit">Enviar</button>
+        <a class="btn btn-success" id="mostrar">Registrarse</a>
       </fieldset>
     </form>
   </div>
 </div>
+
+
+        <!-- jQuery -->
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <!-- bootstrap -->
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+        <script src="js/intro.js"></script>
+
+        <script type="text/javascript">
+          $(function() {
+            $("#mostrar").click(function(e) {
+            e.preventDefault();
+            $("#condiciones").modal('show');
+            });
+          });
+        </script>
+
+
+<!--popup condiciones -->
+<div class="modal hide" id="condiciones">
+  <div class="modal-header">
+    <h2> Términos y condiciones </h2>
+  </div>
+  <div class="modal-body">
+    <p> lorum lorem etc etc etc</p>
+  </div>
+  <div class="modal-footer">
+    <div>
+    <a href="#" data-dismiss="modal" class="btn">Declinar</a>
+    <a href="#" class="btn btn-primary">Aceptar</a>
+    </div>
+  </div>
+</div>  
