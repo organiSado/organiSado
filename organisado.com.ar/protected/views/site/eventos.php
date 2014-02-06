@@ -111,9 +111,9 @@ $this->breadcrumbs=array(
       	<input type="radio" data-toggle="modal" href="#divvalasis">Se divide un valor arbitrario segun asistentes<br>
         </label><br />
 
-        </div>	
+      </div>	
   	         	      						         	      
-     	<div class="modal fade" id="valorfijo" align="center" >
+     	<div class="modal hide" id="valorfijo" align="center" >
   			<div class="modal-content">
   				<div class="modal-body">
   		 			<div class="control-group">
@@ -125,7 +125,7 @@ $this->breadcrumbs=array(
        		</div>
   	  </div>
 
-      <div class="modal fade" id="valorfijoasis" align="center">
+      <div class="modal fhide" id="valorfijoasis" align="center">
   		  <div class="modal-content">
   				<div class="modal-body">
   			 		<div class="control-group">
@@ -137,7 +137,7 @@ $this->breadcrumbs=array(
   	     	</div>
   		</div>
 
-  	  <div class="modal fade" id="divgast" align="center">
+  	  <div class="modal hide" id="divgast" align="center">
   			<div class="modal-content">
   				<div class="modal-body">
   		 			<div class="control-group">
@@ -148,7 +148,7 @@ $this->breadcrumbs=array(
   			 		</div>
   	  </div>
 
-  	  <div class="modal fade" id="divgastasis" align="center">
+  	  <div class="modal hide" id="divgastasis" align="center">
   			<div class="modal-content">
   				<div class="modal-body">
   		 			<div class="control-group">
