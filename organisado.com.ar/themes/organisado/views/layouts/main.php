@@ -34,22 +34,9 @@
 
 			<div id="mainmenu" class="navbar">
 			<?php $this->widget('zii.widgets.CMenu',array(
-				'activateParents'=>true,
 				'items'=>array(
 					array('label'=>'inicio', 'url'=>array('/site/index')),
-					array(
-						'label'=>'EVENTOS', 'url'=>array('/site/eventos'), 
-						//'items'=>array(
-						//	   			array('label'=>'eventos','url'=>array('/site/eventos')),
-						//	   			array('label'=>'miseventos','url'=>array('/site/login')),
-						//			   ),
-
-						 // ),
-
-					 'visible'=>!Yii::app()->user->isGuest),
-
-
-
+					array('label'=>'EVENTOS', 'url'=>array('/site/eventos'), 'visible'=>!Yii::app()->user->isGuest),
 					array('label'=>'login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'registro', 'url'=>array('/site/registro'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'contacto', 'url'=>array('/site/contact')),
