@@ -207,28 +207,28 @@ $this->breadcrumbs=array(
 
 
 <!-- POPUP NUEVO INVITADO-->
-<div class="modal fade" id="addInvited" role="dialog">
+<div class="modal hide" id="addInvited" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4>Nuevo Invitado</h4>
 			</div> <!-- div header-->
-				<div class="modal-body">
-					<div class="control-group">
-	        	      		<label>Email o Nombre</label>
-	               	  		<input type="text" placeholder="email o nombre">
-	         	    </div>	         
-				    <div class="input-group">
-				      Organizador   
-				      <span class="input-group-addon">
-				        <input type="checkbox">
-				      </span>
-				    </div>		  
-					<div class="modal-footer">
-						<a href="#" class="btn btn-danger" onclick="closeDialog();">Cancelar</a>
-						<a href="#" class="btn btn-primary" onclick="okClicked();">Guardar</a>
-					</div>
-         	   </div> <!-- div body-->
+			<div class="modal-body">
+				<div class="control-group">
+	        <label>Email o Nombre</label>
+	        <input type="text" placeholder="email o nombre">
+	      </div>	         
+				<div class="input-group">
+				  Organizador   
+				  <span class="input-group-addon">
+				    <input type="checkbox">
+				  </span>
+				</div>		  
+				<div class="modal-footer">
+					<a href="#" data-dismiss="modal" class="btn btn-danger" onclick="closeDialog();">Cancelar</a>
+					<a href="#" class="btn btn-primary" onclick="okClicked();">Guardar</a>
+				</div>
+      </div> <!-- div body-->
 		</div> <!-- div content-->
 	</div> <!-- div dialog-->	
 </div>  <!-- div fade-->    
