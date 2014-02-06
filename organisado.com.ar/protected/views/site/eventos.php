@@ -125,7 +125,7 @@ $this->breadcrumbs=array(
        		</div>
   	  </div>
 
-      <div class="modal fhide" id="valorfijoasis" align="center">
+      <div class="modal hide" id="valorfijoasis" align="center">
   		  <div class="modal-content">
   				<div class="modal-body">
   			 		<div class="control-group">
