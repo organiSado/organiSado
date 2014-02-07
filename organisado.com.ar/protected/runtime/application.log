@@ -905,3 +905,106 @@ Stack trace:
 REQUEST_URI=/organisado/organisado.com.ar/users/admin
 HTTP_REFERER=http://localhost/organisado/organisado.com.ar/users/create
 ---
+2014/02/08 00:01:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "evento".' in C:\xampp\htdocs\organiSado\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\organiSado\yii\framework\web\CController.php(270): CController->missingAction('evento')
+#1 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(282): CController->run('evento')
+#2 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/evento')
+#3 C:\xampp\htdocs\organiSado\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\organiSado\organisado.com.ar\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/site/evento
+---
+2014/02/08 00:01:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "evento".' in C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('evento')
+#1 C:\xampp\htdocs\organiSado\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\organiSado\organisado.com.ar\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/evento
+---
+2014/02/08 00:02:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "eventos".' in C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('eventos')
+#1 C:\xampp\htdocs\organiSado\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\organiSado\organisado.com.ar\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/eventos
+---
+2014/02/08 00:02:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in C:\xampp\htdocs\organiSado\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\organiSado\yii\framework\web\CController.php(270): CController->missingAction('js')
+#1 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(282): CController->run('js')
+#2 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/js/intro.j...')
+#3 C:\xampp\htdocs\organiSado\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\organiSado\organisado.com.ar\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/site/js/intro.js
+HTTP_REFERER=http://localhost/organiSado/organisado.com.ar/site/eventos
+---
+2014/02/08 00:02:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in C:\xampp\htdocs\organiSado\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\organiSado\yii\framework\web\CController.php(270): CController->missingAction('js')
+#1 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(282): CController->run('js')
+#2 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/js/intro.j...')
+#3 C:\xampp\htdocs\organiSado\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\organiSado\organisado.com.ar\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/site/js/intro.js
+HTTP_REFERER=http://localhost/organiSado/organisado.com.ar/site/eventos
+---
+2014/02/08 00:03:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in C:\xampp\htdocs\organiSado\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\organiSado\yii\framework\web\CController.php(270): CController->missingAction('js')
+#1 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(282): CController->run('js')
+#2 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/js/intro.j...')
+#3 C:\xampp\htdocs\organiSado\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\organiSado\organisado.com.ar\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/site/js/intro.js
+HTTP_REFERER=http://localhost/organiSado/organisado.com.ar/site/eventos
+---
+2014/02/08 00:08:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in C:\xampp\htdocs\organiSado\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\organiSado\yii\framework\web\CController.php(270): CController->missingAction('js')
+#1 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(282): CController->run('js')
+#2 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/js/intro.j...')
+#3 C:\xampp\htdocs\organiSado\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\organiSado\organisado.com.ar\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/site/js/intro.js
+HTTP_REFERER=http://localhost/organiSado/organisado.com.ar/site/eventos
+---
+2014/02/08 00:14:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in C:\xampp\htdocs\organiSado\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\organiSado\yii\framework\web\CController.php(270): CController->missingAction('js')
+#1 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(282): CController->run('js')
+#2 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/js/intro.j...')
+#3 C:\xampp\htdocs\organiSado\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\organiSado\organisado.com.ar\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/site/js/intro.js
+HTTP_REFERER=http://localhost/organiSado/organisado.com.ar/site/eventos
+---
+2014/02/08 00:16:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in C:\xampp\htdocs\organiSado\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\organiSado\yii\framework\web\CController.php(270): CController->missingAction('js')
+#1 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(282): CController->run('js')
+#2 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/js/intro.j...')
+#3 C:\xampp\htdocs\organiSado\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\organiSado\organisado.com.ar\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/site/js/intro.js
+HTTP_REFERER=http://localhost/organiSado/organisado.com.ar/site/eventos
+---
+2014/02/08 00:20:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "js".' in C:\xampp\htdocs\organiSado\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\organiSado\yii\framework\web\CController.php(270): CController->missingAction('js')
+#1 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(282): CController->run('js')
+#2 C:\xampp\htdocs\organiSado\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/js/intro.j...')
+#3 C:\xampp\htdocs\organiSado\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\organiSado\organisado.com.ar\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/organiSado/organisado.com.ar/site/js/intro.js
+HTTP_REFERER=http://localhost/organiSado/organisado.com.ar/site/eventos
+---

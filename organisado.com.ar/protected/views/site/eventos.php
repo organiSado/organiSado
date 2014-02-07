@@ -172,9 +172,32 @@ $this->breadcrumbs=array(
   		         	      		         	                 	                                        	
     </fieldset>
   </form>
+		<fieldset>			
+			<table class="table table-striped table-bordered">
+
+				<tbody data-bind="foreach: pagedList">
+
+				<tr>
+					<th>Que hace falta?</th>
+					<th>Quién trae? </th>
+					<th>Cuantos?</th>
+					<th>Acciones</th>							            
+				</tr>
+				
+				<tr>
+			      <td data-bind="text: Que hace falta?">Pan xKg</td>
+			      <td data-bind="text: Quién trae?">Juan Perez</td>
+			 	  <td data-bind="text: Cuantos?">01/5</td>
+			      <td data-bind="text: Acciones">no</td>
+			   </tr> 
+
+			    </tbody>
+			</table>	
+
+	    </fieldset>
   		   
 </div> <!-- /container -->
-
+	
 					
 
 
