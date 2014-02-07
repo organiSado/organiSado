@@ -113,7 +113,7 @@ $this->breadcrumbs=array(
 
         </div>	
   	         	      						         	      
-     	<div class="modal fade" id="valorfijo" align="center" >
+     	<div class="modal hide" id="valorfijo" align="center" >
   			<div class="modal-content">
   				<div class="modal-body">
   		 			<div class="control-group">
@@ -125,7 +125,7 @@ $this->breadcrumbs=array(
        		</div>
   	  </div>
 
-      <div class="modal fade" id="valorfijoasis" align="center">
+      <div class="modal hide" id="valorfijoasis" align="center">
   		  <div class="modal-content">
   				<div class="modal-body">
   			 		<div class="control-group">
@@ -137,7 +137,7 @@ $this->breadcrumbs=array(
   	     	</div>
   		</div>
 
-  	  <div class="modal fade" id="divgast" align="center">
+  	  <div class="modal hide" id="divgast" align="center">
   			<div class="modal-content">
   				<div class="modal-body">
   		 			<div class="control-group">
@@ -148,7 +148,7 @@ $this->breadcrumbs=array(
   			 		</div>
   	  </div>
 
-  	  <div class="modal fade" id="divgastasis" align="center">
+  	  <div class="modal hide" id="divgastasis" align="center">
   			<div class="modal-content">
   				<div class="modal-body">
   		 			<div class="control-group">
@@ -207,7 +207,7 @@ $this->breadcrumbs=array(
 
 
 <!-- POPUP NUEVO INVITADO-->
-<div class="modal fade" id="addInvited" role="dialog">
+<div class="modal hide" id="addInvited" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
