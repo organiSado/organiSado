@@ -34,14 +34,16 @@
 
 			<div id="mainmenu" class="navbar">
 			<?php $this->widget('zii.widgets.CMenu',array(
+				'activateParents'=> true,
 				'items'=>array(
 					array('label'=>'inicio', 'url'=>array('/site/index')),
-					array('label'=>'EVENTOS', 'url'=>array('/site/eventos'), 'visible'=>!Yii::app()->user->isGuest),
+					array('label'=>'Organizar Evento', 'url'=>array('/site/eventos'), 'visible'=>!Yii::app()->user->isGuest),
+					array('label'=>'Mis Eventos', 'url'=>array('/site/miseventos'), 'visible'=>!Yii::app()->user->isGuest),
 					array('label'=>'login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'registro', 'url'=>array('/site/registro'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'contacto', 'url'=>array('/site/contact')),
-					array('label'=>'nosotros', 'url'=>array('/site/nosotros')),
-					array('label'=>'¿qué es?', 'url'=>array('/site/about')),
+					array('label'=>'nosotros', 'url'=>array('/site/nosotros'), 'visible'=>Yii::app()->user->isGuest),
+					array('label'=>'¿qué es?', 'url'=>array('/site/about'),  'visible'=>Yii::app()->user->isGuest),
 
 					array('label'=>'salir ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
 				),
@@ -97,6 +99,15 @@
             </div>
         </footer>
 	</div><!-- footer -->
+
+
+
+	<!-- jQuery -->
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<!-- bootstrap -->
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/intro.js"></script>
 
 </body>
 </html>

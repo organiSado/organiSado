@@ -29,7 +29,7 @@ if (count($photos))
         {
 ?>
             <div class="item<?php echo ($photo == $photos[0] ? ' active' : ''); ?>">
-                <div class="imgContainer" style="background-image:url('<? echo Yii::app()->request->baseUrl."/".$headerImgPath . $photo ?>');"></div>
+                <div class="imgContainer" style="background-image:url('<?php echo Yii::app()->request->baseUrl."/".$headerImgPath . $photo ?>');"></div>
                 <div class="carousel-caption">
                     <h1>Un aplauso para el organizador...</h1>
                     <p class="lead">Ahora, vas a poder descansar y ahorrar tiempo, mucho tiempo!</p>
@@ -47,46 +47,6 @@ if (count($photos))
 <?php
 }
 ?>
-		
-<div id="login-container">
-	<!-- Modal -->
-    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-    <div class="modal-header" id="modlogin">
-       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-       <h3 id="myModalLabel">Iniciar Seción</h3>
-    </div>
-    <div class="modal-body">
-        <form class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label" for="inputEmail">Email</label>
-                
-                <div class="controls">
-                    <input type="text" id="inputEmail" placeholder="Email" onfocus="#F60" >
-                </div>
-            </div>
-            
-            <div class="control-group">
-                <label class="control-label" for="inputPassword">Contraseña</label>
-                
-                <div class="controls">
-                    <input type="password" id="inputPassword" placeholder="Contraseña">
-                </div>
-            </div>
-        
-            <div class="control-group">
-                <div class="controls">
-                    <label class="checkbox">
-                        <input type="checkbox"> Recordarme
-                    </label>
-        
-                    <button id="bttn-entrar" type="submit" class="btn btn-large">Entrar</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-
 
 <div class="container marketing">
     <div class="row">
@@ -124,12 +84,3 @@ if (count($photos))
         </div>
     </div>
 </div>
-
-
-
-<!-- jQuery -->
-<script src="http://code.jquery.com/jquery.js"></script>
-<!-- bootstrap -->
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/intro.js"></script>
