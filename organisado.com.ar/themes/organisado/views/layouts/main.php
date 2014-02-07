@@ -37,8 +37,8 @@
 				'activateParents'=> true,
 				'items'=>array(
 					array('label'=>'inicio', 'url'=>array('/site/index')),
-					array('label'=>'Organizar Evento', 'url'=>array('/site/eventos'), 'visible'=>!Yii::app()->user->isGuest),
-					array('label'=>'Mis Eventos', 'url'=>array('/site/miseventos'), 'visible'=>!Yii::app()->user->isGuest),
+					array('label'=>'crear evento', 'url'=>array('/site/eventos'), 'visible'=>!Yii::app()->user->isGuest),
+					array('label'=>'mis eventos', 'url'=>array('/site/miseventos'), 'visible'=>!Yii::app()->user->isGuest),
 					array('label'=>'login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'registro', 'url'=>array('/site/registro'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'contacto', 'url'=>array('/site/contact')),
