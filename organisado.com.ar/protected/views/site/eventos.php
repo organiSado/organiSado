@@ -87,31 +87,34 @@ $this->breadcrumbs=array(
   <h2>Cuentas</h2>
   <form action="">
     <fieldset>
-      <div class="btn-group" data-toggle="buttons-radio">
-   
-   	    <label class="btn btn-default">
-      	<input type="radio" data-toggle="modal" href="#orginvita">El organizador invita
-        </label><br />
-        <label class="btn btn-default">
-      	<input type="radio" data-toggle="modal" href="#valorfijo">Se establece un valor fijo
-        </label><br />
-        <label class="btn btn-default">
-      	<input type="radio" data-toggle="modal" href="#valorfijoasis">Se establece un valor fijo por asistente<br>
-        </label><br />
-        <label class="btn btn-default">
-      	<input type="radio" data-toggle="modal" href="#divgast">Se divide lo gastado en partes iguales<br>
-        </label><br />
-        <label class="btn btn-default">
-      	<input type="radio" data-toggle="modal" href="#divgastasis">Se divide lo gastado segun asistentes<br>
-        </label><br />
-        <label class="btn btn-default">
-      	<input type="radio" data-toggle="modal" href="#divval">Se divide un valor arbitrario en partes iguales<br>
-        </label><br />
-        <label class="btn btn-default">
-      	<input type="radio" data-toggle="modal" href="#divvalasis">Se divide un valor arbitrario segun asistentes<br>
-        </label><br />
-
-        </div>	
+      
+        <div class="control-group">
+          <div clas="controls">
+            <div class="radio">
+		   	    <label>
+		      	<input id="orginvita" name="cuentas" type="radio" href="#orginvita" value="opcion1">El organizador invita
+		        </label>
+		        <label>
+		      	<input id="valorfijo" name="cuentas" type="radio" href="#valorfijo" value="opcion2">Se establece un valor fijo
+		        </label>
+		        <label>
+		      	<input id="valorfijoasis" name="cuentas" type="radio" href="#valorfijoasis" value="opcion3">Se establece un valor fijo por asistente<br>
+		        </label>
+		        <label>
+		      	<input id="divgast" name="cuentas" type="radio" href="#divgast" value="opcion4">Se divide lo gastado en partes iguales<br>
+		        </label>
+		        <label>
+		      	<input id="divgastasis" name="cuentas" type="radio" href="#divgastasis" value="opcion5">Se divide lo gastado segun asistentes<br>
+		        </label>
+		        <label>
+		      	<input id="divval" name="cuentas" type="radio" href="#divval" value="opcion6">Se divide un valor arbitrario en partes iguales<br>
+		        </label>
+		        <label>
+		      	<input id="divvalasis" name="cuentas" type="radio" href="#divvalasis" value="opcion7">Se divide un valor arbitrario segun asistentes<br>
+		        </label>
+			</div>
+		</div>
+	</div>		
   	         	      						         	      
      	<div class="modal hide" id="valorfijo" align="center" >
   			<div class="modal-content">
@@ -172,32 +175,9 @@ $this->breadcrumbs=array(
   		         	      		         	                 	                                        	
     </fieldset>
   </form>
-		<fieldset>			
-			<table class="table table-striped table-bordered">
-
-				<tbody data-bind="foreach: pagedList">
-
-				<tr>
-					<th>Que hace falta?</th>
-					<th>Quién trae? </th>
-					<th>Cuantos?</th>
-					<th>Acciones</th>							            
-				</tr>
-				
-				<tr>
-			      <td data-bind="text: Que hace falta?">Pan xKg</td>
-			      <td data-bind="text: Quién trae?">Juan Perez</td>
-			 	  <td data-bind="text: Cuantos?">01/5</td>
-			      <td data-bind="text: Acciones">no</td>
-			   </tr> 
-
-			    </tbody>
-			</table>	
-
-	    </fieldset>
   		   
 </div> <!-- /container -->
-	
+
 					
 
 
