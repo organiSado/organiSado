@@ -21,20 +21,11 @@ class UserIdentity extends CUserIdentity {
 		 'demo'=>'demo',
 		 'admin'=>'admin',
 		 );
-		 if(!isset($users[$this->username]))
-		 $this->errorCode=self::ERROR_USERNAME_INVALID;
-		 elseif($users[$this->username]!==$this->password)
-		 $this->errorCode=self::ERROR_PASSWORD_INVALID;
-		 else
-		 $this->errorCode=self::ERROR_NONE;
-		 return !$this->errorCode;
 		*/ 
 		 
-		$atts = array('email' => $this -> username, //traspasa el "nombre" mandado por formulario (models / LoginForm.php)
-		);
+		$atts = array('email' => $this -> username );//traspasa el "nombre" mandado por formulario (models / LoginForm.php)
 
-		$usuario = Users::model() -> findByAttributes($atts);
-		//busca este nombre en la bdd usando el USER.PHP creado con el CRUD que esta en la carpeta Model
+		$usuario = Users::model() -> findByAttributes($atts); // busca este nombre en la bdd usando el USER.PHP creado con el CRUD que esta en la carpeta Model
 
 		if (($usuario === null))
 			$this -> errorCode = self::ERROR_USERNAME_INVALID;
@@ -43,6 +34,14 @@ class UserIdentity extends CUserIdentity {
 		else
 			$this -> errorCode = self::ERROR_NONE;
 		return !$this -> errorCode;
+
+		/* if(!isset($users[$this->username]))
+		 $this->errorCode=self::ERROR_USERNAME_INVALID;
+		 elseif($users[$this->username]!==$this->password)
+		 $this->errorCode=self::ERROR_PASSWORD_INVALID;
+		 else
+		 $this->errorCode=self::ERROR_NONE;
+		 return !$this->errorCode;*/
 
 	}
 
