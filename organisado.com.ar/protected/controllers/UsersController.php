@@ -28,11 +28,11 @@ class UsersController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create'),
-				'users'=>array('*'),
+				'actions'=>array('create'),
+				'users'=>array('?', 'admin'), // ? not authenticated
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update'),
+				'actions'=>array('index','view','update'),
 				'users'=>array('@', 'admin'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
