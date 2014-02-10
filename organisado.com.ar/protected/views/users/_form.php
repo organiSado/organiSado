@@ -55,7 +55,7 @@
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 
-<?php if (!Yii::app()->user->id == "admin")
+<?php if (Yii::app()->user->id == "admin")
 {
 ?>
 	<div class="row">
