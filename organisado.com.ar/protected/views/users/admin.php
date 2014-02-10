@@ -50,10 +50,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'last_name',
 		'birthdate',
 		'gender',
-		'password_hash',
-		/*
+		'password',
 		'enabled',
-		*/
 		array(
 			'class'=>'CButtonColumn',
 		),

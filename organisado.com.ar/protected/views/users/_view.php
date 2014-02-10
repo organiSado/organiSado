@@ -25,8 +25,8 @@
 	<?php echo CHtml::encode($data->gender); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('password_hash')); ?>:</b>
-	<?php echo CHtml::encode($data->password_hash); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('password')); ?>:</b>
+	<?php echo CHtml::encode($data->password); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('enabled')); ?>:</b>

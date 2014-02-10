@@ -23,17 +23,17 @@ class UserIdentity extends CUserIdentity {
 		 );
 		*/ 
 		 
-		$atts = array('email' => $this -> username );//traspasa el "nombre" mandado por formulario (models / LoginForm.php)
+		$atts = array('email' => $this->username);//traspasa el "nombre" mandado por formulario (models / LoginForm.php)
 
-		$usuario = Users::model() -> findByAttributes($atts); // busca este nombre en la bdd usando el USER.PHP creado con el CRUD que esta en la carpeta Model
+		$usuario = Users::model()->findByAttributes($atts); // busca este nombre en la bdd usando el USER.PHP creado con el CRUD que esta en la carpeta Model
 
 		if (($usuario === null))
-			$this -> errorCode = self::ERROR_USERNAME_INVALID;
-		elseif ($usuario -> password_hash !== $this -> password)
-			$this -> errorCode = self::ERROR_PASSWORD_INVALID;
+			$this->errorCode = self::ERROR_USERNAME_INVALID;
+		elseif ($usuario->password !== $this->password)
+			$this->errorCode = self::ERROR_PASSWORD_INVALID;
 		else
-			$this -> errorCode = self::ERROR_NONE;
-		return !$this -> errorCode;
+			$this->errorCode = self::ERROR_NONE;
+		return !$this->errorCode;
 
 		/* if(!isset($users[$this->username]))
 		 $this->errorCode=self::ERROR_USERNAME_INVALID;

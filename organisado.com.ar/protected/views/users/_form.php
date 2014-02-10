@@ -12,7 +12,7 @@
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -39,27 +39,33 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'birthdate'); ?>
-		<?php echo $form->textField($model,'birthdate'); ?>
+		<?php echo $form->dateField($model,'birthdate'); ?>
 		<?php echo $form->error($model,'birthdate'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'gender'); ?>
-		<?php echo $form->textField($model,'gender'); ?>
+		<?php echo $form->dropDownList($model,'gender', array("Femenino", "Masculino")); ?>
 		<?php echo $form->error($model,'gender'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'password_hash'); ?>
-		<?php echo $form->textField($model,'password_hash',array('size'=>32,'maxlength'=>32)); ?>
-		<?php echo $form->error($model,'password_hash'); ?>
+		<?php echo $form->labelEx($model,'password'); ?>
+		<?php echo $form->passwordField($model,'password',array('size'=>32,'maxlength'=>32)); ?>
+		<?php echo $form->error($model,'password'); ?>
 	</div>
 
+<?php if (!Yii::app()->user->id == "admin")
+{
+?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'enabled'); ?>
-		<?php echo $form->textField($model,'enabled'); ?>
+		<?php echo $form->checkBox($model,'enabled'); ?>
 		<?php echo $form->error($model,'enabled'); ?>
 	</div>
+<?php
+}
+?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

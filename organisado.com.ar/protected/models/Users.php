@@ -9,7 +9,7 @@
  * @property string $last_name
  * @property string $birthdate
  * @property integer $gender
- * @property string $password_hash
+ * @property string $password
  * @property integer $enabled
  */
 class Users extends CActiveRecord
@@ -30,13 +30,13 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email, first_name, last_name, birthdate, gender, password_hash', 'required'),
+			array('email, first_name, last_name, birthdate, gender, password', 'required'),
 			array('gender, enabled', 'numerical', 'integerOnly'=>true),
 			array('email, first_name, last_name', 'length', 'max'=>255),
-			array('password_hash', 'length', 'max'=>32),
+			array('password', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('email, first_name, last_name, birthdate, gender, password_hash, enabled', 'safe', 'on'=>'search'),
+			array('email, first_name, last_name, birthdate, gender, password, enabled', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,7 +62,7 @@ class Users extends CActiveRecord
 			'last_name' => 'Last Name',
 			'birthdate' => 'Birthdate',
 			'gender' => 'Gender',
-			'password_hash' => 'Password Hash',
+			'password' => 'Password',
 			'enabled' => 'Enabled',
 		);
 	}
@@ -90,7 +90,7 @@ class Users extends CActiveRecord
 		$criteria->compare('last_name',$this->last_name,true);
 		$criteria->compare('birthdate',$this->birthdate,true);
 		$criteria->compare('gender',$this->gender);
-		$criteria->compare('password_hash',$this->password_hash,true);
+		$criteria->compare('password',$this->password,true);
 		$criteria->compare('enabled',$this->enabled);
 
 		return new CActiveDataProvider($this, array(

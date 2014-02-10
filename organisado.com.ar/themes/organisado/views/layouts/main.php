@@ -40,7 +40,7 @@
 					array('label'=>'crear evento', 'url'=>array('/site/eventos'), 'visible'=>!Yii::app()->user->isGuest),
 					array('label'=>'mis eventos', 'url'=>array('/site/miseventos'), 'visible'=>!Yii::app()->user->isGuest),
 					array('label'=>'login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-					array('label'=>'registro', 'url'=>array('/site/registro'), 'visible'=>Yii::app()->user->isGuest),
+					array('label'=>'crear usuario', 'url'=>array('/users/create'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'contacto', 'url'=>array('/site/contact')),
 					array('label'=>'nosotros', 'url'=>array('/site/nosotros'), 'visible'=>Yii::app()->user->isGuest),
 					array('label'=>'¿qué es?', 'url'=>array('/site/about'),  'visible'=>Yii::app()->user->isGuest),

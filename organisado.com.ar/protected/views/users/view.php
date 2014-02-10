@@ -26,7 +26,7 @@ $this->menu=array(
 		'last_name',
 		'birthdate',
 		'gender',
-		'password_hash',
+	//	'password',
 		'enabled',
 	),
 )); ?>
