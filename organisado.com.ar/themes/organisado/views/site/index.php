@@ -34,7 +34,7 @@ if (count($photos))
                     <h1>Un aplauso para el organizador...</h1>
                     <p class="lead">Ahora, vas a poder descansar y ahorrar tiempo, mucho tiempo!</p>
                     <br>
-                    <a class="btn btn-large btn-primary" href="<?php echo $this->createUrl('/site/registro') ?>">registrate</a>
+                    <a class="btn btn-large btn-primary" href="<?php echo $this->createUrl('/users/create') ?>">registrate</a>
                 </div>
             </div>
 <?php
