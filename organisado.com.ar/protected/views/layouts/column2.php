@@ -16,6 +16,10 @@
 			'htmlOptions'=>array('class'=>'operations'),
 		));
 		$this->endWidget();
+
+		if (count($this->menu) && isset($this->toSideBar)) echo "<hr>";
+
+		if (isset($this->toSideBar)) echo $this->toSideBar;
 	?>
 	</div><!-- sidebar -->
 </div>
