@@ -14,7 +14,7 @@ $this->breadcrumbs=array(
 
     <div class="span6 description">
         <h2 class="featurette-heading">Joel Quatrocchi</h2>
-        <span class="muted">Arquitectura y Desarrollo</span>
+        <span class="job muted">Arquitectura y Desarrollo</span>
         <br><br>
         <p class="lead ">Soy estudiante de 5to año de Ingeniería Informática en la Universidad FASTA. También me encuentro trabajando como desarrollador de software para proyectos aerospaciales y de gobierno en Argentina para INVAP S.E., y liderando la división de Medios de Comunicación en Centro Cristiano la Roca.</p>
         <p class="lead ">Tengo pasión por todo lo que hago, desde el trabajo hasta los hobbies. Siempre busco la excelencia y la innovación, en cada aspecto de mi trabajo.</p>
@@ -31,7 +31,7 @@ $this->breadcrumbs=array(
     </div>
     <div class="span6 description">
         <h2 class="featurette-heading">Leo Celedon</h2>
-        <span class="muted">Documentación y Testing</span>
+        <span class="job muted">Documentación y Testing</span>
         <br><br>
         <p class="lead ">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
     </div>
@@ -45,7 +45,7 @@ $this->breadcrumbs=array(
     </div>
     <div class="span6 description">
         <h2 class="featurette-heading">Martin Matus</h2>
-        <span class="muted">Desarrollo</span>
+        <span class="job muted">Desarrollo</span>
         <br><br>
         <p class="lead ">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
     </div>
@@ -59,7 +59,7 @@ $this->breadcrumbs=array(
     </div>
     <div class="span6 description">
         <h2 class="featurette-heading">Martin Heredia</h2>
-        <span class="muted">Diseño Gráfico y Desarrollo</span>
+        <span class="job muted">Diseño Gráfico y Desarrollo</span>
         <br><br>
         <p class="lead ">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
     </div>
