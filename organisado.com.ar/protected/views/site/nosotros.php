@@ -47,7 +47,9 @@ $this->breadcrumbs=array(
         <h2 class="featurette-heading">Martin Matus</h2>
         <span class="job muted">Desarrollo</span>
         <br><br>
-        <p class="lead ">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <p class="lead ">Estudiante de 5to año de Ingeniería Informática en la Universidad FASTA. Me especializo en la creación y testing de aplicaciones para el sistema "android". Actualmente estoy trabajando en una empresa de desarrollo de software y sistemas embebidos donde ejerzo dicha labor. </p>
+        <p class="lead ">Mi filosofía de vida es la de “Optimizar todo”, tanto en el trabajo como en el día a día.</p>
+        <p class="lead ">email: <a href="mailto:martinmatus100@gmail.com?subject=organiSado">martinmatus100@gmail.com</a></p>
     </div>
 </div>
 
@@ -61,7 +63,7 @@ $this->breadcrumbs=array(
         <h2 class="featurette-heading">Martin Heredia</h2>
         <span class="job muted">Diseño Gráfico y Desarrollo</span>
         <br><br>
-        <p class="lead ">Estudiante de 4to año de Ingeniería Informática en la Universidad FASTA. y de 1er año en Ingenieria en Telecomunicaciones en la Universidad Nacional de Rio Negro, Hago diseño grafico y mantinimento informatico en forma independiente.</p>
+        <p class="lead ">Estudiante de 4to año de Ingeniería Informática en la Universidad FASTA. y de 1er año en Ingenieria en Telecomunicaciones en la Universidad Nacional de Rio Negro. Hago diseño grafico y mantinimento informatico en forma independiente.</p>
         <p class="lead ">Siempre busco aprender cosas nuevas en cada proyecto en el que participo y no temo afrontar nuevos desafios.</p>
         <p class="lead ">email: <a href="mailto:mjheredia88@gmail.com?subject=organiSado">mjheredia88@gmail.com</a></p>
     </div>
