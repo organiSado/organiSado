@@ -1,41 +1,42 @@
 Anoche charlando un poco con joel nos pusimos a detallar mas o menos lo que falta
 
-a medida que vayamos completndo cosas, SAQUEMOSLO DIRECTAMENTE.
+a medida que vayamos completando cosas, SAQUEMOSLO DIRECTAMENTE.
 
+-Falta olvidé contraseña en Login
 
--Agregar los links en el texto marquetinero, y ****links a redes sociales (si quieren)
+-Completar la pagina, Que es? con muestras de la funcionalidad del proyecto.
 
--Completar la pagina, Que es? con muestras dela funcionalidad del proyecto, pero eso es cuando se termine.
-
--Completar la informacion de la pagina sobre nsotros.
+-Completar la informacion de la pagina sobre nsotros, CADA UNO COMPLETE SU INFO.
 
 -Agregar los terminos y condiciones para ser aceptados por medio de un iframe. 
 
 -Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo propongo dejarlo asi y usar ajax en otra cosa)
 
 -Terminar la pagina de creacion de eventos. (esta comenzada)
+-Mapa 
 
--Terminar los detalles de la base de datos, pero esto cuando el profe le conteste un mail a joel.
+-Terminar los detalles de la base de datos.
 
--Hacer las dos o tres querys que faltan, para mostrar las tablas que pide la pgina de eventos, con invitados, items, etc etc.
+-Hacer los querys que faltan, para mostrar las tablas que pide la pagina de eventos, con invitados, items, etc.
 
 -ver como vamos a manejar la logica de la asignacion de item.
 
 -hacer un view aparte con el manejo de el precio que debe pagar cada quien. 
 
 /**********************************************/
--TESTING FUNCIONAL
 
--TRADUCCIÓN
+-TESTING FUNCIONAL (LEO)
+
+-TRADUCCIÓN (JOEL, hasta el 10/02/14 esta todo traducido)
 
 -Validar en formulario de creación de usuario
 
--md5 usuarios
+-md5 usuarios (buscar "storing passwords in the database" en http://www.yiiframework.com/doc/guide/1.1/en/topics.auth) 
 
--lectura campo gender(n se lee pero si se escribe)
+-lectura campo gender/sexo (no se lee pero si se guarda correctamente)
 
 -aceptar términos en registro
 
--arreglar update y delete usuarios
+-arreglar update y delete usuarios para admin
 
 
