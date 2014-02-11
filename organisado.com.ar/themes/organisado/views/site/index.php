@@ -56,7 +56,8 @@ if (count($photos))
 
         <div class="span6 description">
             <h2 class="featurette-heading">Organizá<span class="muted"> fácil y rápido.</span></h2>
-            <p class="lead ">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead ">¿Por qué vas a estar anotando y haciendo cuentas en un papel cuando lo podemos hacer nosotros por vos? No pierdas más tiempo, no esperes más!</p>
+            <p class="lead">Ya podés <a href="<?php echo $this->createUrl('/users/create') ?>">comenzar...</a></p>
         </div>
     </div>
 
@@ -68,7 +69,8 @@ if (count($photos))
         </div>
         <div class="span6 description">
             <h2 class="featurette-heading">Invitá<span class="muted"> y hacé un seguimiento.</span></h2>
-            <p class="lead ">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead ">¿Estás cansado de buscar las direcciones de e-mail y tener que mandar a cada uno lo que tiene que traer? ¿Y después quién tiene que estar preguntando si van a asistir o tratando de recalcular todo por lo que otros no llevan? Vos, ¿no? </p>
+            <p class="lead"><a href="<?php echo $this->createUrl('/users/create') ?>">Registrate</a> ahora, vas a poder invitarlos a todos con 1 solo click y ellos te van a avisar a vos!</p>
         </div>
     </div>
 
@@ -80,7 +82,8 @@ if (count($photos))
         </div>
         <div class="span6 description">
             <h2 class="featurette-heading">Relajate<span class="muted">, nosotros hacemos el resto.</span></h2>
-            <p class="lead ">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead ">Olvidate de todo lo que tenías que hacer antes para organizar un buen asado con los amigos, en organiSado ya tenemos todo cocinado. Bueno, todo menos el asado...</p>
+            <p class="lead">¿La vas a seguir pensando? <a href="<?php echo $this->createUrl('/users/create') ?>">Registrate!</a></p>
         </div>
     </div>
 </div>
