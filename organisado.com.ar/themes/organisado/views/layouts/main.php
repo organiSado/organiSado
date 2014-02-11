@@ -24,7 +24,7 @@
 </head>
 
 <body>
-<?php echo "<div style='position:fixed;top:0;left:0;padding:0 2px;color:white;background:red;z-index:99999;'>MODE: localhost (".$_SERVER['SERVER_ADDR'].")</div>"; ?>
+<?php if ($_SERVER['SERVER_ADDR'] == "::1") echo "<div style='position:fixed;top:0;left:0;padding:0 2px;color:white;background:red;z-index:99999;'>MODE: localhost (".$_SERVER['SERVER_ADDR'].")</div>"; ?>
 	<!--header-->
 	<div id="header">
 		<div class="wrapped">
