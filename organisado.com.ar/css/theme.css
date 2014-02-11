@@ -253,3 +253,15 @@ div.description span.muted
 {
 	font-size: 20px;
 } 
+
+/* ABOUT */
+div.logoHolder img
+{
+	padding: 200px 0;
+}
+
+/* ABOUT */
+div.screenshotHolder img
+{
+	max-height: 250px;
+}
