@@ -20,7 +20,7 @@ $this->breadcrumbs=array(
 	<?php else: ?>
 
 	<p>
-	Si quieres hacernos consultas sobre organiSado, por favor, llena el siguiente formulario para contactarnos. Gracias.
+	Si querés hacernos consultas sobre organiSado, por favor, llená el siguiente formulario para contactarnos. Gracias.
 	</p>
 
 	<div class="form">
@@ -68,8 +68,8 @@ $this->breadcrumbs=array(
 			<?php $this->widget('CCaptcha'); ?>
 			<?php echo $form->textField($model,'verifyCode'); ?>
 			</div>
-			<div class="hint">Por favor, ingresa los caracteres tal como se ven en la imagen.
-			<br/>Las letras no son sensibles a mayúsculas.</div>
+			<div class="hint">Por favor, ingresá los caracteres tal como se ven en la imagen.
+			<br/>La respuesta no es sensible a mayúsculas.</div>
 			<?php echo $form->error($model,'verifyCode'); ?>
 			<br/>
 		</div>
