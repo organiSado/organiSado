@@ -19,6 +19,7 @@ $this->breadcrumbs=array(
         <p class="lead ">Soy estudiante de 5to año de Ingeniería Informática en la Universidad FASTA. También me encuentro trabajando como desarrollador de software para proyectos aerospaciales y de gobierno en Argentina para INVAP S.E., y liderando la división de Medios de Comunicación en Centro Cristiano la Roca.</p>
         <p class="lead ">Tengo pasión por todo lo que hago, desde el trabajo hasta los hobbies. Siempre busco la excelencia y la innovación, en cada aspecto de mi trabajo.</p>
         <p class="lead ">Más información en mi página de <a href="http://ar.linkedin.com/in/joelquatrocchi">linkedin.</a></p>
+        <p class="lead ">email: <a href="mailto:joel.quatro@gmail.com?subject=organiSado">joel.quatro@gmail.com</a></p>
     </div>
 </div>
 
