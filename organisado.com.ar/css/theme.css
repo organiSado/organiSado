@@ -233,3 +233,17 @@ footer#mainFooter #goTop:hover
 {
     text-decoration: none!important;
 }
+
+
+/* FORM */
+#Users_gender
+{	
+	margin: 0 0 10px 20px;
+}
+
+div.rememberMe label,
+#Users_gender label
+{
+	display: inline;
+	margin: 0 15px 0 0;
+}
