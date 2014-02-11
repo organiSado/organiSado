@@ -15,7 +15,7 @@
 	'enableAjaxValidation'=>true,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -45,7 +45,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'gender'); ?>
-		<?php echo $form->dropDownList($model,'gender', array("Femenino", "Masculino")); ?>
+		<?php echo $form->radioButtonList($model,'gender', array("Femenino", "Masculino"), array('separator' => "")); ?>
 		<?php echo $form->error($model,'gender'); ?>
 	</div>
 
@@ -66,9 +66,8 @@
 <?php
 }
 ?>
-
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class' => "btn")); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

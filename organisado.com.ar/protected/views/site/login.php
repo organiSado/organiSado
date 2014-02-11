@@ -11,9 +11,9 @@ $this->breadcrumbs=array(
 
 <div class="row">
 	<h1>Login</h1>
-
-	<p>Please fill out the following form with your login credentials:</p>
-
+	
+	<div class="pull-right"><h2>¿No tenés cuenta?</h2><a class="btn btn-large btn-primary" href="<?php echo $this->createUrl('/users/create') ?>">registrate</a></div>
+	
 	<div class="form">
 	<?php $form=$this->beginWidget('CActiveForm', array(
 		'id'=>'login-form',
@@ -23,7 +23,7 @@ $this->breadcrumbs=array(
 		),
 	)); ?>
 
-		<p class="note">Fields with <span class="required">*</span> are required.</p>
+		<p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
 
 		<div class="row">
 			<?php echo $form->labelEx($model,'username'); ?>
@@ -35,9 +35,6 @@ $this->breadcrumbs=array(
 			<?php echo $form->labelEx($model,'password'); ?>
 			<?php echo $form->passwordField($model,'password'); ?>
 			<?php echo $form->error($model,'password'); ?>
-			<p class="hint">
-				Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
-			</p>
 		</div>
 
 		<div class="row rememberMe">

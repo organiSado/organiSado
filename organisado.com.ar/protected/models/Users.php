@@ -58,12 +58,12 @@ class Users extends CActiveRecord
 	{
 		return array(
 			'email' => 'Email',
-			'first_name' => 'First Name',
-			'last_name' => 'Last Name',
-			'birthdate' => 'Birthdate',
-			'gender' => 'Gender',
-			'password' => 'Password',
-			'enabled' => 'Enabled',
+			'first_name' => 'Nombre',
+			'last_name' => 'Apellido',
+			'birthdate' => 'Fecha de Nacimiento',
+			'gender' => 'Sexo',
+			'password' => 'Contraseña',
+			'enabled' => 'Habilitado',
 		);
 	}
 

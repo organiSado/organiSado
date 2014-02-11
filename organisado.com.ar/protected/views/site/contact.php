@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 );
 ?>
 <div class="row">
-	<h1>Contact Us</h1>
+	<h1>Contacto</h1>
 
 	<?php if(Yii::app()->user->hasFlash('contact')): ?>
 
@@ -20,7 +20,7 @@ $this->breadcrumbs=array(
 	<?php else: ?>
 
 	<p>
-	If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+	Si quieres hacernos consultas sobre organiSado, por favor, llena el siguiente formulario para contactarnos. Gracias.
 	</p>
 
 	<div class="form">
@@ -33,7 +33,7 @@ $this->breadcrumbs=array(
 		),
 	)); ?>
 
-		<p class="note">Fields with <span class="required">*</span> are required.</p>
+		<p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
 
 		<?php echo $form->errorSummary($model); ?>
 
@@ -68,9 +68,10 @@ $this->breadcrumbs=array(
 			<?php $this->widget('CCaptcha'); ?>
 			<?php echo $form->textField($model,'verifyCode'); ?>
 			</div>
-			<div class="hint">Please enter the letters as they are shown in the image above.
-			<br/>Letters are not case-sensitive.</div>
+			<div class="hint">Por favor, ingresa los caracteres tal como se ven en la imagen.
+			<br/>Las letras no son sensibles a mayúsculas.</div>
 			<?php echo $form->error($model,'verifyCode'); ?>
+			<br/>
 		</div>
 		<?php endif; ?>
 
