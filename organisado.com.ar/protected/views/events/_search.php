@@ -27,6 +27,16 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'time'); ?>
+		<?php echo $form->textField($model,'time',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'description'); ?>
+		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'creator'); ?>
 		<?php echo $form->textField($model,'creator',array('size'=>60,'maxlength'=>255)); ?>
 	</div>

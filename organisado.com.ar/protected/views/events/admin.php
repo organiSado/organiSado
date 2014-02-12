@@ -48,10 +48,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'name',
 		'date',
+		'time',
+		'description',
 		'creator',
+		/*
 		'location',
 		'gmaps_lat',
-		/*
 		'gmaps_long',
 		'confirmation_closed',
 		*/

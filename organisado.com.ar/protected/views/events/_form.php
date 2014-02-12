@@ -26,43 +26,55 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'date'); ?>
-		<?php echo $form->textField($model,'date'); ?>
-		<?php echo $form->error($model,'date'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'creator'); ?>
-		<?php echo $form->textField($model,'creator',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'creator'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'location'); ?>
 		<?php echo $form->textField($model,'location',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'location'); ?>
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'date'); ?>
+		<?php echo $form->dateField($model,'date'); ?>
+		<?php echo $form->error($model,'date'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'time'); ?>
+		<?php echo $form->timeField($model,'time',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'time'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'description'); ?>
+		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'description'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'creator'); ?>
+		<?php echo $form->hiddenField($model,'creator',array('value'=>Yii::app()->user->id)); ?>
+		<?php echo $form->error($model,'creator'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'gmaps_lat'); ?>
-		<?php echo $form->textField($model,'gmaps_lat',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->hiddenField($model,'gmaps_lat',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'gmaps_lat'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'gmaps_long'); ?>
-		<?php echo $form->textField($model,'gmaps_long',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->hiddenField($model,'gmaps_long',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'gmaps_long'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'confirmation_closed'); ?>
-		<?php echo $form->textField($model,'confirmation_closed'); ?>
+		<?php echo $form->checkBox($model,'confirmation_closed'); ?>
 		<?php echo $form->error($model,'confirmation_closed'); ?>
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => "btn")); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

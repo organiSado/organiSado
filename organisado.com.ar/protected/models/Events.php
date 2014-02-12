@@ -7,6 +7,8 @@
  * @property integer $id
  * @property string $name
  * @property string $date
+ * @property string $time
+ * @property string $description
  * @property string $creator
  * @property string $location
  * @property string $gmaps_lat
@@ -31,13 +33,14 @@ class Events extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, date, creator, location', 'required'),
+			array('name, date, time, creator, location', 'required'),
 			array('confirmation_closed', 'numerical', 'integerOnly'=>true),
 			array('name, creator, location', 'length', 'max'=>255),
-			array('gmaps_lat, gmaps_long', 'length', 'max'=>45),
+			array('time, gmaps_lat, gmaps_long', 'length', 'max'=>45),
+			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, date, creator, location, gmaps_lat, gmaps_long, confirmation_closed', 'safe', 'on'=>'search'),
+			array('id, name, date, time, description, creator, location, gmaps_lat, gmaps_long, confirmation_closed', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +64,8 @@ class Events extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Name',
 			'date' => 'Date',
+			'time' => 'Time',
+			'description' => 'Description',
 			'creator' => 'Creator',
 			'location' => 'Location',
 			'gmaps_lat' => 'Gmaps Lat',
@@ -90,6 +95,8 @@ class Events extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('date',$this->date,true);
+		$criteria->compare('time',$this->time,true);
+		$criteria->compare('description',$this->description,true);
 		$criteria->compare('creator',$this->creator,true);
 		$criteria->compare('location',$this->location,true);
 		$criteria->compare('gmaps_lat',$this->gmaps_lat,true);

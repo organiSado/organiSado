@@ -17,6 +17,14 @@
 	<?php echo CHtml::encode($data->date); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('time')); ?>:</b>
+	<?php echo CHtml::encode($data->time); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
+	<?php echo CHtml::encode($data->description); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('creator')); ?>:</b>
 	<?php echo CHtml::encode($data->creator); ?>
 	<br />
@@ -25,6 +33,7 @@
 	<?php echo CHtml::encode($data->location); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('gmaps_lat')); ?>:</b>
 	<?php echo CHtml::encode($data->gmaps_lat); ?>
 	<br />
@@ -33,7 +42,6 @@
 	<?php echo CHtml::encode($data->gmaps_long); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('confirmation_closed')); ?>:</b>
 	<?php echo CHtml::encode($data->confirmation_closed); ?>
 	<br />

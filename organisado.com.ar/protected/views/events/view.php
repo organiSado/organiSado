@@ -24,6 +24,8 @@ $this->menu=array(
 		'id',
 		'name',
 		'date',
+		'time',
+		'description',
 		'creator',
 		'location',
 		'gmaps_lat',
