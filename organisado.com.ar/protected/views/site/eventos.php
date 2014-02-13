@@ -28,8 +28,7 @@ $this->breadcrumbs=array(
          	  <div class="control-group">
          	    <label>Nombre del Lugar</label>
            	  <input type="text" placeholder="Lugar">
-           	      <!--MAPA -->
-           	  <div id="map3" style="width:360px;height:200px;border:2px solid skyblue;">
+              <?php require_once "gmap.php" ?>
               </div>
           	</div>
 
