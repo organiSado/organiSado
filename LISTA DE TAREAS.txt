@@ -13,7 +13,6 @@ a medida que vayamos completando cosas, SAQUEMOSLO DIRECTAMENTE.
 -Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo propongo dejarlo asi y usar ajax en otra cosa)
 
 -Terminar la pagina de creacion de eventos. (esta comenzada)
--Mapa 
 
 -Terminar los detalles de la base de datos.
 
@@ -32,8 +31,6 @@ a medida que vayamos completando cosas, SAQUEMOSLO DIRECTAMENTE.
 -Validar en formulario de creación de usuario
 
 -md5 usuarios (buscar "storing passwords in the database" en http://www.yiiframework.com/doc/guide/1.1/en/topics.auth) 
-
--lectura campo gender/sexo (no se lee pero si se guarda correctamente)
 
 -aceptar términos en registro
 
