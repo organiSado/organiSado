@@ -13,6 +13,24 @@ var fieldLat, fieldLong;
 
 var geocoder, map, marker, infoWindow;
 
+var lastValue, typingTimer, scheduleTimeout = 500;
+
+/*! \brief function call scheduler, anti overwhelm
+*/
+function scheduleCall(obj, f)
+{
+	if( obj && obj.value != lastValue )
+	{
+		lastValue = obj.value;
+
+		clearTimeout(typingTimer);
+		
+		typingTimer = setTimeout(function() {
+			f(obj.value);
+		}, scheduleTimeout);
+	}
+}
+
 /*! \brief New Google Maps API v3 editor implementation
 */
 function initEditorMap(mapDiv, lat, long, zoom, latfieldname, longfieldname)
@@ -138,6 +156,7 @@ function resetMap()
 	document.getElementById('field_longitude').value = '';
 	initEditorMap();
 }
+
 
 /*! \brief New Google Maps API v3 find address implementation
 */
