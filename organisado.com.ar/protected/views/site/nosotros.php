@@ -33,7 +33,8 @@ $this->breadcrumbs=array(
         <h2 class="featurette-heading">Leo Celedon</h2>
         <span class="job muted">Documentación y Testing</span>
         <br><br>
-        <p class="lead ">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <p class="lead ">Soy estudiante de 5to año de la carrera Ingeniería Informática en la Universidad FASTA. Realizo mantinimento informatico en forma independiente.</p>
+    	<p class="lead">Me gusta resolver problemas de forma sencilla y disfruto de aprender.</p>
     </div>
 </div>
 
