@@ -1,58 +1,53 @@
 /* PRIORIDAD ALTA */
 
-0. Completar la informacion de la pagina sobre nsotros, CADA UNO COMPLETE SU INFO.
+0. Completar la informacion de la pagina sobre nsotros, CADA UNO COMPLETE SU INFO. (Martes)
 
 1. Eventos:
 	-a. Integrar el GMap
-	b. CRUD: de un formulario a varias tablas/modelos.
-	c. Javascript de formularios: Editores y Validación de campos. 
-	d. Integrar AJAX Uploader para subir fotos de eventos a /appdata/events/ID_EVENTO/* y subir antes de adjuntar fotos en publicaciones de muros a /appdata/events/ID_EVENTO/wall/*
-	e. Mostrar tabla MisEventos con query.
-	f. Mostrar muro.
-	g. Mostrar fotos evento.
+	b. CRUD: de un formulario a varias tablas/modelos. (Martes 17:00) http://www.yiiframework.com/wiki/19/how-to-use-a-single-form-to-collect-data-for-two-or-more-models
+	c. Javascript de formularios: Editores y Validación de campos.(Lun-Mar)
+	d. Integrar AJAX Uploader para subir fotos de eventos a /appdata/events/ID_EVENTO/* y subir antes de adjuntar fotos en publicaciones de muros a /appdata/events/ID_EVENTO/wall/* (Martes)
+	e. Mostrar tabla MisEventos con query. (Martes) http://www.yiiframework.com/wiki/527/relational-query-lazy-loading-and-eager-loading-with-and-together/
+	f. Mostrar muro. (Martes)
+	g. Mostrar fotos evento. (Martes)
 
 
-2. Restringir el acceso de usuarios a publicaciones no administradas o creadas.
+2. Restringir el acceso de usuarios a publicaciones no administradas o creadas. (Martes-Mie)
 
-3. Completar la pagina, Que es? con muestras de la funcionalidad del proyecto.
+3. Completar la pagina, Que es? con muestras de la funcionalidad del proyecto. (Jue)
 
-4. Documentación.
+4. Documentación. (Mar-Mie)
 
--TESTING FUNCIONAL (LEO)
+-TESTING FUNCIONAL (LEO) (Jue-Vie)
 
--TRADUCCIÓN (JOEL, hasta el 10/02/14 esta todo traducido)
+-TRADUCCIÓN (JOEL, hasta el 10/02/14 esta todo traducido) (Jue-Vie)
 
 
 
 
 /* PRIORIDAD MEDIA */
 
-0. Delete Eventos.
+1. Avisos por mail a usuarios  (Martes)
 
-1. Avisos por mail a usuarios
+-Falta olvidé contraseña en Login (Jue-Vie)
 
-
--Falta olvidé contraseña en Login
-
--Agregar los terminos y condiciones para ser aceptados por medio de un iframe. 
-
--Validar en formulario de creación de usuario
-
+-Agregar los terminos y condiciones para ser aceptados por medio de un iframe. (Mar-Mie)
 
 
 
 /* BAJA PRIORIDAD */
 
-1. Log de actividades.
+1. Log de actividades. (Jue-Vie)
+
+-Validar en formulario de creación de usuario
 
 -md5 usuarios (buscar "storing passwords in the database" en http://www.yiiframework.com/doc/guide/1.1/en/topics.auth) 
 
--Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo propongo dejarlo asi y usar ajax en otra cosa)
+-Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo propongo dejarlo asi y usar ajax en otra cosa) (Jue-Vie)
 
 
 /* BUGS */
-- delete Eventos.
-- Al actualizar evento se pisa el creador con el usuario que actualizó por última vez.
-
--update y delete usuarios para admin
+- delete Eventos. (Jue-Vie)
+- Al actualizar evento se pisa el creador con el usuario que actualizó por última vez. (Jue-Vie)
+-update y delete usuarios para admin. (Jue-Vie)
 
