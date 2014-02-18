@@ -1,6 +1,5 @@
-/* PRIORIDAD ALTA */
+﻿/* PRIORIDAD ALTA */
 
-0. Completar la informacion de la pagina sobre nsotros, CADA UNO COMPLETE SU INFO. (Martes)
 
 1. Eventos:
 	-a. Integrar el GMap

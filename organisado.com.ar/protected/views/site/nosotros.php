@@ -33,7 +33,7 @@ $this->breadcrumbs=array(
         <h2 class="featurette-heading">Leo Celedon</h2>
         <span class="job muted">Documentación y Testing</span>
         <br><br>
-        <p class="lead ">Soy estudiante de 5to año de la carrera Ingeniería Informática en la Universidad FASTA. Realizo mantinimento informatico en forma independiente.</p>
+        <p class="lead ">Soy estudiante de 5to año de la carrera Ingeniería Informática en la Universidad FASTA. Realizo mantenimiento informatico en forma independiente.</p>
     	<p class="lead">Me gusta resolver problemas de forma sencilla y disfruto de aprender.</p>
     </div>
 </div>
@@ -64,7 +64,7 @@ $this->breadcrumbs=array(
         <h2 class="featurette-heading">Martin Heredia</h2>
         <span class="job muted">Diseño Gráfico y Desarrollo</span>
         <br><br>
-        <p class="lead ">Estudiante de 4to año de Ingeniería Informática en la Universidad FASTA. y de 1er año en Ingenieria en Telecomunicaciones en la Universidad Nacional de Rio Negro. Hago diseño grafico y mantinimento informatico en forma independiente.</p>
+        <p class="lead ">Estudiante de 4to año de Ingeniería Informática en la Universidad FASTA. y de 1er año en Ingenieria en Telecomunicaciones en la Universidad Nacional de Rio Negro. Hago diseño grafico y mantenimiento informatico en forma independiente.</p>
         <p class="lead ">Siempre busco aprender cosas nuevas en cada proyecto en el que participo y no temo afrontar nuevos desafios.</p>
         <p class="lead ">email: <a href="mailto:mjheredia88@gmail.com?subject=organiSado">mjheredia88@gmail.com</a></p>
     </div>
