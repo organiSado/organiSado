@@ -37,11 +37,24 @@ function initEditorMap(mapDiv, lat, long, zoom, latfieldname, longfieldname)
 {
 	// DEFAULT
     if (!mapDiv) 		mapDiv 			= 'map';
-    if (!latfieldname) 	latfieldname 	= 'field_latitude';
-    if (!longfieldname) longfieldname 	= 'field_longitude';
+    if (!latfieldname) 	latfieldname 	= 'Events_location_lat';
+    if (!longfieldname) longfieldname 	= 'Events_location_long';
 
 	fieldLat 	= document.getElementById(latfieldname);
 	fieldLong 	= document.getElementById(longfieldname);
+
+
+	// ZOOM
+    var zoomlevel = start_zoom;
+	if (zoom)
+	{
+		zoomlevel = zoom;
+	}
+	else if ( fieldLat && fieldLat.value
+			  && fieldLong && fieldLong.value )
+    {
+		zoomlevel = max_zoom_level;
+	}
 
     // LATITUDE
     var latitude = start_latitude;
@@ -64,10 +77,6 @@ function initEditorMap(mapDiv, lat, long, zoom, latfieldname, longfieldname)
     {
 		longitude = fieldLong.value;
 	}
-    
-	// ZOOM
-    var zoomlevel = start_zoom;
-	if (zoom) zoomlevel = zoom;
 
 	// GEOCODER
 	geocoder = new google.maps.Geocoder();

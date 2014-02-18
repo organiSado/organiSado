@@ -29,17 +29,21 @@
 	<?php echo CHtml::encode($data->creator); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('location')); ?>:</b>
-	<?php echo CHtml::encode($data->location); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('location_name')); ?>:</b>
+	<?php echo CHtml::encode($data->location_name); ?>
 	<br />
 
 	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('gmaps_lat')); ?>:</b>
-	<?php echo CHtml::encode($data->gmaps_lat); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('location_address')); ?>:</b>
+	<?php echo CHtml::encode($data->location_address); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('gmaps_long')); ?>:</b>
-	<?php echo CHtml::encode($data->gmaps_long); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('location_lat')); ?>:</b>
+	<?php echo CHtml::encode($data->location_lat); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('location_long')); ?>:</b>
+	<?php echo CHtml::encode($data->location_long); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('confirmation_closed')); ?>:</b>

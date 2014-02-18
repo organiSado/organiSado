@@ -52,9 +52,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'description',
 		'creator',
 		/*
-		'location',
-		'gmaps_lat',
-		'gmaps_long',
+		'location_name',
+		'location_address',
+		'location_lat',
+		'location_long',
 		'confirmation_closed',
 		*/
 		array(

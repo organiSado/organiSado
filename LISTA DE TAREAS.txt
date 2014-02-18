@@ -3,7 +3,7 @@
 0. Completar la informacion de la pagina sobre nsotros, CADA UNO COMPLETE SU INFO.
 
 1. Eventos:
-	a. Integrar el GMap
+	-a. Integrar el GMap
 	b. CRUD: de un formulario a varias tablas/modelos.
 	c. Javascript de formularios: Editores y Validación de campos. 
 	d. Integrar AJAX Uploader para subir fotos de eventos a /appdata/events/ID_EVENTO/* y subir antes de adjuntar fotos en publicaciones de muros a /appdata/events/ID_EVENTO/wall/*
@@ -27,6 +27,11 @@
 
 /* PRIORIDAD MEDIA */
 
+0. Delete Eventos.
+
+1. Avisos por mail a usuarios
+
+
 -Falta olvidé contraseña en Login
 
 -Agregar los terminos y condiciones para ser aceptados por medio de un iframe. 
@@ -38,10 +43,16 @@
 
 /* BAJA PRIORIDAD */
 
--md5 usuarios (buscar "storing passwords in the database" en http://www.yiiframework.com/doc/guide/1.1/en/topics.auth) 
+1. Log de actividades.
 
--arreglar update y delete usuarios para admin
+-md5 usuarios (buscar "storing passwords in the database" en http://www.yiiframework.com/doc/guide/1.1/en/topics.auth) 
 
 -Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo propongo dejarlo asi y usar ajax en otra cosa)
 
+
+/* BUGS */
+- delete Eventos.
+- Al actualizar evento se pisa el creador con el usuario que actualizó por última vez.
+
+-update y delete usuarios para admin
 

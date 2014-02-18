@@ -10,10 +10,11 @@
  * @property string $time
  * @property string $description
  * @property string $creator
- * @property string $location
- * @property string $gmaps_lat
- * @property string $gmaps_long
- * @property integer $confirmation_closed
+ * @property string $location_name
+ * @property string $location_address
+ * @property string $location_lat
+ * @property string $location_long
+ * @property string $confirmation_closed
  */
 class Events extends CActiveRecord
 {
@@ -33,14 +34,14 @@ class Events extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, date, time, creator, location', 'required'),
-			array('confirmation_closed', 'numerical', 'integerOnly'=>true),
-			array('name, creator, location', 'length', 'max'=>255),
-			array('time, gmaps_lat, gmaps_long', 'length', 'max'=>45),
+			array('name, date, time, creator, location_name, location_lat, location_long', 'required'),
+			array('name, creator, location_name, location_address', 'length', 'max'=>255),
+			array('time, location_lat, location_long', 'length', 'max'=>45),
+			array('confirmation_closed', 'length', 'max'=>1),
 			array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, date, time, description, creator, location, gmaps_lat, gmaps_long, confirmation_closed', 'safe', 'on'=>'search'),
+			array('id, name, date, time, description, creator, location_name, location_address, location_lat, location_long, confirmation_closed', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,9 +68,10 @@ class Events extends CActiveRecord
 			'time' => 'Time',
 			'description' => 'Description',
 			'creator' => 'Creator',
-			'location' => 'Location',
-			'gmaps_lat' => 'Gmaps Lat',
-			'gmaps_long' => 'Gmaps Long',
+			'location_name' => 'Location Name',
+			'location_address' => 'Location Address',
+			'location_lat' => 'Location Lat',
+			'location_long' => 'Location Long',
 			'confirmation_closed' => 'Confirmation Closed',
 		);
 	}
@@ -98,10 +100,11 @@ class Events extends CActiveRecord
 		$criteria->compare('time',$this->time,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('creator',$this->creator,true);
-		$criteria->compare('location',$this->location,true);
-		$criteria->compare('gmaps_lat',$this->gmaps_lat,true);
-		$criteria->compare('gmaps_long',$this->gmaps_long,true);
-		$criteria->compare('confirmation_closed',$this->confirmation_closed);
+		$criteria->compare('location_name',$this->location_name,true);
+		$criteria->compare('location_address',$this->location_address,true);
+		$criteria->compare('location_lat',$this->location_lat,true);
+		$criteria->compare('location_long',$this->location_long,true);
+		$criteria->compare('confirmation_closed',$this->confirmation_closed,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

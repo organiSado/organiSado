@@ -42,23 +42,28 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'location'); ?>
-		<?php echo $form->textField($model,'location',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->label($model,'location_name'); ?>
+		<?php echo $form->textField($model,'location_name',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'gmaps_lat'); ?>
-		<?php echo $form->textField($model,'gmaps_lat',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->label($model,'location_address'); ?>
+		<?php echo $form->textField($model,'location_address',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'gmaps_long'); ?>
-		<?php echo $form->textField($model,'gmaps_long',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->label($model,'location_lat'); ?>
+		<?php echo $form->textField($model,'location_lat',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'location_long'); ?>
+		<?php echo $form->textField($model,'location_long',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'confirmation_closed'); ?>
-		<?php echo $form->textField($model,'confirmation_closed'); ?>
+		<?php echo $form->textField($model,'confirmation_closed',array('size'=>1,'maxlength'=>1)); ?>
 	</div>
 
 	<div class="row buttons">
