@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 <div class="row">
     <div class="span4 pull-right imgHolder">
-        <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/authors/jq.png">                
+        <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/authors/jq.png" class="img-circle">                
     </div>
 
     <div class="span6 description">
@@ -27,7 +27,7 @@ $this->breadcrumbs=array(
 
 <div class="row">
     <div class="span4 pull-left imgHolder">
-        <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/authors/lc.png">
+        <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/authors/lc.png" class="img-circle">
     </div>
     <div class="span6 description">
         <h2 class="featurette-heading">Leo Celedon</h2>
@@ -42,7 +42,7 @@ $this->breadcrumbs=array(
 
 <div class="row">
     <div class="span4 pull-right imgHolder">
-        <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/authors/mm.png">
+        <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/authors/mm.png" class="img-circle">
     </div>
     <div class="span6 description">
         <h2 class="featurette-heading">Martin Matus</h2>
@@ -58,7 +58,7 @@ $this->breadcrumbs=array(
 
 <div class="row">
     <div class="span4 pull-left imgHolder">
-        <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/authors/mh.png">
+        <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/authors/mh.png" class="img-circle">
     </div>
     <div class="span6 description">
         <h2 class="featurette-heading">Martin Heredia</h2>
