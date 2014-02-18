@@ -1,39 +1,47 @@
-Anoche charlando un poco con joel nos pusimos a detallar mas o menos lo que falta
+/* PRIORIDAD ALTA */
 
-a medida que vayamos completando cosas, SAQUEMOSLO DIRECTAMENTE.
+0. Completar la informacion de la pagina sobre nsotros, CADA UNO COMPLETE SU INFO.
 
--Falta olvidé contraseña en Login
+1. Eventos:
+	a. Integrar el GMap
+	b. CRUD: de un formulario a varias tablas/modelos.
+	c. Javascript de formularios: Editores y Validación de campos. 
+	d. Integrar AJAX Uploader para subir fotos de eventos a /appdata/events/ID_EVENTO/* y subir antes de adjuntar fotos en publicaciones de muros a /appdata/events/ID_EVENTO/wall/*
+	e. Mostrar tabla MisEventos con query.
+	f. Mostrar muro.
+	g. Mostrar fotos evento.
 
--Completar la pagina, Que es? con muestras de la funcionalidad del proyecto.
 
--Completar la informacion de la pagina sobre nsotros, CADA UNO COMPLETE SU INFO.
+2. Restringir el acceso de usuarios a publicaciones no administradas o creadas.
 
--Agregar los terminos y condiciones para ser aceptados por medio de un iframe. 
+3. Completar la pagina, Que es? con muestras de la funcionalidad del proyecto.
 
--Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo propongo dejarlo asi y usar ajax en otra cosa)
-
--Terminar la pagina de creacion de eventos. (esta comenzada)
-
--Terminar los detalles de la base de datos.
-
--Hacer los querys que faltan, para mostrar las tablas que pide la pagina de eventos, con invitados, items, etc.
-
--ver como vamos a manejar la logica de la asignacion de item.
-
--hacer un view aparte con el manejo de el precio que debe pagar cada quien. 
-
-/**********************************************/
+4. Documentación.
 
 -TESTING FUNCIONAL (LEO)
 
 -TRADUCCIÓN (JOEL, hasta el 10/02/14 esta todo traducido)
 
+
+
+
+/* PRIORIDAD MEDIA */
+
+-Falta olvidé contraseña en Login
+
+-Agregar los terminos y condiciones para ser aceptados por medio de un iframe. 
+
 -Validar en formulario de creación de usuario
+
+
+
+
+/* BAJA PRIORIDAD */
 
 -md5 usuarios (buscar "storing passwords in the database" en http://www.yiiframework.com/doc/guide/1.1/en/topics.auth) 
 
--aceptar términos en registro
-
 -arreglar update y delete usuarios para admin
+
+-Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo propongo dejarlo asi y usar ajax en otra cosa)
 
 
