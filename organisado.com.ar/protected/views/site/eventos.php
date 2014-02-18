@@ -81,121 +81,24 @@ $this->breadcrumbs=array(
 
       </div>
     </div>
-  </div>
-  		   
-  <h2>Cuentas</h2>
-  <form action="">
-    <fieldset>
-      
-        <div class="control-group">
-          <div clas="controls">
-            <div class="radio">
-		   	    <label>
-		      	<input id="orginvita" name="cuentas" type="radio" href="#orginvita" value="opcion1">El organizador invita
-		        </label>
-		        <label>
-		      	<input id="valorfijo" name="cuentas" type="radio" href="#valorfijo" value="opcion2">Se establece un valor fijo
-		        </label>
-		        <label>
-		      	<input id="valorfijoasis" name="cuentas" type="radio" href="#valorfijoasis" value="opcion3">Se establece un valor fijo por asistente<br>
-		        </label>
-		        <label>
-		      	<input id="divgast" name="cuentas" type="radio" href="#divgast" value="opcion4">Se divide lo gastado en partes iguales<br>
-		        </label>
-		        <label>
-		      	<input id="divgastasis" name="cuentas" type="radio" href="#divgastasis" value="opcion5">Se divide lo gastado segun asistentes<br>
-		        </label>
-		        <label>
-		      	<input id="divval" name="cuentas" type="radio" href="#divval" value="opcion6">Se divide un valor arbitrario en partes iguales<br>
-		        </label>
-		        <label>
-		      	<input id="divvalasis" name="cuentas" type="radio" href="#divvalasis" value="opcion7">Se divide un valor arbitrario segun asistentes<br>
-		        </label>
-			</div>
-		</div>
-	</div>		
-  	         	      						         	      
-     	<div class="modal hide" id="valorfijo" align="center" >
-  			<div class="modal-content">
-  				<div class="modal-body">
-  		 			<div class="control-group">
-      								<label>Costo por invitado</label>
-     	  								<input type="text">
-     	  								<a href="#" class="btn btn-primary">Aceptar</a>
-       			 	</div>
-       			</div>
-       		</div>
-  	  </div>
-
-      <div class="modal hide" id="valorfijoasis" align="center">
-  		  <div class="modal-content">
-  				<div class="modal-body">
-  			 		<div class="control-group">
-        								<label>Costo por asistente</label>
-       	  								<input type="text" placeholder="Adultos"><input type="text" placeholder="Niños">               	  					
-       	  								<a href="#" class="btn btn-primary">Aceptar</a>
-  	     			</div>
-  	     		</div>
-  	     	</div>
-  		</div>
-
-  	  <div class="modal hide" id="divgast" align="center">
-  			<div class="modal-content">
-  				<div class="modal-body">
-  		 			<div class="control-group">
-      								<label>Dividir lo gastado en partes iguales</label>               	  								              	  					
-     	  								<a href="#" class="btn btn-primary">Aceptar</a>
-  			 				</div>
-  			 			</div>
-  			 		</div>
-  	  </div>
-
-  	  <div class="modal hide" id="divgastasis" align="center">
-  			<div class="modal-content">
-  				<div class="modal-body">
-  		 			<div class="control-group">
-      				<label>Se dividi lo gastado segun asistentes</label>
-      				<div class="well">
-      					<div class="slider slider-horizontal" style="width: 140px">
-      						<div class="slider-track">
-      							<div class="slider-selection" style="left: 0%; width: 100%;"></div>
-  									<div class="slider-handle round" style="left: 100%;"></div>
-  									<div class="slider-handle round hide" style="left: 0%;"></div>
-      						</div>
-      					</div>
-      				</div>   
-      								   
-      				<a href="#" class="btn btn-primary">Aceptar</a>
-       			 	</div>
-       			</div>
-       		</div>
-  	  </div>
+  </div>  	
 
   		         	      		         	                 	                                        	
     </fieldset>
   </form>
   		   
+
+
+  <div class="control-group">
+    <label>Cuentas</label> 
+    <?php require_once "cuentas.php" ?>
+    </div>
+  </div>
+
+
 </div> <!-- /container -->
 
-					
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+				
 
         <!-- jQuery -->
         <script src="http://code.jquery.com/jquery.js"></script>
