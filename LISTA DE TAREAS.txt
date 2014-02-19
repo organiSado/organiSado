@@ -11,7 +11,7 @@
 	g. Mostrar fotos evento. (Martes)
 
 
-2. Restringir el acceso de usuarios a publicaciones no administradas o creadas. (Martes-Mie)
+2. ACL: Restringir el acceso de usuarios a publicaciones no administradas/creadas, borrar eventos propios, etc. (Martes-Mie)
 
 3. Completar la pagina, Que es? con muestras de la funcionalidad del proyecto. (Jue)
 
@@ -42,10 +42,14 @@
 
 -Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo propongo dejarlo asi y usar ajax en otra cosa) (Jue-Vie)
 
+-Url Manager
+
 -md5 usuarios (buscar "storing passwords in the database" en http://www.yiiframework.com/doc/guide/1.1/en/topics.auth) 
 
 
 /* BUGS */
 - Al actualizar evento se pisa el creador con el usuario que actualizó por última vez. (Jue-Vie)
--update y delete usuarios para admin. (Jue-Vie)
+-si los usuarios pueden cambiar el email, entonces pueden duplicar uno ya existente y te rechaza la integridad PK, propongo, agregar un campo id, que no sea el email. O generar una página de error ante esos cambios.
+-cualquier usuario puede acceder a modificar cualquier evento y cualquier usuario con modificar una url.
 
+-date y time no tiene editors en safari.
