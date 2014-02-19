@@ -15,7 +15,7 @@ var geocoder, map, marker, infoWindow;
 
 /*! \brief New Google Maps API v3 editor implementation
 */
-function initEditorMap(mapDiv, lat, long, zoom, latfieldname, longfieldname)
+function initEditorMap(e, mapDiv, lat, long, zoom, latfieldname, longfieldname)
 {
 	// DEFAULT
     if (!mapDiv) 		mapDiv 			= 'map';
@@ -180,6 +180,7 @@ function findAddressInEditorMap(address, mapDiv)
 	});
 }
 
+google.maps.event.addDomListener(window, 'load', initEditorMap);
 
 /* API 2 
 function findAddress(address, mapDiv) {
