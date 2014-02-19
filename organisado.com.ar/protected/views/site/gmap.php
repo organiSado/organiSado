@@ -9,6 +9,7 @@ $this->breadcrumbs=array(
 );
 
 	$cs = Yii::app()->getClientScript();
+  $cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/tools.js');
 	$cs->registerScriptFile('https://maps.googleapis.com/maps/api/js?v=3&sensor=false');
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/gmap.js');
 //	$cs->registerCssFile($baseUrl.'/css/yourcss.css');
