@@ -23,7 +23,7 @@ $this->breadcrumbs=array(
 		<img id="error-monster-2" src="<?php echo Yii::app()->request->baseUrl; ?>/img/error/hanging.png">
 	</div>
 	<div class="eleven columns omega">
-		<h1>Lo sentimos, no podemos encontrar lo que nos pedís.</h1>
+		<h1>Lo sentimos, este contenido no está disponible para ti.</h1>
 		<img id="error-monster-3" src="<?php echo Yii::app()->request->baseUrl; ?>/img/error/monstersRight.png">
 	</div>
 </div>
