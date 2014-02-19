@@ -27,6 +27,6 @@ $this->menu=array(
 		'birthdate',
 		'gender',
 	//	'password',
-		'enabled',
+	//	'enabled',
 	),
 )); ?>

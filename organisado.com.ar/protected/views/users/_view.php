@@ -25,13 +25,19 @@
 	<?php echo CHtml::encode($data->gender); ?>
 	<br />
 
+<?php if (Yii::app()->user->id == "admin")
+{
+?>
 	<b><?php echo CHtml::encode($data->getAttributeLabel('password')); ?>:</b>
 	<?php echo CHtml::encode($data->password); ?>
 	<br />
-
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('enabled')); ?>:</b>
 	<?php echo CHtml::encode($data->enabled); ?>
 	<br />
+<?php
+}
+?>
 
 
 </div>
