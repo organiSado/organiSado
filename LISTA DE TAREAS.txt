@@ -1,4 +1,4 @@
-﻿/* PRIORIDAD ALTA */
+/* PRIORIDAD ALTA */
 
 
 1. Eventos:
@@ -40,13 +40,12 @@
 
 -Validar en formulario de creación de usuario
 
--md5 usuarios (buscar "storing passwords in the database" en http://www.yiiframework.com/doc/guide/1.1/en/topics.auth) 
-
 -Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo propongo dejarlo asi y usar ajax en otra cosa) (Jue-Vie)
+
+-md5 usuarios (buscar "storing passwords in the database" en http://www.yiiframework.com/doc/guide/1.1/en/topics.auth) 
 
 
 /* BUGS */
-- delete Eventos. (Jue-Vie)
 - Al actualizar evento se pisa el creador con el usuario que actualizó por última vez. (Jue-Vie)
 -update y delete usuarios para admin. (Jue-Vie)
 
