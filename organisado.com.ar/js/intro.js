@@ -1,7 +1,5 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-
-$('.carousel').carousel('cycle');
+$(document).on("ready", function()
+{
+	$('.carousel').carousel('cycle');
+});

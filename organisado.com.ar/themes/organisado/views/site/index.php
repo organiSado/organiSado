@@ -4,6 +4,23 @@
 $this->pageTitle=Yii::app()->name;
 
 
+$cs = Yii::app()->getClientScript();
+
+$cs->registerScriptFile('http://code.jquery.com/jquery.js');
+$cs->registerScriptFile('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js');
+$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/intro.js');
+
+
+/*
+<!-- jQuery -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<!-- bootstrap -->
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/intro.js"></script>
+*/
+
+
 /* slider */
 $imgPath = "img/";
 $headerImgPath = $imgPath . "header/";

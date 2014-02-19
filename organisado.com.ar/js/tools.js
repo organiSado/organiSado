@@ -16,3 +16,30 @@ function scheduleCall(obj, f)
 		}, scheduleTimeout);
 	}
 }
+
+var watchdogInterval = 500;
+var watchdogObj, watchdogLastValue, watchdogTimer;
+
+/*! \brief watchdog
+*/
+function startWatchdog(obj, f)
+{
+	if (watchdogObj != obj) stopWatchdog();
+
+	watchdogObj = obj;
+	watchdogLastValue = watchdogObj.innerHTML;
+
+	watchdogTimer = setInterval(function()
+	{
+		if (watchdogObj.innerHTML != watchdogLastValue)
+		{
+			watchdogLastValue = watchdogObj.innerHTML;
+			f(obj);
+		}
+	}, watchdogInterval);
+}
+
+function stopWatchdog(obj, f)
+{
+	clearInterval(watchdogTimer);
+}

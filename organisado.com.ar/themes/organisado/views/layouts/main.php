@@ -24,6 +24,7 @@
 </head>
 
 <body>
+
 <?php if ($_SERVER['SERVER_ADDR'] == "::1") echo "<div style='position:fixed;top:0;left:0;padding:0 2px;color:white;background:red;z-index:99999;'>MODE: localhost (".$_SERVER['SERVER_ADDR'].")</div>"; ?>
 	<!--header-->
 	<div id="header">
@@ -99,15 +100,5 @@
             </div>
         </footer>
 	</div><!-- footer -->
-
-
-
-	<!-- jQuery -->
-	<script src="http://code.jquery.com/jquery.js"></script>
-	<!-- bootstrap -->
-	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/intro.js"></script>
-
 </body>
 </html>

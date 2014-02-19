@@ -5,7 +5,19 @@
 
 
 	$cs = Yii::app()->getClientScript();
+
+	$cs->registerScriptFile('http://code.jquery.com/jquery.js');
+	$cs->registerScriptFile('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js');
+	/*
+	<!-- jQuery -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+	<!-- bootstrap -->
+	<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+	*/
+
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/tools.js');
+	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/events.js');
+
 	$cs->registerScriptFile('https://maps.googleapis.com/maps/api/js?v=3&sensor=false');
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/gmap.js');
 //	$cs->registerCssFile($baseUrl.'/css/yourcss.css');
@@ -25,67 +37,207 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
+		
 	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'name'); ?>
+		<div class="col pull-left">
+			<div class="row">
+				<?php echo $form->labelEx($model,'name'); ?>
+				<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
+				<?php echo $form->error($model,'name'); ?>
+			</div>
+
+			<div class="row">
+				<?php echo $form->labelEx($model,'date'); ?>
+				<?php echo $form->dateField($model,'date'); ?>
+				<?php echo $form->error($model,'date'); ?>
+			</div>
+
+			<div class="row">
+				<?php echo $form->labelEx($model,'time'); ?>
+				<?php echo $form->timeField($model,'time',array('size'=>45,'maxlength'=>45)); ?>
+				<?php echo $form->error($model,'time'); ?>
+			</div>
+
+			<div class="row">
+				<?php //echo $form->labelEx($model,'creator'); ?>
+				<?php echo $form->hiddenField($model,'creator',array('value'=>Yii::app()->user->id)); ?>
+				<?php //echo $form->error($model,'creator'); ?>
+			</div>
+
+			<div class="row">
+				<?php echo $form->labelEx($model,'description'); ?>
+				<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+				<?php echo $form->error($model,'description'); ?>
+			</div>
+		</div>
+
+		<div class="col pull-left">
+			<div class="row">
+				<?php echo $form->labelEx($model,'location_name'); ?>
+				<?php echo $form->textField($model,'location_name',array('size'=>60,'maxlength'=>255)); ?>
+				<?php echo $form->error($model,'location_name'); ?>
+			</div>
+
+			<div class="row">
+				<?php echo $form->labelEx($model,'location_address'); ?>
+				<?php echo $form->textField($model,'location_address',array('size'=>60,'maxlength'=>255, 'onkeyup'=>"scheduleCall(this, findAddressInEditorMap);")); ?>
+				<?php echo $form->error($model,'location_address'); ?>
+			</div>
+
+			<div class="row">
+				<?php //echo $form->labelEx($model,'location_lat'); ?>
+				<?php echo $form->hiddenField($model,'location_lat',array('size'=>45,'maxlength'=>45)); ?>
+				<?php //echo $form->error($model,'location_lat'); ?>
+
+				<?php //echo $form->labelEx($model,'location_long'); ?>
+				<?php echo $form->hiddenField($model,'location_long',array('size'=>45,'maxlength'=>45)); ?>
+				<?php //echo $form->error($model,'location_long'); ?>
+
+		      	<div id="map"></div>
+		  		<script type="text/javascript"> google.maps.event.addDomListener(window, 'ready', initEditorMap()); </script>
+			</div>
+		</div>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'date'); ?>
-		<?php echo $form->dateField($model,'date'); ?>
-		<?php echo $form->error($model,'date'); ?>
-	</div>
+	<hr>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'time'); ?>
-		<?php echo $form->timeField($model,'time',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'time'); ?>
+		<h2>Cuentas</h2>
 	</div>
+
+	<hr>
 
 	<div class="row">
-		<?php //echo $form->labelEx($model,'creator'); ?>
-		<?php echo $form->hiddenField($model,'creator',array('value'=>Yii::app()->user->id)); ?>
-		<?php //echo $form->error($model,'creator'); ?>
-	</div>
+		<h2 class="inline">Invitados <a id="add-invitee" class="btn btn-success" href="#addInvitee"><i class="icon-plus"></i></a></h2>
+
+		<div class="inline pull-right">
+			<?php echo $form->labelEx($model,'confirmation_closed', array('class'=>'inline')); ?>
+			<?php echo $form->checkBox($model,'confirmation_closed', array('class'=>'inline')); ?>
+			<?php echo $form->error($model,'confirmation_closed'); ?>
+		</div>
+
+        <table id="table-invitados" class="table table-striped">
+        <thead>
+          <tr>
+            <th><?php echo $form->labelEx($model,'name'); ?></th>
+            <th>Organizador</th>
+            <th>Asistirá</th>
+            <th>Adultos</th>
+            <th>Niños</th>
+            <th>Costo</th>
+            <th>Gastos</th>
+            <th>Balance</th>
+            <th>Pagó</th>
+            <th colspan="2">Acciones</th>
+          </tr>
+		</thead>
+		<tbody>
+          <tr>
+            <td>
+                <?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255, 'value'=>'Juan De Los Palotes')); ?>
+                <?php echo $form->error($model,'name'); ?>
+            </td>
+            <td>   
+				<?php echo $form->checkBox($model,'confirmation_closed',array('disabled'=>'true')); ?>
+				<?php echo $form->error($model,'confirmation_closed'); ?>
+            </td>
+            <td>   
+				<?php echo $form->checkBox($model,'confirmation_closed',array('disabled'=>'true')); ?>
+				<?php echo $form->error($model,'confirmation_closed'); ?>
+            </td>
+            <td>
+				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
+				<?php echo $form->error($model,'time'); ?>
+            </td>
+            <td>
+				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
+				<?php echo $form->error($model,'time'); ?>
+            </td>
+            <td>
+            	$
+				<?php echo $form->numberField($model,'time', array('onchanged'=>"calcCost();")); ?>
+				<?php echo $form->error($model,'time'); ?>
+            </td>
+            <td>
+            	$
+				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
+				<?php echo $form->error($model,'time'); ?>
+            </td>            <td>
+            	$
+				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
+				<?php echo $form->error($model,'time'); ?>
+            </td>
+            <td>   
+				<?php echo $form->checkBox($model,'confirmation_closed'); ?>
+				<?php echo $form->error($model,'confirmation_closed'); ?>
+            </td>
+          	
+          	<td class="buttons"><a class="btn btn-default" href="#mailInvitee" title="mail cuentas o invitacion" type=""><i class="icon-envelope"></i></a></td>
+            <td class="buttons"><a class="btn btn-danger remove-invitee" href="#removeInvitee" title="remove" type=""><i class="icon-remove"></i></a></td>          </tr>
+
+          <tr>
+            <td>
+                <?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255, 'value'=>'Palo De Los Juanotes')); ?>
+                <?php echo $form->error($model,'name'); ?>
+            </td>
+            <td>   
+				<?php echo $form->checkBox($model,'confirmation_closed',array('disabled'=>'true')); ?>
+				<?php echo $form->error($model,'confirmation_closed'); ?>
+            </td>
+            <td>   
+				<?php echo $form->checkBox($model,'confirmation_closed',array('disabled'=>'true')); ?>
+				<?php echo $form->error($model,'confirmation_closed'); ?>
+            </td>
+            <td>
+				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
+				<?php echo $form->error($model,'time'); ?>
+            </td>
+            <td>
+				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
+				<?php echo $form->error($model,'time'); ?>
+            </td>
+            <td>
+            	$
+				<?php echo $form->numberField($model,'time', array('onchanged'=>"calcCost();")); ?>
+				<?php echo $form->error($model,'time'); ?>
+            </td>
+            <td>
+            	$
+				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
+				<?php echo $form->error($model,'time'); ?>
+            </td>            
+            <td>
+            	$
+				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
+				<?php echo $form->error($model,'time'); ?>
+            </td>
+            <td>   
+				<?php echo $form->checkBox($model,'confirmation_closed'); ?>
+				<?php echo $form->error($model,'confirmation_closed'); ?>
+            </td>
+            <td class="buttons"><a class="btn btn-default" href="#mailInvitee" title="mail cuentas o invitacion" type=""><i class="icon-envelope"></i></a></td>
+            <td class="buttons"><a class="btn btn-danger" href="#removeInvitee" title="remove" type=""><i class="icon-remove"></i></a></td>  
+          </tr>
+        </tbody>
+        </table>
+
+		<a class="btn btn-info pull-right btn-invitees" href="#resendInvitation" title="Reenviar invitaciones a no confirmados" type=""><i class="icon-envelope"></i> Reenviar invitaciones</a>
+		<a class="btn btn-info pull-right btn-invitees" href="#sendBills" title="Enviar cuentas a confirmados" type=""><i class="icon-envelope"></i> Enviar cuentas</a>
+    </div>
+
+	<hr>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'location_name'); ?>
-		<?php echo $form->textField($model,'location_name',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'location_name'); ?>
+		<h2>Lista</h2>
 	</div>
+
+	<hr>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'location_address'); ?>
-		<?php echo $form->textField($model,'location_address',array('size'=>60,'maxlength'=>255,  'onkeyup'=>"scheduleCall(this, findAddressInEditorMap);")); ?>
-		<?php echo $form->error($model,'location_address'); ?>
+		<h2>Fotos</h2>
 	</div>
 
-	<div class="row">
-		<?php //echo $form->labelEx($model,'location_lat'); ?>
-		<?php echo $form->hiddenField($model,'location_lat',array('size'=>45,'maxlength'=>45)); ?>
-		<?php //echo $form->error($model,'location_lat'); ?>
-
-		<?php //echo $form->labelEx($model,'location_long'); ?>
-		<?php echo $form->hiddenField($model,'location_long',array('size'=>45,'maxlength'=>45)); ?>
-		<?php //echo $form->error($model,'location_long'); ?>
-
-      	<div id="map"></div>
-  		<script type="text/javascript"> google.maps.event.addDomListener(window, 'ready', initEditorMap()); </script>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'description'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'confirmation_closed'); ?>
-		<?php echo $form->checkBox($model,'confirmation_closed'); ?>
-		<?php echo $form->error($model,'confirmation_closed'); ?>
-	</div>
+	<hr>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => "btn")); ?>
