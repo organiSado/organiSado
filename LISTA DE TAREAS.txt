@@ -1,50 +1,30 @@
-/* PRIORIDAD ALTA */
+﻿/* PRIORIDAD ALTA */
 
 
 1. Eventos:
-	-a. Integrar el GMap
-	b. CRUD: de un formulario a varias tablas/modelos. (Martes 17:00) http://www.yiiframework.com/wiki/19/how-to-use-a-single-form-to-collect-data-for-two-or-more-models
-	c. Javascript de formularios: Editores y Validación de campos.(Lun-Mar)
-	d. Integrar AJAX Uploader para subir fotos de eventos a /appdata/events/ID_EVENTO/* y subir antes de adjuntar fotos en publicaciones de muros a /appdata/events/ID_EVENTO/wall/* (Martes)
-	e. Mostrar tabla MisEventos con query. (Martes) http://www.yiiframework.com/wiki/527/relational-query-lazy-loading-and-eager-loading-with-and-together/
-	f. Mostrar muro. (Martes)
-	g. Mostrar fotos evento. (Martes)
 
+	 CRUD: de un formulario a varias tablas/modelos. (Martes 17:00) http://www.yiiframework.com/wiki/19/how-to-use-a-single- 	 form-to-collect-data-for-two-or-more-models
 
-2. ACL: Restringir el acceso de usuarios a publicaciones no administradas/creadas, borrar eventos propios, etc. (Martes-Mie)
+	 Javascript de formularios: Editores y Validación de campos. QUE ANDE POR LO MENOS UN EDITOR DE CUENTAS,
 
-3. Completar la pagina, Que es? con muestras de la funcionalidad del proyecto. (Jue)
+	 que se puedan agregar invitados.
 
-4. Documentación. (Mar-Mie)
+	 Lograr que se envien datos por mail.
 
--TESTING FUNCIONAL (LEO) (Jue-Vie)
-
--TRADUCCIÓN (JOEL, hasta el 10/02/14 esta todo traducido) (Jue-Vie)
+	 Integrar AJAX Uploader para subir fotos de eventos a /appdata/events/ID_EVENTO/* y subir antes de adjuntar fotos en 	 publicaciones de muros a /appdata/events/ID_EVENTO/wall/* NO HACE FALTA QUE SEA AJAX. Y QUE SE MUESTREN FOTOS y EL MURO
 
 
 
+2. USERS:
+	
+	 Lograr filtrar la informacion que se muestra segun el usuario que este logeado. tanto eventos como perfil.
+	 ACL: Restringir el acceso de usuarios a publicaciones no administradas/creadas, borrar eventos propios, etc. (Martes-Mie)
 
-/* PRIORIDAD MEDIA */
-
-1. Avisos por mail a usuarios  (Martes)
-
--Falta olvidé contraseña en Login (Jue-Vie)
-
--Agregar los terminos y condiciones para ser aceptados por medio de un iframe. (Mar-Mie)
+	 Validar en formulario de creación de usuario
 
 
 
-/* BAJA PRIORIDAD */
 
-1. Log de actividades. (Jue-Vie)
-
--Validar en formulario de creación de usuario
-
--Usar ajax en el formulario de contacto, (yii lo resuleve de otra manera, yo propongo dejarlo asi y usar ajax en otra cosa) (Jue-Vie)
-
--Url Manager
-
--md5 usuarios (buscar "storing passwords in the database" en http://www.yiiframework.com/doc/guide/1.1/en/topics.auth) 
 
 
 /* BUGS */
