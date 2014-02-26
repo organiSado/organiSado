@@ -79,9 +79,9 @@ if(isset($_POST))
 		*/
 		echo '<table width="100%" border="0" cellpadding="4" cellspacing="0">';
 		echo '<tr>';
-		echo '<td align="center"><img src="../uploads/'.$ThumbPrefix.$NewImageName.'" alt="Thumbnail"></td>';
+		echo '<td align="center"><img src="./uploads/'.$ThumbPrefix.$NewImageName.'" alt="Thumbnail"></td>';
 		echo '</tr><tr>';
-		echo '<td align="center"><img src="../uploads/'.$NewImageName.'" alt="Resized Image"></td>';
+		echo '<td align="center"><img src="./uploads/'.$NewImageName.'" alt="Resized Image"></td>';
 		echo '</tr>';
 		echo '</table>';
 
