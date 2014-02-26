@@ -7,6 +7,8 @@
 	$cs = Yii::app()->getClientScript();
 	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/accordion.css');
 
+	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/imageuploeader.css');
+
 	$cs->registerScriptFile('http://code.jquery.com/jquery.js');
 	$cs->registerScriptFile('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js');
 	/*
@@ -19,7 +21,11 @@
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/tools.js');
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/events.js');
 
-	$cs->registerScriptFile('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false');
+		//js del uploader de imagenes
+	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/imgup-jquery-1.10.2.min.js');
+	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/imgup-jquery.form.min.js');
+
+	$cs->registerScriptFile('https://maps.googleapis.com/maps/api/js?v=3&sensor=false');
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/gmap.js');
 //	$cs->registerCssFile($baseUrl.'/css/yourcss.css');
 ?>
@@ -95,6 +101,7 @@
 				<?php //echo $form->error($model,'location_long'); ?>
 
 		      	<div id="map"></div>
+		  		<script type="text/javascript"> google.maps.event.addDomListener(window, 'ready', initEditorMap()); </script>
 			</div>
 		</div>
 	</div>
@@ -106,12 +113,13 @@
 
 	
 <section class="ac-container">
+
         <div>
           <input id="tipo1" name="cuentas" type="radio" value="0" checked />
           <label for="tipo1">El organizador invita</label>
           <article class="ac-small">
             <p>El evento no tiene costo alguno para los invitados</p>
-          </article>
+          </article> 
         </div>
         <div>
           <input id="tipo2" name="cuentas" type="radio" value="1" />
@@ -285,7 +293,11 @@
 
 	<hr>
 
-	<div class="row">
+	<div class="row buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => "btn")); ?>
+	</div>
+
+<?php $this->endWidget(); ?><div class="row">
 		<h2>Lista</h2>
 	</div>
 
@@ -293,14 +305,101 @@
 
 	<div class="row">
 		<h2>Fotos</h2>
+
+	<script type="text/javascript"> // ver si podemos meter este scrtip en un .js aparte.
+
+		$(document).ready(function() { 
+			var options = { 
+				target:   '#output',   // target element(s) to be updated with server response 
+				beforeSubmit:  beforeSubmit,  // pre-submit callback 
+				success:       afterSuccess,  // post-submit callback 
+				resetForm: true        // reset the form after successful submit 
+			}; 
+		
+	 		$('#MyUploadForm').submit(function() { 
+				$(this).ajaxSubmit(options);  			
+			// always return false to prevent standard browser submit and page navigation 
+				return false; 
+			}); 
+		}); 
+
+		function afterSuccess()
+		{
+			$('#submit-btn').show(); //hide submit button
+			$('#loading-img').hide(); //hide submit button
+
+		}
+
+		//function to check file size before uploading.
+		function beforeSubmit(){
+   			 //check whether browser fully supports all File API
+   			if (window.File && window.FileReader && window.FileList && window.Blob)
+			{
+		
+				if( !$('#imageInput').val()) //check empty input filed
+				{
+					$("#output").html("Are you kidding me?");
+					return false
+				}
+		
+				var fsize = $('#imageInput')[0].files[0].size; //get file size
+				var ftype = $('#imageInput')[0].files[0].type; // get file type
+		
+				//allow only valid image file types 
+				switch(ftype)
+        		{
+            		case 'image/png': case 'image/gif': case 'image/jpeg': case 'image/pjpeg':
+                	break;
+            		default:
+                	$("#output").html("<b>"+ftype+"</b> Unsupported file type!");
+					return false
+        		}
+		
+				//Allowed file size is less than 1 MB (1048576)
+				if(fsize>1048576) 
+				{
+					$("#output").html("<b>"+bytesToSize(fsize) +"</b> Too big Image file! <br />Please reduce the size of your photo using an image editor.");
+					return false
+				}
+				
+				$('#submit-btn').hide(); //hide submit button
+				$('#loading-img').show(); //hide submit button
+				$("#output").html("");  
+			}
+			else
+			{
+			//Output error to older unsupported browsers that doesn't support HTML5 File API
+				$("#output").html("Please upgrade your browser, because your current browser lacks some new features we need!");
+				return false;
+			}
+		}
+
+		//function to format bites bit.ly/19yoIPO
+		function bytesToSize(bytes) {
+   			var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+   			if (bytes == 0) return '0 Bytes';
+   			var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+   			return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+		}
+
+	</script> <!-- finaliza el script del uploader de fotos -->
+
+
+	<div id="upload-wrapper">
+		<div align="center">
+		<h3>Uploader de Fotos</h3>
+		<form action="<?php echo Yii::app()->request->baseUrl; ?>/php/processupload.php" method="post" enctype="multipart/form-data" id="MyUploadForm">
+			<input name="ImageFile" id="imageInput" type="file" />
+			<input type="submit"  id="submit-btn" value="Upload" />
+			<img src="<?php echo Yii::app()->request->baseUrl; ?>/img/loadgif/ajax-loader.gif" id="loading-img" style="display:none;" alt="Please Wait"/>
+		</form>
+		<div id="output"></div>
+		</div>
 	</div>
 
-	<hr>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => "btn")); ?>
 	</div>
 
-<?php $this->endWidget(); ?>
+
 
 </div><!-- form -->
