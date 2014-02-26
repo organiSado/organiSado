@@ -111,62 +111,61 @@
 	<div class="row">
 		<h2>Cuentas</h2>
 
-	
-<section class="ac-container">
+		<?php
+			$this->Widget('zii.widgets.jui.CJuiAccordion', array(
+				'panels'=>array(
 
-        <div>
-          <input id="tipo1" name="cuentas" type="radio" value="0" checked />
-          <label for="tipo1">El organizador invita</label>
-          <article class="ac-small">
-            <p>El evento no tiene costo alguno para los invitados</p>
-          </article> 
-        </div>
-        <div>
-          <input id="tipo2" name="cuentas" type="radio" value="1" />
-          <label for="tipo2">Se establece un costo fijo</label>
-          <article class="ac-medium">
-            <p>El costo del evento para todos los invitados sera igual a un valor fijo, independientemente del costo total del evento. </p>
-          </article>
-        </div>
-        <div>
-          <input id="tipo3" name="cuentas" type="radio" value="2" />
-          <label for="tipo3">Se establece un costo fijo segun asistente</label>
-          <article class="ac-large">
-            <p>Se distinguen dos valores fijos de costo para cada uno de los tipos de asistentes respectivamente, adultos y menores, tambien independientemente del costo total del evento. </p>
-          </article>
-        </div>
-        <div>
-          <input id="tipo4" name="cuentas" type="radio" value="3" />
-          <label for="tipo4">Se divide lo gastado en partes iguales</label>
-          <article class="ac-large">
-            <p>Se divide el costo total del evento entre todos los asistentes sin distincion alguna. </p>
-          </article>
-        </div>
-        <div>
-          <input id="tipo5" name="cuentas" type="radio" value="4" />
-          <label for="tipo5">Se divide lo gastado segun asistentes</label>
-          <article class="ac-large">
-            <p>Se establece un valor diferente de costo para cada uno de los tipos de asistentes, adultos y menores, estos valores se calculan a partir del costo total del evento, y el costo
-            correspondiente a los asistentes menores, se calculará como un porcentaje del costo de un asistente adulto, segun se lo indique debajo. </p>
-          </article>
-        </div>
-        <div>
-          <input id="tipo6" name="cuentas" type="radio" value="5"/>
-          <label for="tipo6">Se divide un valor fijo en partes iguales</label>
-          <article class="ac-large">
-            <p>Se divide un valor fijo que representa el costo total, entre todos los asistentes sin distincion alguna. </p>
-          </article>
-        </div>
-        <div>
-          <input id="tipo7" name="cuentas" type="radio" value="6" />
-          <label for="tipo7">Se divide un valor fijo segun asistente</label>
-          <article class="ac-large">
-            <p>Se establece un valor diferente de costo para cada uno de los tipos de asistentes, adultos y menores, estos valores se calculan a partir de un valor fijo que represental costo total del evento, y el costo
-            correspondiente a los asistentes menores, se calculará como un porcentaje del costo de un asistente adulto, segun se lo indique debajo.</p>
-          </article>
-        </div>
+					'El organizador invita' => '<input type=radio name=cuentas value=c1 checked=true >El evento no tiene costo alguno para los invitados</br>',
 
-      </section>
+					'Se establece un costo fijo' => '<input type=radio name=cuentas value=c2>El costo del evento para todos los invitados sera 
+													igual a un valor fijo, independientemente del costo total del evento.
+
+													<input type="text" name="valorfijo" placeholder="ingrese el valor">',
+
+					'Se establece un costo fijo segun asistente' => '<input type=radio name=cuentas value=c3>Se distinguen dos valores fijos de 
+																	 costo para cada uno de los tipos de asistentes respectivamente, adultos y
+																	 menores, tambien independientemente del costo total del evento.</br>
+
+																	 <input type="text" name="valorfijomayor" placeholder="mayor">
+																	 <input type="text" name="valorfijomenor" placeholder="menor">',
+
+					'Se divide lo gastado en partes iguales' => '<input type=radio name=cuentas value=c4>Se divide el costo total del evento 
+																 entre todos los asistentes sin distincion alguna.</br>',
+
+					'Se divide lo gastado segun asistentes' => '<input type=radio name=cuentas value=c5>Se establece un valor diferente de costo 
+																para cada uno de los tipos de asistentes, adultos y menores, estos valores se  
+																calculan a partir del costo total del evento, y el costo correspondiente a los 
+																asistentes  menores, se calculará como un porcentaje del costo de un asistente  
+																adulto, segun se lo indique debajo.</br>',
+
+					'Se divide un valor fijo en partes iguales' => '<input type=radio name=cuentas value=c6>Se divide un valor fijo que representa 
+																	el costo total, entre todos los asistentes sin distincion alguna.</br>',
+
+					'Se divide un valor fijo segun asistente' => '<input type=radio name=cuentas value=c7>Se establece un valor diferente de costo 
+																  para cada uno de los tipos de asistentes, adultos y menores, estos valores se 
+																  calculan a partir de un valor fijo que represental costo total del evento, y el 
+																  costo correspondiente a los asistentes menores, se calculará como un porcentaje 
+																  del costo de un asistente adulto, segun se lo indique debajo.</br>',
+				),
+
+				'options'=>array(
+					'collapsible'=>true,
+					'active'=>0,
+					'animated'=>'bounceslide',
+
+				),
+
+				'htmlOptions'=>array(
+					'style'=>'width:600px',
+
+				),
+
+
+
+
+			));
+		?>
+
         
 
 	</div> <!-- divv final cuentas -->
