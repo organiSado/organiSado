@@ -20,8 +20,7 @@
 	 Lograr filtrar la informacion que se muestra segun el usuario que este logeado. tanto eventos como perfil.
 	 ACL: Restringir el acceso de usuarios a publicaciones no administradas/creadas, borrar eventos propios, etc. (Martes-Mie)
 
-	 Validar en formulario de creación de usuario
-
+	 
 
 
 

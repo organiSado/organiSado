@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /**
  * This is the model class for table "users".
@@ -33,6 +33,7 @@ class Users extends CActiveRecord
 			array('email, first_name, last_name, birthdate, gender, password', 'required'),
 			array('gender, enabled', 'numerical', 'integerOnly'=>true),
 			array('email, first_name, last_name', 'length', 'max'=>255),
+			array('email', 'email'), //valida que se ingrese un formato correcto en el campo email.
 			array('password', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
