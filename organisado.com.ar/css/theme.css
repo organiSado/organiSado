@@ -236,6 +236,11 @@ footer#mainFooter #goTop:hover
 
 
 /* FORM */
+.errorSummary
+{
+	display: none;
+}
+
 #Users_gender
 {	
 	margin: 0 0 10px 20px;
@@ -260,7 +265,6 @@ div.logoHolder img
 	padding: 200px 0;
 }
 
-/* ABOUT */
 div.screenshotHolder img
 {
 	max-height: 250px;
