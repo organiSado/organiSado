@@ -183,3 +183,5 @@ function cropImage($CurWidth,$CurHeight,$iSize,$DestFolder,$SrcImage,$Quality,$I
 	}
 	  
 }
+
+?>
