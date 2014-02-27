@@ -7,8 +7,6 @@
 	$cs = Yii::app()->getClientScript();
 	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/accordion.css');
 
-	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/imageuploader.css');
-
 	$cs->registerScriptFile('http://code.jquery.com/jquery.js');
 	$cs->registerScriptFile('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js');
 	/*
@@ -20,10 +18,6 @@
 
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/tools.js');
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/events.js');
-
-		//js del uploader de imagenes
-	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/imgup-jquery-1.10.2.min.js');
-	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/imgup-jquery.form.min.js');
 
 	$cs->registerScriptFile('https://maps.googleapis.com/maps/api/js?v=3&sensor=false');
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/gmap.js');
@@ -38,7 +32,7 @@
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -99,9 +93,7 @@
 				<?php //echo $form->labelEx($model,'location_long'); ?>
 				<?php echo $form->hiddenField($model,'location_long',array('size'=>45,'maxlength'=>45)); ?>
 				<?php //echo $form->error($model,'location_long'); ?>
-
 		      	<div id="map"></div>
-		  		<script type="text/javascript"> google.maps.event.addDomListener(window, 'ready', initEditorMap()); </script>
 			</div>
 		</div>
 	</div>
@@ -197,92 +189,6 @@
           </tr>
 		</thead>
 		<tbody>
-          <tr>
-            <td>
-                <?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255, 'value'=>'Juan De Los Palotes')); ?>
-                <?php echo $form->error($model,'name'); ?>
-            </td>
-            <td>   
-				<?php echo $form->checkBox($model,'confirmation_closed',array('disabled'=>'true')); ?>
-				<?php echo $form->error($model,'confirmation_closed'); ?>
-            </td>
-            <td>   
-				<?php echo $form->checkBox($model,'confirmation_closed',array('disabled'=>'true')); ?>
-				<?php echo $form->error($model,'confirmation_closed'); ?>
-            </td>
-            <td>
-				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
-				<?php echo $form->error($model,'time'); ?>
-            </td>
-            <td>
-				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
-				<?php echo $form->error($model,'time'); ?>
-            </td>
-            <td>
-            	$
-				<?php echo $form->numberField($model,'time', array('onchanged'=>"calcCost();")); ?>
-				<?php echo $form->error($model,'time'); ?>
-            </td>
-            <td>
-            	$
-				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
-				<?php echo $form->error($model,'time'); ?>
-            </td>            <td>
-            	$
-				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
-				<?php echo $form->error($model,'time'); ?>
-            </td>
-            <td>   
-				<?php echo $form->checkBox($model,'confirmation_closed'); ?>
-				<?php echo $form->error($model,'confirmation_closed'); ?>
-            </td>
-          	
-          	<td class="buttons"><a class="btn btn-default" href="#mailInvitee" title="mail cuentas o invitacion" type=""><i class="icon-envelope"></i></a></td>
-            <td class="buttons"><a class="btn btn-danger remove-invitee" href="#removeInvitee" title="remove" type=""><i class="icon-remove"></i></a></td>          </tr>
-
-          <tr>
-            <td>
-                <?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255, 'value'=>'Palo De Los Juanotes')); ?>
-                <?php echo $form->error($model,'name'); ?>
-            </td>
-            <td>   
-				<?php echo $form->checkBox($model,'confirmation_closed',array('disabled'=>'true')); ?>
-				<?php echo $form->error($model,'confirmation_closed'); ?>
-            </td>
-            <td>   
-				<?php echo $form->checkBox($model,'confirmation_closed',array('disabled'=>'true')); ?>
-				<?php echo $form->error($model,'confirmation_closed'); ?>
-            </td>
-            <td>
-				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
-				<?php echo $form->error($model,'time'); ?>
-            </td>
-            <td>
-				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
-				<?php echo $form->error($model,'time'); ?>
-            </td>
-            <td>
-            	$
-				<?php echo $form->numberField($model,'time', array('onchanged'=>"calcCost();")); ?>
-				<?php echo $form->error($model,'time'); ?>
-            </td>
-            <td>
-            	$
-				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
-				<?php echo $form->error($model,'time'); ?>
-            </td>            
-            <td>
-            	$
-				<?php echo $form->numberField($model,'time',array('disabled'=>'true')); ?>
-				<?php echo $form->error($model,'time'); ?>
-            </td>
-            <td>   
-				<?php echo $form->checkBox($model,'confirmation_closed'); ?>
-				<?php echo $form->error($model,'confirmation_closed'); ?>
-            </td>
-            <td class="buttons"><a class="btn btn-default" href="#mailInvitee" title="mail cuentas o invitacion" type=""><i class="icon-envelope"></i></a></td>
-            <td class="buttons"><a class="btn btn-danger" href="#removeInvitee" title="remove" type=""><i class="icon-remove"></i></a></td>  
-          </tr>
         </tbody>
         </table>
 
@@ -299,106 +205,5 @@
 <?php $this->endWidget(); ?><div class="row">
 		<h2>Lista</h2>
 	</div>
-
-	<hr>
-
-	<div class="row">
-		<h2>Fotos</h2>
-
-	<script type="text/javascript"> // ver si podemos meter este scrtip en un .js aparte.
-
-		$(document).ready(function() { 
-			var options = { 
-				target:   '#output',   // target element(s) to be updated with server response 
-				beforeSubmit:  beforeSubmit,  // pre-submit callback 
-				success:       afterSuccess,  // post-submit callback 
-				resetForm: true        // reset the form after successful submit 
-			}; 
-		
-	 		$('#MyUploadForm').submit(function() { 
-				$(this).ajaxSubmit(options);  			
-			// always return false to prevent standard browser submit and page navigation 
-				return false; 
-			}); 
-		}); 
-
-		function afterSuccess()
-		{
-			$('#submit-btn').show(); //hide submit button
-			$('#loading-img').hide(); //hide submit button
-
-		}
-
-		//function to check file size before uploading.
-		function beforeSubmit(){
-   			 //check whether browser fully supports all File API
-   			if (window.File && window.FileReader && window.FileList && window.Blob)
-			{
-		
-				if( !$('#imageInput').val()) //check empty input filed
-				{
-					$("#output").html("Are you kidding me?");
-					return false
-				}
-		
-				var fsize = $('#imageInput')[0].files[0].size; //get file size
-				var ftype = $('#imageInput')[0].files[0].type; // get file type
-		
-				//allow only valid image file types 
-				switch(ftype)
-        		{
-            		case 'image/png': case 'image/gif': case 'image/jpeg': case 'image/pjpeg':
-                	break;
-            		default:
-                	$("#output").html("<b>"+ftype+"</b> Unsupported file type!");
-					return false
-        		}
-		
-				//Allowed file size is less than 1 MB (1048576)
-				if(fsize>1048576) 
-				{
-					$("#output").html("<b>"+bytesToSize(fsize) +"</b> Too big Image file! <br />Please reduce the size of your photo using an image editor.");
-					return false
-				}
-				
-				$('#submit-btn').hide(); //hide submit button
-				$('#loading-img').show(); //hide submit button
-				$("#output").html("");  
-			}
-			else
-			{
-			//Output error to older unsupported browsers that doesn't support HTML5 File API
-				$("#output").html("Please upgrade your browser, because your current browser lacks some new features we need!");
-				return false;
-			}
-		}
-
-		//function to format bites bit.ly/19yoIPO
-		function bytesToSize(bytes) {
-   			var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-   			if (bytes == 0) return '0 Bytes';
-   			var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-   			return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
-		}
-
-	</script> <!-- finaliza el script del uploader de fotos -->
-
-
-	<div id="upload-wrapper">
-		<div align="center">
-		<h3>Uploader de Fotos</h3>
-		<form action="<?php echo Yii::app()->request->baseUrl; ?>/php/processupload.php" method="post" enctype="multipart/form-data" id="MyUploadForm">
-			<input name="ImageFile" id="imageInput" type="file" />
-			<input type="submit"  id="submit-btn" value="Upload" />
-			<img src="<?php echo Yii::app()->request->baseUrl; ?>/img/loadgif/ajax-loader.gif" id="loading-img" style="display:none;" alt="Please Wait"/>
-		</form>
-		<div id="output"></div>
-		</div>
-	</div>
-
-
-	</div>
-
-
 
 </div><!-- form -->
