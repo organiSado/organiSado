@@ -1,1 +1,0 @@
-si la carpeta esta vacia, al parecer el github no la detecta como cambio y no la comitea.
