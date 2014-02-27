@@ -35,6 +35,7 @@ class Users extends CActiveRecord
 			array('email, first_name, last_name', 'length', 'max'=>255),
 			array('email', 'email'),
 			array('password', 'length', 'max'=>32),
+			array('birthdate', 'date', 'format'=>'dd-MM-yyyy'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('email, first_name, last_name, birthdate, gender, password, enabled', 'safe', 'on'=>'search'),
