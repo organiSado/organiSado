@@ -2,10 +2,10 @@
 if(isset($_POST))
 {
 	############ Edit settings ##############
-	$ThumbSquareSize 		= 200; //Thumbnail will be 200x200
+	$ThumbSquareSize 		= 100; //Thumbnail will be 200x200
 	$BigImageMaxSize 		= 500; //Image Maximum height or width
 	$ThumbPrefix			= "thumb_"; //Normal thumb Prefix
-	$DestinationDirectory	= '../uploads/'; //specify upload directory ends with / (slash)
+	$DestinationDirectory	= '../appdata/walls/'; //specify upload directory ends with / (slash)
 	$Quality 				= 90; //jpeg quality
 	##########################################
 	
@@ -70,20 +70,25 @@ if(isset($_POST))
 	{
 		//Create a square Thumbnail right after, this time we are using cropImage() function
 		if(!cropImage($CurWidth,$CurHeight,$ThumbSquareSize,$thumb_DestRandImageName,$CreatedImage,$Quality,$ImageType))
-			{
-				echo 'Error Creating thumbnail';
-			}
+		{
+			echo 'Error Creating thumbnail';
+		}
 		/*
 		We have succesfully resized and created thumbnail image
 		We can now output image to user's browser or store information in the database
 		*/
-		echo '<table width="100%" border="0" cellpadding="4" cellspacing="0">';
+		/*echo '<table width="100%" border="0" cellpadding="4" cellspacing="0">';
 		echo '<tr>';
 		echo '<td align="center"><img src="./uploads/'.$ThumbPrefix.$NewImageName.'" alt="Thumbnail"></td>';
 		echo '</tr><tr>';
 		echo '<td align="center"><img src="./uploads/'.$NewImageName.'" alt="Resized Image"></td>';
 		echo '</tr>';
-		echo '</table>';
+		echo '</table>';*/
+
+		echo json_encode( array('name' => $NewImageName,
+								'thumb' => 'appdata/walls/'.$ThumbPrefix.$NewImageName,
+								'full' => 'appdata/walls/'.$ThumbPrefix.$NewImageNam
+						));
 
 		/*
 		// Insert info into database table!
