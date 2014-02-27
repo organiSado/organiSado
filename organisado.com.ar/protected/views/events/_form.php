@@ -7,7 +7,7 @@
 	$cs = Yii::app()->getClientScript();
 	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/accordion.css');
 
-	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/imageuploeader.css');
+	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/imageuploader.css');
 
 	$cs->registerScriptFile('http://code.jquery.com/jquery.js');
 	$cs->registerScriptFile('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js');
