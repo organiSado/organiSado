@@ -57,6 +57,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'location_lat',
 		'location_long',
 		'confirmation_closed',
+		'cost_mode',
+		'cost_val1',
+		'cost_val2',
 		*/
 		array(
 			'class'=>'CButtonColumn',

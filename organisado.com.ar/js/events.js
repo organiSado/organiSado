@@ -37,6 +37,7 @@ $(document).on("ready",function()
   $(this).next('div').find('input[type=radio]').attr('checked', 'checked');
  });
  });
+ 
 // eventos dinamicos necesitan un bind distinto
 $(document).on('click', 'a[href=#removeInvitee]', function()
 {

@@ -66,6 +66,21 @@
 		<?php echo $form->textField($model,'confirmation_closed',array('size'=>1,'maxlength'=>1)); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'cost_mode'); ?>
+		<?php echo $form->textField($model,'cost_mode'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'cost_val1'); ?>
+		<?php echo $form->textField($model,'cost_val1'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'cost_val2'); ?>
+		<?php echo $form->textField($model,'cost_val2'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

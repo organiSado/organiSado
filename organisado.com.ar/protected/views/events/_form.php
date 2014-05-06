@@ -61,7 +61,7 @@
 
 			<div class="row">
 				<?php //echo $form->labelEx($model,'creator'); ?>
-				<?php echo $form->hiddenField($model,'creator',array('value'=>Yii::app()->user->id)); ?>
+				<?php echo $form->hiddenField($model,'creator',array('value'=> ($model->creator? $model->creator : Yii::app()->user->id) )); ?>
 				<?php //echo $form->error($model,'creator'); ?>
 			</div>
 
@@ -107,7 +107,7 @@
 			$this->Widget('zii.widgets.jui.CJuiAccordion', array(
 				'panels'=>array(
 
-					'El organizador invita' => '<input type=radio name=cuentas value=c1 checked=true >El evento no tiene costo alguno para los invitados</br>',
+					'El organizador invita' => '<input type=radio name="cost_mode" value=c1 checked='.($model->cost_mode == 0 || !$model->cost_mode? 'true' : 'false').'>El evento no tiene costo alguno para los invitados</br>',
 
 					'Se establece un costo fijo' => '<input type=radio name=cuentas value=c2>El costo del evento para todos los invitados sera 
 													igual a un valor fijo, independientemente del costo total del evento.
@@ -161,6 +161,18 @@
         
 
 	</div> <!-- divv final cuentas -->
+	
+	<div class="row">
+		<?php //echo $form->labelEx($model,'cost_val1'); ?>
+		<?php echo $form->textField($model,'cost_val1'); ?>
+		<?php //echo $form->error($model,'cost_val1'); ?>
+	</div>
+
+	<div class="row">
+		<?php //echo $form->labelEx($model,'cost_val2; ?>
+		<?php echo $form->textField($model,'cost_val2'); ?>
+		<?php //echo $form->error($model,'cost_val2'); ?>
+	</div>
 
 	<hr>
 
@@ -203,7 +215,6 @@
 	</div>
 
 <?php $this->endWidget(); ?><div class="row">
-		<h2>Lista</h2>
 	</div>
 
 </div><!-- form -->

@@ -15,6 +15,9 @@
  * @property string $location_lat
  * @property string $location_long
  * @property string $confirmation_closed
+ * @property integer $cost_mode
+ * @property integer $cost_val1
+ * @property integer $cost_val2
  */
 class Events extends CActiveRecord
 {
@@ -34,7 +37,8 @@ class Events extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, date, time, creator, location_name, location_lat, location_long', 'required'),
+			array('name, date, time, creator, location_name, location_lat, location_long'/*, cost_mode'*/, 'required'),
+			array('cost_mode, cost_val1, cost_val2', 'numerical', 'integerOnly'=>true),
 			array('name, creator, location_name, location_address', 'length', 'max'=>255),
 			array('time, location_lat, location_long', 'length', 'max'=>45),
 			array('confirmation_closed', 'length', 'max'=>1),
@@ -42,7 +46,7 @@ class Events extends CActiveRecord
 			array('date', 'date', 'format'=>'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, date, time, description, creator, location_name, location_address, location_lat, location_long, confirmation_closed', 'safe', 'on'=>'search'),
+			array('id, name, date, time, description, creator, location_name, location_address, location_lat, location_long, confirmation_closed, cost_mode, cost_val1, cost_val2', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +78,9 @@ class Events extends CActiveRecord
 			'location_lat' => 'Location Lat',
 			'location_long' => 'Location Long',
 			'confirmation_closed' => 'Confirmation Closed',
+			'cost_mode' => 'Cost Mode',
+			'cost_val1' => 'Cost Val1',
+			'cost_val2' => 'Cost Val2',
 		);
 	}
 
@@ -106,6 +113,9 @@ class Events extends CActiveRecord
 		$criteria->compare('location_lat',$this->location_lat,true);
 		$criteria->compare('location_long',$this->location_long,true);
 		$criteria->compare('confirmation_closed',$this->confirmation_closed,true);
+		$criteria->compare('cost_mode',$this->cost_mode);
+		$criteria->compare('cost_val1',$this->cost_val1);
+		$criteria->compare('cost_val2',$this->cost_val2);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

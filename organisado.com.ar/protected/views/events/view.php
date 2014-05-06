@@ -32,5 +32,8 @@ $this->menu=array(
 		'location_lat',
 		'location_long',
 		'confirmation_closed',
+		'cost_mode',
+		'cost_val1',
+		'cost_val2',
 	),
 )); ?>

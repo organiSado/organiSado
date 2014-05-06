@@ -50,6 +50,18 @@
 	<?php echo CHtml::encode($data->confirmation_closed); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('cost_mode')); ?>:</b>
+	<?php echo CHtml::encode($data->cost_mode); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('cost_val1')); ?>:</b>
+	<?php echo CHtml::encode($data->cost_val1); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('cost_val2')); ?>:</b>
+	<?php echo CHtml::encode($data->cost_val2); ?>
+	<br />
+
 	*/ ?>
 
 </div>
