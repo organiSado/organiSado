@@ -32,7 +32,11 @@ $(document).on("ready",function()
 		}
 	});
 });
-
+	// Se auto selecciona el radio button al clickear el h3 del accordion de modos
+ $('#yw0 h3').on('click', function()
+ {
+  $(this).next('div').find('input[type=radio]').attr('checked', 'checked');
+ });
 // eventos dinamicos necesitan un bind distinto
 $(document).on('click', 'a[href=#removeInvitee]', function()
 {
