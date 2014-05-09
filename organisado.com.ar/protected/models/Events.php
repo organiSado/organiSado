@@ -44,6 +44,7 @@ class Events extends CActiveRecord
 			array('confirmation_closed', 'length', 'max'=>1),
 			array('description', 'safe'),
 			array('date', 'date', 'format'=>'yyyy-MM-dd'),
+			array('time', 'type', 'type'=>'time', 'timeFormat'=>'hh:mm'), //se debe introducir en formato 24 hs, hay que aclarrlo.
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, date, time, description, creator, location_name, location_address, location_lat, location_long, confirmation_closed, cost_mode, cost_val1, cost_val2', 'safe', 'on'=>'search'),
