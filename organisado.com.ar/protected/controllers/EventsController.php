@@ -122,10 +122,25 @@ class EventsController extends Controller
 	 */
 	public function actionIndex()
 	{
+		
+		Yii::import("ext.Mailer.*");
+		$mail=new PHPMailer();
+		$mail->SetFrom("joel.quatro@gmail.com","JOEL");
+		$mail->Subject="Evento 1";
+		$mail->MsgHTML("<h1>Hola, mensaje de prueba");
+		$mail->AddAddress("adidas_tincho@hotmail.com","Martin");
+		$mail->AddCC("mjheredia88@gmail.com","Martin H");
+		$mail->send();
+		
+				
+		
 		$dataProvider=new CActiveDataProvider('Events');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+		
+		
+		
 	}
 
 	/**
