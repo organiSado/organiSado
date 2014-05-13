@@ -76,6 +76,63 @@ function costModeChange(toMode)
 			}
 			break;
 
+			case '2':
+			{
+				$('input[name="Events[cost_val1]"]').show();
+				$('label[for="Events_cost_val1"]').show();
+				$('label[for="Events_cost_val1"]').text('Costo por Adulto');
+
+				$('input[name="Events[cost_val2]"]').show();
+				$('label[for="Events_cost_val2"]').show();
+				$('label[for="Events_cost_val2"]').text('Costo por Menor');
+			}
+			break;
+
+			case '3':
+			{
+				$('input[name="Events[cost_val1]"]').show();
+				$('label[for="Events_cost_val1"]').show();
+				$('label[for="Events_cost_val1"]').text('Costo total a dividir');
+
+				$('input[name="Events[cost_val2]"]').hide();
+				$('label[for="Events_cost_val2"]').hide();
+			}
+			break;
+
+			case '4':  //aca hay que hacer algo mas, porque por como lo definimos, val 2 es en funcion de val 1, a demas 
+			{			//tal vez se necesite un campo mas, para poner cual es el valor que se va a dividir entre esos porcentajes
+				$('input[name="Events[cost_val1]"]').show();
+				$('label[for="Events_cost_val1"]').show();
+				$('label[for="Events_cost_val1"]').text('Porcentaje Adulto');
+
+				$('input[name="Events[cost_val2]"]').show();
+				$('label[for="Events_cost_val2"]').show();
+				$('label[for="Events_cost_val2"]').text('Porcentaje Menor');
+			}
+			break;
+
+			case '5':
+			{
+				$('input[name="Events[cost_val1]"]').show();
+				$('label[for="Events_cost_val1"]').show();
+				$('label[for="Events_cost_val1"]').text('Costo fijo a dividir');
+
+				$('input[name="Events[cost_val2]"]').hide();
+				$('label[for="Events_cost_val2"]').hide();
+			}
+			break;
+
+			case '6':  //aca hay que hacer algo mas, porque por como lo definimos, val 2 es en funcion de val 1, a demas
+			{			//tal vez se necesite un campo mas, para poner cual es el valor que se va a dividir entre esos porcentajes
+				$('input[name="Events[cost_val1]"]').show();
+				$('label[for="Events_cost_val1"]').show();
+				$('label[for="Events_cost_val1"]').text('Porcentaje Adulto');
+
+				$('input[name="Events[cost_val2]"]').show();
+				$('label[for="Events_cost_val2"]').show();
+				$('label[for="Events_cost_val2"]').text('Porcentaje Menor');
+			}
+			break;
 
 			default:
 			{
