@@ -102,38 +102,72 @@
 
 	<div class="row">
 		<h2>Cuentas</h2>
-
 		<?php
-			$this->Widget('zii.widgets.jui.CJuiAccordion', array(
+			/* Auto-Generador de accordion by organiSado Dev Team corp. inc. */
+			$cost_modes = array(
+				array('label'=>'El organizador invita',
+					  'description'=>'El evento no tiene costo alguno para los invitados'),
+
+				array('label'=>'Se establece un costo fijo',
+					  'description'=>'El costo del evento para todos los invitados sera 
+													igual a un valor fijo, independientemente del costo total del evento.
+
+													<input type="text" name="valorfijo" placeholder="ingrese el valor">'),
+
+				array('label'=>'Se establece un costo fijo segun asistente',
+					  'description'=>'Se distinguen dos valores fijos de 
+									 costo para cada uno de los tipos de asistentes respectivamente, adultos y
+									 menores, tambien independientemente del costo total del evento.</br>
+
+									 <input type="text" name="valorfijomayor" placeholder="mayor">
+									 <input type="text" name="valorfijomenor" placeholder="menor">'),
+
+				array('label'=>'Se divide lo gastado en partes iguales',
+					  'description'=>'Se divide el costo total del evento entre todos los asistentes sin distincion alguna.')
+			);
+
+			echo '<ul class="accordion">';
+			for ($i=0; $i < count($cost_modes); $i++)
+			{
+				echo '<li class="nav-dropdown">';
+				echo '<input type="radio" id="accordion_label_'.$i.'" name="Events[cost_mode]" id="Events_cost_mode"'.($model->cost_mode == $i || ($i==0 && !$model->cost_mode)? ' checked="true"' : '').' value="'.$i.'" />';
+				echo '<label for="accordion_label_'.$i.'">'.$cost_modes[$i]['label'].'</label>';
+				echo '<div><p>'.$cost_modes[$i]['description'].'</p></div>';
+				//echo '<div><p>'.'DEBUG,'.$model->cost_mode.', ==$i:'.($model->cost_mode == $i? 'true':'false').'==0 && !$model->cost_mode'.($i==0 && !$model->cost_mode? 'true':'false').'</p></div>';
+				echo '</li>';
+			}
+			echo '</ul>';
+
+			/*$this->Widget('zii.widgets.jui.CJuiAccordion', array(
 				'panels'=>array(
 
-					'El organizador invita' => '<input type=radio name="cost_mode" value=c1 checked='.($model->cost_mode == 0 || !$model->cost_mode? 'true' : 'false').'>El evento no tiene costo alguno para los invitados</br>',
+					'El organizador invita' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 0 || !$model->cost_mode? ' checked' : '').'>El evento no tiene costo alguno para los invitados</br>',
 
-					'Se establece un costo fijo' => '<input type=radio name=cuentas value=c2>El costo del evento para todos los invitados sera 
+					'Se establece un costo fijo' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 1? ' checked' : '').'>El costo del evento para todos los invitados sera 
 													igual a un valor fijo, independientemente del costo total del evento.
 
 													<input type="text" name="valorfijo" placeholder="ingrese el valor">',
 
-					'Se establece un costo fijo segun asistente' => '<input type=radio name=cuentas value=c3>Se distinguen dos valores fijos de 
+					'Se establece un costo fijo segun asistente' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 2? ' checked' : '').'>Se distinguen dos valores fijos de 
 																	 costo para cada uno de los tipos de asistentes respectivamente, adultos y
 																	 menores, tambien independientemente del costo total del evento.</br>
 
 																	 <input type="text" name="valorfijomayor" placeholder="mayor">
 																	 <input type="text" name="valorfijomenor" placeholder="menor">',
 
-					'Se divide lo gastado en partes iguales' => '<input type=radio name=cuentas value=c4>Se divide el costo total del evento 
+					'Se divide lo gastado en partes iguales' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 3? ' checked' : '').'>Se divide el costo total del evento 
 																 entre todos los asistentes sin distincion alguna.</br>',
 
-					'Se divide lo gastado segun asistentes' => '<input type=radio name=cuentas value=c5>Se establece un valor diferente de costo 
+					'Se divide lo gastado segun asistentes' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 4? ' checked' : '').'>Se establece un valor diferente de costo 
 																para cada uno de los tipos de asistentes, adultos y menores, estos valores se  
 																calculan a partir del costo total del evento, y el costo correspondiente a los 
 																asistentes  menores, se calculará como un porcentaje del costo de un asistente  
 																adulto, segun se lo indique debajo.</br>',
 
-					'Se divide un valor fijo en partes iguales' => '<input type=radio name=cuentas value=c6>Se divide un valor fijo que representa 
+					'Se divide un valor fijo en partes iguales' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 5? ' checked' : '').'>Se divide un valor fijo que representa 
 																	el costo total, entre todos los asistentes sin distincion alguna.</br>',
 
-					'Se divide un valor fijo segun asistente' => '<input type=radio name=cuentas value=c7>Se establece un valor diferente de costo 
+					'Se divide un valor fijo segun asistente' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 6? ' checked' : '').'>Se establece un valor diferente de costo 
 																  para cada uno de los tipos de asistentes, adultos y menores, estos valores se 
 																  calculan a partir de un valor fijo que represental costo total del evento, y el 
 																  costo correspondiente a los asistentes menores, se calculará como un porcentaje 
@@ -155,7 +189,7 @@
 
 
 
-			));
+			));*/
 		?>
 
         

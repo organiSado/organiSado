@@ -1,83 +1,78 @@
-.ac-container{
-	width: 400px;
-	/*margin: 10px auto 30px auto; */
-	text-align: left;
-}
-.ac-container label{
-	
-	padding: 5px 20px;
-	position: relative;
-	left: 0;
-	display: block;
-	height: 20px;
-	cursor: pointer;
-	
-	box-shadow: 
-		0px 0px 0px 1px rgba(155,155,155,0.3), 
-		1px 0px 0px 0px rgba(255,255,255,0.9) inset, 
-		0px 2px 2px rgba(0,0,0,0.1);
-}
-.ac-container label:hover{
-	background: #fff;
-}
-.ac-container input:checked + label,
-.ac-container input:checked + label:hover{
-	background: #c6e1ec;
-	color: #3d7489;
-	text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
-	box-shadow: 
-		0px 0px 0px 1px rgba(155,155,155,0.3), 
-		0px 2px 2px rgba(0,0,0,0.1);
-}
-.ac-container label:hover:after,
-.ac-container input:checked + label:hover:after{
-	content: '';
-	position: absolute;
-	width: 24px;
-	height: 24px;
-	right: 13px;
-	top: 7px;
-		
+body div.wrapper {
+  border: 1px solid #dedede;
+  margin: 25px auto;
+  overflow: hidden;
+  width: 80%;
 }
 
+ul.accordion {
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
 
-.ac-container input{
+ul.accordion li input {
 	display: none;
+	padding: 0;
+	margin: 0;
+	visibility: hidden;
 }
-.ac-container article{
-	background: rgba(255, 255, 255, 0.5);
-	margin-top: -1px;
-	overflow: hidden;
-	height: 0px;
-	position: relative;
-	-webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-	-moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-	-o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-	-ms-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-	transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+
+ul.accordion label {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dedede;
+  border-top: none;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+  color: #222222;
+  display: block;
+  font-weight: bold;
+  line-height: 42px;
+  padding: 0 8px;
+  margin-bottom: 0;
 }
-.ac-container article p{
-	font-style: italic;
-	color: #777;
-	line-height: 23px;
-	font-size: 14px;
-	padding: 20px;
-	text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+
+ul.accordion label:hover {
+	background-color: #1aa9d8;
+	color: #ffffff;
+	cursor: pointer;	
 }
-.ac-container input:checked ~ article{
-	-webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-	-moz-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-	-o-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-	-ms-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-	transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-	box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
+
+ul.accordion li input:checked ~ label {
+	background-color: #1aa9d8;
+	color: #ffffff;
+	font-weight: normal;
 }
-.ac-container input:checked ~ article.ac-small{
-	height: 140px;
+
+ul.accordion li input ~ div {
+	background-color: #f7f7f7;
+	max-height: 0;
+	opacity: 0;
+		overflow: hidden;
+	visibility: hidden;
+	
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
-.ac-container input:checked ~ article.ac-medium{
-	height: 180px;
+
+ul.accordion li input ~ div p {
+	font-size: .9em;
+		margin: 16px 24px;	
 }
-.ac-container input:checked ~ article.ac-large{
-	height: 230px;
+
+ul.accordion li input:checked ~ div {
+	max-height: 200px;
+	opacity: 1;
+	visibility: visible;	
+}
+
+ul.accordion li input:checked ~ div > ul {
+	display: block;	
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
