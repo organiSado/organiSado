@@ -11,7 +11,7 @@ margin: 0;
 padding: 0;
 }
 
-ul.accordion li input {
+ul.accordion li input.accordion_label {
 	display: none;
 	padding: 0;
 	margin: 0;

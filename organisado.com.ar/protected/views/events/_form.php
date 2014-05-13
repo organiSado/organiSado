@@ -109,87 +109,47 @@
 					  'description'=>'El evento no tiene costo alguno para los invitados'),
 
 				array('label'=>'Se establece un costo fijo',
-					  'description'=>'El costo del evento para todos los invitados sera 
-													igual a un valor fijo, independientemente del costo total del evento.
-
-													<input type="text" name="valorfijo" placeholder="ingrese el valor">'),
+					  'description'=>'El costo del evento para todos los invitados sera igual a un valor fijo, 
+					  				  independientemente del costo total del evento.'),
 
 				array('label'=>'Se establece un costo fijo segun asistente',
-					  'description'=>'Se distinguen dos valores fijos de 
-									 costo para cada uno de los tipos de asistentes respectivamente, adultos y
-									 menores, tambien independientemente del costo total del evento.</br>
-
-									 <input type="text" name="valorfijomayor" placeholder="mayor">
-									 <input type="text" name="valorfijomenor" placeholder="menor">'),
+					  'description'=>'Se distinguen dos valores fijos de costo para cada uno de los tipos de 
+					  				  asistentes respectivamente, adultos y menores, tambien independientemente
+					  				  del costo total del evento.'),
 
 				array('label'=>'Se divide lo gastado en partes iguales',
-					  'description'=>'Se divide el costo total del evento entre todos los asistentes sin distincion alguna.')
+					  'description'=>'Se divide el costo total del evento entre todos los asistentes sin distincion alguna.'),
+
+				array('label'=>'Se divide lo gastado segun asistentes',
+					  'description'=>  'Se establece un valor diferente de costo para cada uno de los tipos de
+										asistentes, adultos y menores, estos valores se calculan a partir del 
+										costo total del evento, y el costo correspondiente a los asistentes  menores,
+										se calculará como un porcentaje del costo de un asistente adulto, segun se lo
+										indique debajo.'), 
+
+				array('label'=>'Se divide un valor fijo en partes iguales',
+						'description'=>'Se divide un valor fijo que representa 
+										el costo total, entre todos los asistentes sin distincion alguna.'),
+
+				array('label'=>'Se divide un valor fijo segun asistente',
+						'description'=>'Se establece un valor diferente de costo 
+									  	para cada uno de los tipos de asistentes, adultos y menores, estos valores se 
+									 	 calculan a partir de un valor fijo que represental costo total del evento, y el 
+									 	 costo correspondiente a los asistentes menores, se calculará como un porcentaje 
+									 	 del costo de un asistente adulto, segun se lo indique debajo.') 
 			);
 
 			echo '<ul class="accordion">';
 			for ($i=0; $i < count($cost_modes); $i++)
 			{
 				echo '<li class="nav-dropdown">';
-				echo '<input type="radio" id="accordion_label_'.$i.'" name="Events[cost_mode]" id="Events_cost_mode"'.($model->cost_mode == $i || ($i==0 && !$model->cost_mode)? ' checked="true"' : '').' value="'.$i.'" />';
+				echo '<input type="radio" class="accordion_label" id="accordion_label_'.$i.'" name="Events[cost_mode]"'.($model->cost_mode == $i || ($i==0 && !$model->cost_mode)? ' checked="true"' : '').' value="'.$i.'" />';
 				echo '<label for="accordion_label_'.$i.'">'.$cost_modes[$i]['label'].'</label>';
 				echo '<div><p>'.$cost_modes[$i]['description'].'</p></div>';
 				//echo '<div><p>'.'DEBUG,'.$model->cost_mode.', ==$i:'.($model->cost_mode == $i? 'true':'false').'==0 && !$model->cost_mode'.($i==0 && !$model->cost_mode? 'true':'false').'</p></div>';
 				echo '</li>';
 			}
 			echo '</ul>';
-
-			/*$this->Widget('zii.widgets.jui.CJuiAccordion', array(
-				'panels'=>array(
-
-					'El organizador invita' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 0 || !$model->cost_mode? ' checked' : '').'>El evento no tiene costo alguno para los invitados</br>',
-
-					'Se establece un costo fijo' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 1? ' checked' : '').'>El costo del evento para todos los invitados sera 
-													igual a un valor fijo, independientemente del costo total del evento.
-
-													<input type="text" name="valorfijo" placeholder="ingrese el valor">',
-
-					'Se establece un costo fijo segun asistente' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 2? ' checked' : '').'>Se distinguen dos valores fijos de 
-																	 costo para cada uno de los tipos de asistentes respectivamente, adultos y
-																	 menores, tambien independientemente del costo total del evento.</br>
-
-																	 <input type="text" name="valorfijomayor" placeholder="mayor">
-																	 <input type="text" name="valorfijomenor" placeholder="menor">',
-
-					'Se divide lo gastado en partes iguales' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 3? ' checked' : '').'>Se divide el costo total del evento 
-																 entre todos los asistentes sin distincion alguna.</br>',
-
-					'Se divide lo gastado segun asistentes' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 4? ' checked' : '').'>Se establece un valor diferente de costo 
-																para cada uno de los tipos de asistentes, adultos y menores, estos valores se  
-																calculan a partir del costo total del evento, y el costo correspondiente a los 
-																asistentes  menores, se calculará como un porcentaje del costo de un asistente  
-																adulto, segun se lo indique debajo.</br>',
-
-					'Se divide un valor fijo en partes iguales' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 5? ' checked' : '').'>Se divide un valor fijo que representa 
-																	el costo total, entre todos los asistentes sin distincion alguna.</br>',
-
-					'Se divide un valor fijo segun asistente' => '<input type="radio" name="cost_mode"'.($model->cost_mode == 6? ' checked' : '').'>Se establece un valor diferente de costo 
-																  para cada uno de los tipos de asistentes, adultos y menores, estos valores se 
-																  calculan a partir de un valor fijo que represental costo total del evento, y el 
-																  costo correspondiente a los asistentes menores, se calculará como un porcentaje 
-																  del costo de un asistente adulto, segun se lo indique debajo.</br>',
-				),
-
-				'options'=>array(
-					'collapsible'=>true,
-					'active'=>0,
-					'animated'=>'bounceslide',
-
-				),
-
-				'htmlOptions'=>array(
-					'style'=>'width:600px',
-
-				),
-
-
-
-
-			));*/
 		?>
 
         
@@ -197,13 +157,13 @@
 	</div> <!-- divv final cuentas -->
 	
 	<div class="row">
-		<?php //echo $form->labelEx($model,'cost_val1'); ?>
+		<?php echo $form->labelEx($model,'cost_val1'); ?>
 		<?php echo $form->textField($model,'cost_val1'); ?>
 		<?php //echo $form->error($model,'cost_val1'); ?>
 	</div>
 
 	<div class="row">
-		<?php //echo $form->labelEx($model,'cost_val2; ?>
+		<?php echo $form->labelEx($model,'cost_val2'); ?>
 		<?php echo $form->textField($model,'cost_val2'); ?>
 		<?php //echo $form->error($model,'cost_val2'); ?>
 	</div>

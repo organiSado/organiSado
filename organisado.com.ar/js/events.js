@@ -1,7 +1,7 @@
 /* globals */
 var default_table_id 		= "table-invitados";
 var default_addInvitee_id 	= "add-invitee";
-
+var costMode = -1;
 
 $(document).on("ready",function()
 {
@@ -31,11 +31,14 @@ $(document).on("ready",function()
 			//$('#'+default_addInvitee_id).prop('disabled', false);
 		}
 	});
-	// Se auto selecciona el radio button al clickear el h3 del accordion de modos
- $('#yw0 h3').on('click', function()
- {
-  $(this).next('div').find('input[type=radio]').attr('checked', 'checked');
- });
+
+	// Mejorar: anular interaccion si se cierra la confirmacion de asistentes
+	$('input[name="Events[cost_mode]"]').on("click", function()
+	{
+		costModeChange($('input[name="Events[cost_mode]"]:checked').val());
+	});
+
+	costModeChange($('input[name="Events[cost_mode]"]:checked').val());
  });
  
 // eventos dinamicos necesitan un bind distinto
@@ -44,6 +47,46 @@ $(document).on('click', 'a[href=#removeInvitee]', function()
 	removeInvitee(this);
 	return false;
 });
+
+/*! \brief 
+*/
+function costModeChange(toMode)
+{
+	if (toMode && toMode!=costMode)
+	{
+		costMode = toMode;
+
+		switch(costMode)
+		{
+			case '0':
+			{
+				$('input[name*="Events[cost_val"]').hide();
+				$('label[for*="Events_cost_val"]').hide();
+			}
+			break;
+
+			case '1':
+			{
+				$('input[name="Events[cost_val1]"]').show();
+				$('label[for="Events_cost_val1"]').show();
+				$('label[for="Events_cost_val1"]').text('Costo por Persona');
+
+				$('input[name="Events[cost_val2]"]').hide();
+				$('label[for="Events_cost_val2"]').hide();
+			}
+			break;
+
+
+			default:
+			{
+				$('input[name*="Events[cost_val"]').show();
+				$('label[for*="Events_cost_val"]').show();
+				$('label[for*="Events_cost_val"]').text('');
+			}
+			break;
+		}
+	}
+}
 
 /*! \brief Elimina invitado
 */

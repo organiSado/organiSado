@@ -1,24 +1,33 @@
-﻿/* PRIORIDAD ALTA */
+﻿enviar mail a mauro para coordinar reunion el viernes preferentemente
+
+
+/* PRIORIDAD ALTA */
 
 
 1. Eventos:
 
-	 CRUD: de un formulario a varias tablas/modelos. (Martes 17:00) http://www.yiiframework.com/wiki/19/how-to-use-a-single- 	 form-to-collect-data-for-two-or-more-models
+	 (Martes,Miercoles,Jueves, MH) CRUD: de un formulario a varias tablas/modelos. http://www.yiiframework.com/wiki/19/how-to-use-a-single- 	 form-to-collect-data-for-two-or-more-models
 
-	 Javascript de formularios: Editores y Validación de campos. QUE ANDE POR LO MENOS UN EDITOR DE CUENTAS,
 
-	 que se puedan agregar invitados.
+ 	(Jueves, Viernes, MH) Input tabular, insertar varias tuplas en un modelo desde un solo form pARA invitados
 
-	 Lograr que se envien datos por mail.
 
-	 Integrar AJAX Uploader para subir fotos de eventos a /appdata/events/ID_EVENTO/* y subir antes de adjuntar fotos en 	 publicaciones de muros a /appdata/events/ID_EVENTO/wall/* NO HACE FALTA QUE SEA AJAX. Y QUE SE MUESTREN FOTOS y EL MURO
+	(Martes,Miercoles, Joel)Implementar los modos de cuentas, integrar con tabla invitados.
+		 
+		
+	(MM)Lograr que se envien datos por mail. Invitar personas al evento, al agregar personas (Mediante su email), verificar por Ajax si la persona ya está dada de alta. Las personas invitadas podrán tener el rol organizador también.    * Invitar personas al evento, al agregar personas (Mediante su email), verificar por Ajax si la persona ya está dada de alta. Las personas invitadas podrán tener el rol organizador también.
+    * Si la persona no está dada de alta, recibirá un email con un link invitándolo a completar la registración.
+    * Si la persona ya está en el sistema, recibirá un email indicando que ha sido invitado al evento, para poder operar deberá darse de alta.
+
+
+	 
 
 
 
 2. USERS:
 	
-	 Lograr filtrar la informacion que se muestra segun el usuario que este logeado. tanto eventos como perfil.
-	 ACL: Restringir el acceso de usuarios a publicaciones no administradas/creadas, borrar eventos propios, etc. (Martes-Mie)
+	(Miercoles,Jueves, LEO) Lograr filtrar la informacion que se muestra segun el usuario que este logeado. tanto eventos como perfil.
+	 ACL: Restringir el acceso de usuarios a publicaciones no administradas/creadas, borrar eventos propios, etc.
 
 	 
 
@@ -27,8 +36,3 @@
 
 
 /* BUGS */
-- Al actualizar evento se pisa el creador con el usuario que actualizó por última vez. (Jue-Vie)
--si los usuarios pueden cambiar el email, entonces pueden duplicar uno ya existente y te rechaza la integridad PK, propongo, agregar un campo id, que no sea el email. O generar una página de error ante esos cambios.
--cualquier usuario puede acceder a modificar cualquier evento y cualquier usuario con modificar una url.
-
--date y time no tiene editors en safari.
