@@ -52,6 +52,47 @@ class Events extends CActiveRecord
 	}
 
 	/**
+	 * @return array cost modes.
+	 */
+	public function costModes()
+	{
+		return array(
+				array('label'=>'El organizador invita',
+					  'description'=>'El evento no tiene costo alguno para los invitados'),
+
+				array('label'=>'Se establece un costo fijo',
+					  'description'=>'El costo del evento para todos los invitados sera igual a un valor fijo, 
+					  				  independientemente del costo total del evento.'),
+
+				array('label'=>'Se establece un costo fijo segun asistente',
+					  'description'=>'Se distinguen dos valores fijos de costo para cada uno de los tipos de 
+					  				  asistentes respectivamente, adultos y menores, tambien independientemente
+					  				  del costo total del evento.'),
+
+				array('label'=>'Se divide lo gastado en partes iguales',
+					  'description'=>'Se divide el costo total del evento entre todos los asistentes sin distincion alguna.'),
+
+				array('label'=>'Se divide lo gastado segun asistentes',
+					  'description'=>  'Se establece un valor diferente de costo para cada uno de los tipos de
+										asistentes, adultos y menores, estos valores se calculan a partir del 
+										costo total del evento, y el costo correspondiente a los asistentes  menores,
+										se calculará como un porcentaje del costo de un asistente adulto, segun se lo
+										indique debajo.'), 
+
+				array('label'=>'Se divide un valor fijo en partes iguales',
+						'description'=>'Se divide un valor fijo que representa 
+										el costo total, entre todos los asistentes sin distincion alguna.'),
+
+				array('label'=>'Se divide un valor fijo segun asistente',
+						'description'=>'Se establece un valor diferente de costo 
+									  	para cada uno de los tipos de asistentes, adultos y menores, estos valores se 
+									 	 calculan a partir de un valor fijo que represental costo total del evento, y el 
+									 	 costo correspondiente a los asistentes menores, se calculará como un porcentaje 
+									 	 del costo de un asistente adulto, segun se lo indique debajo.') 
+			);
+	}
+
+	/**
 	 * @return array relational rules.
 	 */
 	public function relations()

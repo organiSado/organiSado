@@ -35,9 +35,10 @@
 	'enableAjaxValidation'=>true,
 )); ?>
 
+
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php echo $form->errorSummary(array($model, $inviteesModel)); ?>
 		
 	<div class="row">
 		<div class="col pull-left">
@@ -104,43 +105,10 @@
 		<h2>Cuentas</h2>
 		<?php
 			/* Auto-Generador de accordion by organiSado Dev Team corp. inc. */
-			$cost_modes = array(
-				array('label'=>'El organizador invita',
-					  'description'=>'El evento no tiene costo alguno para los invitados'),
-
-				array('label'=>'Se establece un costo fijo',
-					  'description'=>'El costo del evento para todos los invitados sera igual a un valor fijo, 
-					  				  independientemente del costo total del evento.'),
-
-				array('label'=>'Se establece un costo fijo segun asistente',
-					  'description'=>'Se distinguen dos valores fijos de costo para cada uno de los tipos de 
-					  				  asistentes respectivamente, adultos y menores, tambien independientemente
-					  				  del costo total del evento.'),
-
-				array('label'=>'Se divide lo gastado en partes iguales',
-					  'description'=>'Se divide el costo total del evento entre todos los asistentes sin distincion alguna.'),
-
-				array('label'=>'Se divide lo gastado segun asistentes',
-					  'description'=>  'Se establece un valor diferente de costo para cada uno de los tipos de
-										asistentes, adultos y menores, estos valores se calculan a partir del 
-										costo total del evento, y el costo correspondiente a los asistentes  menores,
-										se calculará como un porcentaje del costo de un asistente adulto, segun se lo
-										indique debajo.'), 
-
-				array('label'=>'Se divide un valor fijo en partes iguales',
-						'description'=>'Se divide un valor fijo que representa 
-										el costo total, entre todos los asistentes sin distincion alguna.'),
-
-				array('label'=>'Se divide un valor fijo segun asistente',
-						'description'=>'Se establece un valor diferente de costo 
-									  	para cada uno de los tipos de asistentes, adultos y menores, estos valores se 
-									 	 calculan a partir de un valor fijo que represental costo total del evento, y el 
-									 	 costo correspondiente a los asistentes menores, se calculará como un porcentaje 
-									 	 del costo de un asistente adulto, segun se lo indique debajo.') 
-			);
+			$cost_modes = $model->costModes();
 
 			echo '<ul class="accordion">';
-			for ($i=0; $i < count($cost_modes); $i++)
+			for ($i=0; isset($cost_modes) && $i < count($cost_modes); $i++)
 			{
 				echo '<li class="nav-dropdown">';
 				echo '<input type="radio" class="accordion_label" id="accordion_label_'.$i.'" name="Events[cost_mode]"'.($model->cost_mode == $i || ($i==0 && !$model->cost_mode)? ' checked="true"' : '').' value="'.$i.'" />';
@@ -151,10 +119,7 @@
 			}
 			echo '</ul>';
 		?>
-
-        
-
-	</div> <!-- divv final cuentas -->
+	</div> <!-- div final cuentas -->
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'cost_val1'); ?>
@@ -182,19 +147,71 @@
         <table id="table-invitados" class="table table-striped">
         <thead>
           <tr>
-            <th><?php echo $form->labelEx($model,'name'); ?></th>
-            <th>Organizador</th>
-            <th>Asistirá</th>
-            <th>Adultos</th>
-            <th>Niños</th>
-            <th>Costo</th>
-            <th>Gastos</th>
+            <th><?php echo $form->labelEx($inviteesModel,'email'); ?><?php //echo $form->labelEx($model,'name'); ?></th>
+            <th><?php echo $form->labelEx($inviteesModel,'admin', array('class'=>'inline')); ?></th>
+            <th><?php echo $form->labelEx($inviteesModel,'confirmed', array('class'=>'inline')); ?></th>
+            <th><?php echo $form->labelEx($inviteesModel,'adults', array('class'=>'inline')); ?></th>
+            <th><?php echo $form->labelEx($inviteesModel,'kids', array('class'=>'inline')); ?></th>
+            <th><?php echo $form->labelEx($inviteesModel,'cost', array('class'=>'inline')); ?></th>
+            <th><?php echo $form->labelEx($inviteesModel,'spent', array('class'=>'inline')); ?></th>
             <th>Balance</th>
-            <th>Pagó</th>
+            <th><?php echo $form->labelEx($inviteesModel,'money_ok', array('class'=>'inline')); ?></th>
             <th colspan="2">Acciones</th>
           </tr>
 		</thead>
 		<tbody>
+			<tr>
+	            <td>
+	                <?php /*<input size="60" maxlength="255" value="" name="Invitees[name]" id="Invitees_name" type="text">*/?>
+	                
+					<?php echo $form->textField($inviteesModel,'email',array('size'=>60,'maxlength'=>255)); ?>
+					<?php echo $form->error($inviteesModel,'email'); ?>
+	            </td>
+	            <td>
+					<?php echo $form->checkBox($inviteesModel,'admin', array('class'=>'inline')); ?>
+					<?php echo $form->error($inviteesModel,'admin'); ?>
+				</td>
+	            <td>
+					<?php echo $form->checkBox($inviteesModel,'confirmed', array('class'=>'inline')); ?>
+					<?php echo $form->error($inviteesModel,'confirmed'); ?>
+				</td>
+	            <td>
+					<?php echo $form->numberField($inviteesModel,'adults', array('class'=>'inline')); ?>
+					<?php echo $form->error($inviteesModel,'adults'); ?>
+				</td>
+	            <td>
+					<?php echo $form->numberField($inviteesModel,'kids', array('class'=>'inline')); ?>
+					<?php echo $form->error($inviteesModel,'kids'); ?>
+				</td>
+	            <td>
+	            	$
+					<?php echo $form->numberField($inviteesModel,'cost', array('class'=>'inline'/*, 'onchanged'=>'calcCost();'*/)); ?>
+					<?php echo $form->error($inviteesModel,'cost'); ?>
+				</td>
+	            <td>
+	            	$
+					<?php echo $form->numberField($inviteesModel,'spent', array('class'=>'inline')); ?>
+					<?php echo $form->error($inviteesModel,'spent'); ?>
+					</td>
+				<td>
+	            	$
+					<input disabled="disabled" id="Invitees_time" type="number" value="-1">
+				</td>
+	            <td>
+	            	<?php echo $form->checkBox($inviteesModel,'money_ok', array('class'=>'inline')); ?>
+					<?php echo $form->error($inviteesModel,'money_ok'); ?>
+				</td>
+	            <td class="buttons">
+	            	<a class="btn btn-default" href="#mailInvitee" title="mail cuentas o invitacion">
+	            		<i class="icon-envelope"></i>
+	            	</a>
+	            </td>
+	            <td class="buttons">
+	            	<a class="btn btn-danger remove-invitee" href="#removeInvitee" title="remove" >
+	            		<i class="icon-remove"></i>
+	            	</a>
+	            </td>
+	        </tr>
         </tbody>
         </table>
 

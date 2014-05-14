@@ -63,19 +63,30 @@ class EventsController extends Controller
 	public function actionCreate()
 	{
 		$model=new Events;
+		$inviteesModel=new Invitees;
 
 		// Uncomment the following line if AJAX validation is needed
-		 $this->performAjaxValidation($model);
+		$this->performAjaxValidation(array($model, $inviteesModel));
 
-		if(isset($_POST['Events']))
+		if(isset($_POST['Events'], $_POST['Invitees']))
 		{
 			$model->attributes=$_POST['Events'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$inviteesModel->attributes=$_POST['Invitees'];
+
+			// validate BOTH $a and $b
+	        if ($model->save())
+	        {
+	            $inviteesModel->event = $model->id;
+	            if($inviteesModel->save())
+				{
+					$this->redirect(array('view','id'=>$model->id));
+				}
+			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'inviteesModel'=>$inviteesModel
 		));
 	}
 
@@ -88,18 +99,33 @@ class EventsController extends Controller
 	{
 		$model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		 $this->performAjaxValidation($model);
+		// Cargamos modelo de invitados
+		$inviteesTable = Invitees::model()->tableName();
+		$inviteesModel = Invitees::model()->findBySql("SELECT * FROM $inviteesTable WHERE event=$id;");
+		if($inviteesModel===null)
+			throw new CHttpException(404,'The requested page does not exist.');
 
-		if(isset($_POST['Events']))
+		// Uncomment the following line if AJAX validation is needed
+		$this->performAjaxValidation(array($model, $inviteesModel));
+
+		if(isset($_POST['Events'], $_POST['Invitees']))
 		{
 			$model->attributes=$_POST['Events'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$inviteesModel->attributes=$_POST['Invitees'];
+
+			// validate BOTH $a and $b
+	        if ($model->save())
+	        {
+	            if($inviteesModel->save())
+				{
+					$this->redirect(array('view','id'=>$model->id));
+				}
+			}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
+			'inviteesModel'=>$inviteesModel
 		));
 	}
 
