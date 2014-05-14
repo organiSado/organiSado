@@ -36,6 +36,7 @@ class Invitees extends CActiveRecord
 			array('event, adults, kids, cost, spent', 'numerical', 'integerOnly'=>true),
 			array('admin, confirmed, money_ok', 'length', 'max'=>1),
 			array('email', 'length', 'max'=>255),
+			array('email', 'email'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('email, event, admin, confirmed, adults, kids, cost, spent, money_ok', 'safe', 'on'=>'search'),
