@@ -6,10 +6,13 @@
 
 1. Eventos:
 
-	 (Martes,Miercoles,Jueves, MH) CRUD: de un formulario a varias tablas/modelos. http://www.yiiframework.com/wiki/19/how-to-use-a-single- 	 form-to-collect-data-for-two-or-more-models
+	 (Martes,Miercoles,Jueves, MH) CRU - D: de un formulario a varias tablas/modelos. 
+	  http://www.yiiframework.com/wiki/19/how-to-use-a-single-form-to-collect-data-for-two-or-more-models, 
+	 Create Read and Update, quedron funcionando, falta el Delete
 
 
  	(Jueves, Viernes, MH) Input tabular, insertar varias tuplas en un modelo desde un solo form pARA invitados
+	http://www.yiiframework.com/doc/guide/1.1/en/form.table
 
 
 	(Martes,Miercoles, Joel)Implementar los modos de cuentas, integrar con tabla invitados.
