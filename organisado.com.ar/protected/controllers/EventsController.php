@@ -32,11 +32,11 @@ class EventsController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','delete'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -100,10 +100,7 @@ class EventsController extends Controller
 		$model=$this->loadModel($id);
 
 		// Cargamos modelo de invitados
-		$inviteesTable = Invitees::model()->tableName();
-		$inviteesModel = Invitees::model()->findBySql("SELECT * FROM $inviteesTable WHERE event=$id;");
-		if($inviteesModel===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+		$inviteesModel=$this->loadInviteesModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation(array($model, $inviteesModel));
@@ -137,10 +134,11 @@ class EventsController extends Controller
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
+		$this->loadInviteesModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
 	}
 
 	/**
@@ -179,6 +177,22 @@ class EventsController extends Controller
 	public function loadModel($id)
 	{
 		$model=Events::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer $id the ID of the model to be loaded
+	 * @return Events the loaded model
+	 * @throws CHttpException
+	 */
+	public function loadInviteesModel($id)
+	{
+		$table = Invitees::model()->tableName();
+		$model = Invitees::model()->findBySql("SELECT * FROM $table WHERE event=$id;");
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
