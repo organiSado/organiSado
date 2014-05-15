@@ -28,14 +28,8 @@
 
 
 2. USERS:
-	
-	(Miercoles,Jueves, LEO) Lograr filtrar la informacion que se muestra segun el usuario que este logeado. tanto eventos como perfil.
-	 ACL: Restringir el acceso de usuarios a publicaciones no administradas/creadas, borrar eventos propios, etc.
-
-	 
-
-
-
+	ACL - No solamente mostrar los eventos propios sino también a los que fue invitado- tener en cuenta 
+	para cuando se bloquea la visa de un evento.
 
 
 /* BUGS */
