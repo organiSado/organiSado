@@ -81,6 +81,10 @@ class EventsController extends Controller
 				{
 					$this->redirect(array('view','id'=>$model->id));
 				}
+				else
+				{
+					$model->delete();
+				}
 			}
 		}
 
@@ -111,12 +115,12 @@ class EventsController extends Controller
 			$inviteesModel->attributes=$_POST['Invitees'];
 
 			// validate BOTH $a and $b
-	        if ($model->save())
-	        {
-	            if($inviteesModel->save())
-				{
-					$this->redirect(array('view','id'=>$model->id));
-				}
+            if($model->validate() && $inviteesModel->validate())
+			{
+				$model->save(false);
+				$inviteesModel->save(false);
+
+				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 
