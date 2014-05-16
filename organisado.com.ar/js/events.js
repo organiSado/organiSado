@@ -329,8 +329,63 @@ function calcCost()
 	{
 		var adults = parseInt( $(this).closest('tr').find('td:nth-of-type(4) input').val() ) || 0;
 		var kids = parseInt( $(this).closest('tr').find('td:nth-of-type(5) input').val() ) || 0;
-		alert(kids);
-		var cost = cost1+cost2;
+var totalInvitees = 0;
+		var cost = 0;
+
+		switch(costMode)
+		{
+			case '0':
+			{
+				// organizador invita
+				cost = 0;
+			}
+			break;
+
+			case '1':
+			{
+				// costo fijo por persona
+				cost = cost1 * (adults+kids);
+			}
+			break;
+
+			case '2':
+			{
+				// costo segun adulto/niño
+				cost = cost1 * adults + cost2 * kids;
+			}
+			break;
+
+			case '3':
+			{
+			
+			}
+			break;
+
+			case '4':
+			{
+			
+			}
+			break;
+
+			case '5':
+			{
+			
+			}
+			break;
+
+			case '6':
+			{
+			
+			}
+			break;
+
+			default:
+			{
+				alert('Modo invalido!');
+			}
+			break;
+		}
+		
 		$(this).find('input').val(cost*(adults+kids));
 	});
 	
