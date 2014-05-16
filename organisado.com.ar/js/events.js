@@ -2,7 +2,6 @@
 var default_table_id 		= "table-invitados";
 var default_addInvitee_id 	= "add-invitee";
 var costMode = -1;
-var invitees_newRowId = -1;
 
 $(document).on("ready",function()
 {
@@ -10,7 +9,6 @@ $(document).on("ready",function()
 	startWatchdog($('#'+default_table_id)[0], calcCost);
 
 	// al presionar el botton de agregar invitado
-	invitees_newRowId = $('#'+default_table_id+' tbody tr').size();
 	$('#'+default_addInvitee_id).on("click", function()
 	{
 		addInvitee();
@@ -49,6 +47,99 @@ $(document).on('click', 'a[href=#removeInvitee]', function()
 	removeInvitee(this);
 	return false;
 });
+
+
+
+$(document).on('click', 'a[href=#mailInvitee]', function()  
+{
+
+
+	//$(this).parent().parent().find('#table_invitados tr td[0]');
+
+});
+
+
+
+$(document).on('click', 'a[href=#resendInvitation]', function()  //funcion que devuelve los 3 parametros para la funcion mailer 
+{																//para enviar invitacion
+	var asunto;
+	asunto = "Invitacion a un Evento";
+
+	var cuerpo; //anda
+	cuerpo = "usted ha sido invitado al siguiente evento :"+($('input[name="Events[name]"]').val());	
+
+	var destino;
+	destino = " ";
+
+
+	$('#table-invitados tr td:nth-of-type(1) input').each(function(index)		
+	{
+		destino = $(this).val(); //anda
+
+		$('#table-invitados tr td:nth-of-type(3) input[type="checkbox"]').each(function(index2)
+		{
+			if (index==index2)
+			{
+				if($(this).prop('checked')==false)
+				{
+					alert("se manda");
+					//mailer(destino, asunto, cuaerpo)
+
+					$.ajax({type:"POST",url:"php/mailer.php",data:{t:destino,s:asunto,b:cuerpo},success: function()
+
+					{
+						alert("algo");
+					}
+
+				});
+					
+				}
+			}
+				
+		});
+
+	});
+	
+});
+
+
+
+$(document).on('click', 'a[href=#sendBills]', function()  //funcion que devuelve los 3 parametros para la funcion mailer
+{														 //envia el balance personal de las cuentas a todos	
+	var asunto;
+	asunto = "Saldo Pendiente en Evento";
+
+	var destino;
+	destino = " ";
+
+	var cuerpo; //anda
+	cuerpo = "Correspondiente al evento, "+($('input[name="Events[name]"]').val())+", usted posee un saldo de: ";
+
+	var cuerposal;
+	cuerposal= " ";
+
+	var saldo;
+	saldo = " ";
+
+	$('#table-invitados tr td:nth-of-type(1) input').each(function(index)		
+	{
+		destino = $(this).val(); //anda
+
+		$('#table-invitados tr td:nth-of-type(8) input').each(function(index2)
+		{
+			if (index==index2)
+			{
+				saldo = $(this).val(); //anda
+				cuerposal = cuerpo+saldo; //anda
+				//mailer(destino, asunto, cuerposal);
+			}
+				
+		});
+
+	});
+		
+});
+
 
 /*! \brief 
 */
@@ -160,38 +251,39 @@ function addInvitee(table_id)
 {
 	if (!table_id) table_id = default_table_id;
 
+	var rowId = $('#'+table_id+' tbody tr').size();
 	$('#'+table_id+' tr:last').after('\
 	<tr>\
 		<td>\
-			<input size="60" maxlength="255" name="Invitees['+invitees_newRowId+'][email]" id="Invitees_'+invitees_newRowId+'_email" type="text">\
+			<input size="60" maxlength="255" name="Invitees['+rowId+'][email]" id="Invitees_'+rowId+'_email" type="text">\
 			<div class="errorMessage" id="Invitees_email_em_" style="display:none"></div>\
 		</td>\
         <td>\
-        	<input id="ytInvitees_'+invitees_newRowId+'_admin" type="hidden" value="0" name="Invitees['+invitees_newRowId+'][admin]">\
-        	<input class="inline" name="Invitees['+invitees_newRowId+'][admin]" id="Invitees_'+invitees_newRowId+'_admin" value="1" type="checkbox">\
+        	<input id="ytInvitees_'+rowId+'_admin" type="hidden" value="0" name="Invitees['+rowId+'][admin]">\
+        	<input class="inline" name="Invitees['+rowId+'][admin]" id="Invitees_'+rowId+'_admin" type="checkbox">\
         	<div class="errorMessage" id="Invitees_admin_em_" style="display:none"></div>\
         </td>\
         <td>\
-			<input id="ytInvitees_'+invitees_newRowId+'_confirmed" type="hidden" value="0" name="Invitees['+invitees_newRowId+'][confirmed]">\
-			<input class="inline" name="Invitees['+invitees_newRowId+'][confirmed]" id="Invitees_'+invitees_newRowId+'_confirmed" value="1" type="checkbox">\
+			<input id="ytInvitees_'+rowId+'_confirmed" type="hidden" value="0" name="Invitees['+rowId+'][confirmed]">\
+			<input class="inline" name="Invitees['+rowId+'][confirmed]" id="Invitees_'+rowId+'_confirmed" type="checkbox">\
 			<div class="errorMessage" id="Invitees_confirmed_em_" style="display:none"></div>\
 		</td>\
         <td>\
-			<input class="inline" name="Invitees['+invitees_newRowId+'][adults]" id="Invitees_'+invitees_newRowId+'_adults" type="number">\
+			<input class="inline" name="Invitees['+rowId+'][adults]" id="Invitees_'+rowId+'_adults" type="number">\
 			<div class="errorMessage" id="Invitees_adults_em_" style="display:none"></div>\
 		</td>\
         <td>\
-			<input class="inline" name="Invitees['+invitees_newRowId+'][kids]" id="Invitees_'+invitees_newRowId+'_kids" type="number">\
+			<input class="inline" name="Invitees['+rowId+'][kids]" id="Invitees_'+rowId+'_kids" type="number">\
 			<div class="errorMessage" id="Invitees_kids_em_" style="display:none"></div>\
 		</td>\
         <td>\
         	$\
-			<input class="inline" name="Invitees['+invitees_newRowId+'][cost]" id="Invitees_'+invitees_newRowId+'_cost" type="number">\
+			<input class="inline" name="Invitees['+rowId+'][cost]" id="Invitees_'+rowId+'_cost" type="number">\
 			<div class="errorMessage" id="Invitees_cost_em_" style="display:none"></div>\
 		</td>\
         <td>\
         	$\
-			<input class="inline" name="Invitees['+invitees_newRowId+'][spent]" id="Invitees_'+invitees_newRowId+'_spent" type="number">\
+			<input class="inline" name="Invitees['+rowId+'][spent]" id="Invitees_'+rowId+'_spent" type="number">\
 			<div class="errorMessage" id="Invitees_spent_em_" style="display:none"></div>\
 		</td>\
 		<td>\
@@ -199,8 +291,8 @@ function addInvitee(table_id)
 			<input disabled="disabled" id="Invitees_time" type="number">\
 		</td>\
         <td>\
-        	<input id="ytInvitees_'+invitees_newRowId+'_money_ok" type="hidden" value="0" name="Invitees['+invitees_newRowId+'][money_ok]">\
-        	<input class="inline" name="Invitees['+invitees_newRowId+'][money_ok]" id="Invitees_'+invitees_newRowId+'_money_ok" value="1" type="checkbox">\
+        	<input id="ytInvitees_'+rowId+'_money_ok" type="hidden" value="0" name="Invitees['+rowId+'][money_ok]">\
+        	<input class="inline" name="Invitees['+rowId+'][money_ok]" id="Invitees_'+rowId+'_money_ok" value="1" type="checkbox">\
         	<div class="errorMessage" id="Invitees_money_ok_em_" style="display:none"></div>\
         </td>\
         <td class="buttons">\
@@ -216,7 +308,6 @@ function addInvitee(table_id)
 	</tr>\
 	');
 
-	invitees_newRowId++;
 }
 
 /*! \brief 
@@ -248,7 +339,7 @@ function calcCost(table/*table_id*/)
 	table=0;
 	if (!table) table = $('#'+default_table_id)[0];
 
-		//alert('WATCHDOG TRIGGERED');
+		alert('WATCHDOG TRIGGERED');
 
 
 	var updateNeeded = false;

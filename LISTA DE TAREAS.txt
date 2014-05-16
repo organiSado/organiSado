@@ -10,10 +10,7 @@
 	(LC)Implementar los modos de cuentas, integrar con tabla invitados.
 
 		
-	(MM, MH) [EN PRINCIPIIO QUE MANDE ALGO A LOS MAILS CORRECTOS],Lograr que se envien datos por mail. Invitar personas al evento, al agregar personas (Mediante su email), verificar por Ajax si la persona ya está dada de alta. Las personas invitadas podrán tener el rol organizador también.    * Invitar personas al evento, al agregar personas (Mediante su email), verificar por Ajax si la persona ya está dada de alta. Las personas invitadas podrán tener el rol organizador también.
-    * Si la persona no está dada de alta, recibirá un email con un link invitándolo a completar la registración.
-    * Si la persona ya está en el sistema, recibirá un email indicando que ha sido invitado al evento, para poder operar deberá darse de alta.
-
+	(MM, MH) crear la funcion en el events.js para enviar mails unitarios.
 
 
 2. USERS:
