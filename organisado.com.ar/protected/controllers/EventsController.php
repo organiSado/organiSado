@@ -72,32 +72,10 @@ class EventsController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation(array($model, $inviteesModels));
-/*
-		if(isset($_POST['Events'], $_POST['Invitees']))
-		{
-			$model->attributes=$_POST['Events'];
-			$inviteesModel->attributes=$_POST['Invitees'];
-
-			// validate BOTH $a and $b
-	        if ($model->save())
-	        {
-	            $inviteesModel->event = $model->id;
-	            if($inviteesModel->save())
-				{
-					$this->redirect(array('view','id'=>$model->id));
-				}
-				else
-				{
-					$model->delete();
-				}
-			}
-		}*/
 		
 		if(isset($_POST['Events'], $_POST['Invitees']))
 		{
 			$inviteesModels = $this->loadInviteesModelsFromPost(-1);
-
-		
 		
 			// add changes to event model
 			$model->attributes=$_POST['Events'];
@@ -206,7 +184,11 @@ class EventsController extends Controller
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
-		$this->loadInviteesModel($id)->delete();
+		$inviteesModels = $this->loadInviteesModels($id);
+		foreach($inviteesModels as $inviteesModel)
+		{
+			$inviteesModel->delete();
+		}
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
