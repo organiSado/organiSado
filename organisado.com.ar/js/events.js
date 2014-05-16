@@ -48,95 +48,62 @@ $(document).on('click', 'a[href=#removeInvitee]', function()
 	return false;
 });
 
-
+function mailUser(destino, asunto, cuerpo)
+{
+	$.ajax({type:"POST",
+			url:"php/mailer.php",
+			data:{t:destino,s:asunto,b:cuerpo},
+			success: function()
+			{
+				alert("Correo enviado!");
+			}
+	});
+}
 
 $(document).on('click', 'a[href=#mailInvitee]', function()  
 {
-
-
-	//$(this).parent().parent().find('#table_invitados tr td[0]');
-
+	mailUser($(this).closest('tr').find('td:nth-of-type(1) input').val(),
+			 "Invitacion a un Evento",
+			 "usted ha sido invitado al siguiente evento :"+($('input[name="Events[name]"]').val()) );
 });
 
-
-
-$(document).on('click', 'a[href=#resendInvitation]', function()  //funcion que devuelve los 3 parametros para la funcion mailer 
-{																//para enviar invitacion
-	var asunto;
-	asunto = "Invitacion a un Evento";
-
-	var cuerpo; //anda
-	cuerpo = "usted ha sido invitado al siguiente evento :"+($('input[name="Events[name]"]').val());	
-
-	var destino;
-	destino = " ";
-
-
+//funcion que devuelve los 3 parametros para la funcion mailer
+//para enviar invitacion
+$(document).on('click', 'a[href=#resendInvitation]', function()   
+{																
 	$('#table-invitados tr td:nth-of-type(1) input').each(function(index)		
 	{
-		destino = $(this).val(); //anda
+		var destino = $(this).val(); //anda
 
 		$('#table-invitados tr td:nth-of-type(3) input[type="checkbox"]').each(function(index2)
 		{
-			if (index==index2)
+			if (index==index2 && $(this).prop('checked')==false)
 			{
-				if($(this).prop('checked')==false)
-				{
-					alert("se manda");
-					//mailer(destino, asunto, cuaerpo)
-
-					$.ajax({type:"POST",url:"php/mailer.php",data:{t:destino,s:asunto,b:cuerpo},success: function()
-
-					{
-						alert("algo");
-					}
-
-				});
-					
-				}
-			}
-				
+				mailUser(destino,
+						 "Invitacion a un Evento", 
+						 "usted ha sido invitado al siguiente evento :"+($('input[name="Events[name]"]').val()) );
+			}	
 		});
 
 	});
 	
 });
 
-
-
-$(document).on('click', 'a[href=#sendBills]', function()  //funcion que devuelve los 3 parametros para la funcion mailer
-{														 //envia el balance personal de las cuentas a todos	
-	var asunto;
-	asunto = "Saldo Pendiente en Evento";
-
-	var destino;
-	destino = " ";
-
-	var cuerpo; //anda
-	cuerpo = "Correspondiente al evento, "+($('input[name="Events[name]"]').val())+", usted posee un saldo de: ";
-
-	var cuerposal;
-	cuerposal= " ";
-
-	var saldo;
-	saldo = " ";
-
+//funcion que devuelve los 3 parametros para la funcion mailer
+//envia el balance personal de las cuentas a todos	
+$(document).on('click', 'a[href=#sendBills]', function()
+{														 
 	$('#table-invitados tr td:nth-of-type(1) input').each(function(index)		
 	{
-		destino = $(this).val(); //anda
+		var destino = $(this).val(); //anda
 
 		$('#table-invitados tr td:nth-of-type(8) input').each(function(index2)
 		{
 			if (index==index2)
 			{
-				saldo = $(this).val(); //anda
-				cuerposal = cuerpo+saldo; //anda
-				//mailer(destino, asunto, cuerposal);
-				$.ajax({type:"POST",url:"php/mailer.php",data:{t:destino,s:asunto,b:cuerposal},success: function()
-
-					{
-						alert("algo");
-					}
+				mailUser(destino,
+						 "Saldo Pendiente en Evento", 
+						 "Correspondiente al evento, "+($('input[name="Events[name]"]').val())+", usted posee un saldo de: "+$(this).val() );
 			}
 				
 		});

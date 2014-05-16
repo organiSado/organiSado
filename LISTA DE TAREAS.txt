@@ -1,16 +1,8 @@
-﻿enviar mail a mauro para coordinar reunion el viernes preferentemente
-
-
-/* PRIORIDAD ALTA */
+﻿/* PRIORIDAD ALTA */
 
 
 1. Eventos:
-
-
 	(LC)Implementar los modos de cuentas, integrar con tabla invitados.
-
-		
-	(MM, MH) crear la funcion en el events.js para enviar mails unitarios.
 
 
 2. USERS:
