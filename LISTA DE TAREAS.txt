@@ -7,9 +7,6 @@
 1. Eventos:
 
 
- 	(JQ) Input tabular, Falta implementar el Delete.
-
-
 	(LC)Implementar los modos de cuentas, integrar con tabla invitados.
 
 		

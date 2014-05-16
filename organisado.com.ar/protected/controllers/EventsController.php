@@ -132,7 +132,8 @@ class EventsController extends Controller
 		$inviteesModels=$this->loadInviteesModelsFromPost($id);
 		if (!count($inviteesModels))
 			array_push($inviteesModels, new Invitees);// le puede faltar event
-			
+/* 	var_dump($inviteesModels);			 */
+		
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation(array/*_merge*/($model, $inviteesModels));
 		
@@ -145,9 +146,9 @@ class EventsController extends Controller
 			$validInvitees = true;
 			foreach($inviteesModels as $i=>$inviteesModel)
 			{
-			
 			    if(isset($_POST['Invitees'][$i]))
 			    {
+/* echo $_POST['Invitees'][$i]["email"]; */
 			    	$inviteesModel->attributes = $_POST['Invitees'][$i];
 			    }
 			    
@@ -159,6 +160,39 @@ class EventsController extends Controller
 			{
 				// to event model
 				$model->save(false);
+				
+				// delete removed and duplicates
+				$deleteCandidates = $this->loadInviteesModels($id);
+/*
+var_dump($_POST['Invitees']);			
+echo "deleteCandidates count ".count($deleteCandidates);
+
+				echo "\ninviteesModels count ".count($inviteesModels);
+*/
+				foreach($deleteCandidates as $deleteCandidate)
+				{
+/* echo "\n\n\ncandidate ".$deleteCandidate->email; */
+					$delete = true;
+					foreach($inviteesModels as $inviteesModel)
+					{
+/* echo "\ninviteesModel ".$inviteesModel->email; */
+						if ($deleteCandidate->email == $inviteesModel->email)
+						{
+							unset($inviteesModel);
+							$delete = false;
+							break;
+						}
+					}
+					
+					if ($delete)
+					{
+/*
+					echo "\n\ndeleting ";
+					echo $deleteCandidate->email;
+*/
+						$deleteCandidate->delete();
+					}
+				}
 				
 				// to invitees models
 				foreach($inviteesModels as $inviteesModel)
@@ -283,6 +317,13 @@ class EventsController extends Controller
 		
 		if (isset($_POST['Invitees']) && is_array($_POST['Invitees']))
 		{
+			$_POST['Invitees'] = array_values($_POST['Invitees']); // rearrange
+			/*$inviteesModels = $this->loadInviteesModels($id);
+			foreach($inviteesModels as $inviteesModel)
+			{
+				$inviteesModel->delete();
+			}*/
+			
 			foreach ($_POST['Invitees'] as $invitee)
 			{
 				if ( array_key_exists('email', $invitee) )
@@ -299,7 +340,7 @@ class EventsController extends Controller
 
 					$models[] = $inviteesModel;
 				}
-			}	
+			}
 		}
 		else
 		{
