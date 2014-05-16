@@ -132,6 +132,11 @@ $(document).on('click', 'a[href=#sendBills]', function()  //funcion que devuelve
 				saldo = $(this).val(); //anda
 				cuerposal = cuerpo+saldo; //anda
 				//mailer(destino, asunto, cuerposal);
+				$.ajax({type:"POST",url:"php/mailer.php",data:{t:destino,s:asunto,b:cuerposal},success: function()
+
+					{
+						alert("algo");
+					}
 			}
 				
 		});
