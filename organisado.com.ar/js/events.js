@@ -3,11 +3,39 @@ var default_table_id 		= "table-invitados";
 var default_addInvitee_id 	= "add-invitee";
 var costMode = -1;
 
+// eventos dinamicos necesitan un bind distinto
+$(document).on('click', 'a[href=#removeInvitee]', function()
+{
+	removeInvitee(this);
+	return false;
+});
+
+// balance
+$(document).on('change', 'input[name*="[cost]"], input[name*=spent]', function()
+{
+	calcBalance();
+});
+
+// costo
+$(document).on('change', 'input[name*=cost_val],input[name*=adult], input[name*=kids]', function()
+{	
+	calcCost();
+});
+/*
+$(document).on('change', 'input[name*=adult], input[name*=kids]', function()
+{
+	var cost1 = $('#Events_cost_val1').val();
+	var cost2 = $('#Events_cost_val2').val();
+
+	alert("Hay "+adults+" adultos y "+kids+" ninios, con costos "+cost1+" y "+cost2);
+	//$(this).closest('tr').find('td:nth-of-type(8) input').val(cost-spent);
+});*/
+
 $(document).on("ready",function()
 {
 	// calcular costos y balance
-	startWatchdog($('#'+default_table_id)[0], calcCost);
-
+	//startWatchdog($('#'+default_table_id)[0], calcCost);
+	
 	// al presionar el botton de agregar invitado
 	$('#'+default_addInvitee_id).on("click", function()
 	{
@@ -33,20 +61,14 @@ $(document).on("ready",function()
 	});
 
 	// Mejorar: anular interaccion si se cierra la confirmacion de asistentes
-	$('input[name="Events[cost_mode]"]').on("click", function()
+	$('input[name*=cost_mode]').on("click", function()
 	{
 		costModeChange($('input[name="Events[cost_mode]"]:checked').val());
 	});
-
+	
 	costModeChange($('input[name="Events[cost_mode]"]:checked').val());
  });
  
-// eventos dinamicos necesitan un bind distinto
-$(document).on('click', 'a[href=#removeInvitee]', function()
-{
-	removeInvitee(this);
-	return false;
-});
 
 function mailUser(destino, asunto, cuerpo)
 {
@@ -207,6 +229,8 @@ function costModeChange(toMode)
 			}
 			break;
 		}
+		
+		calcCost();
 	}
 }
 
@@ -284,35 +308,34 @@ function addInvitee(table_id)
 
 /*! \brief 
 */
-function calcBalance(table_id)
+function calcBalance()
 {
-	if (!table_id) table_id = default_table_id;
-
-	var val = 100;
-
-	var table = document.getElementById(table_id);
-	for (var i = 0, row; row = table.rows[i]; i++)
+	$('#'+default_table_id+' tbody tr td:nth-of-type(8)').each(function()
 	{
-		//iterate through rows
-		//rows would be accessed using the "row" variable assigned in the for loop
-		for (var j = 0, col; col = row.cells[j]; j++)
-		{
-			//iterate through columns
-			//columns would be accessed using the "col" variable assigned in the for loop
-			row.cells[j].inputs[0].value = val;
-		}  
-	}
+		var cost = $(this).closest('tr').find('td:nth-of-type(6) input').val();
+		var spent = $(this).closest('tr').find('td:nth-of-type(7) input').val();
+		$(this).closest('tr').find('td:nth-of-type(8) input').val(cost-spent);
+	});
 }
 
 /*! \brief function call scheduler, anti overwhelm
 */
-function calcCost(table/*table_id*/)
+function calcCost()
 {
-	table=0;
-	if (!table) table = $('#'+default_table_id)[0];
-
-		alert('WATCHDOG TRIGGERED');
-
+	var cost1 = parseInt($('#Events_cost_val1').val()) || 0;
+	var cost2 = parseInt($('#Events_cost_val2').val()) || 0;
+	
+	$('#'+default_table_id+' tbody tr td:nth-of-type(6)').each(function()
+	{
+		var adults = parseInt( $(this).closest('tr').find('td:nth-of-type(4) input').val() ) || 0;
+		var kids = parseInt( $(this).closest('tr').find('td:nth-of-type(5) input').val() ) || 0;
+		alert(kids);
+		var cost = cost1+cost2;
+		$(this).find('input').val(cost*(adults+kids));
+	});
+	
+	calcBalance();
+/*
 
 	var updateNeeded = false;
 
@@ -336,4 +359,5 @@ function calcCost(table/*table_id*/)
 	}
 
 	if (updateNeeded) calcBalance();
+*/
 }

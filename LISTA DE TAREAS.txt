@@ -2,7 +2,7 @@
 
 
 1. Eventos:
-	(LC)Implementar los modos de cuentas, integrar con tabla invitados.
+	Implementar los modos de cuentas.
 
 
 2. USERS:
