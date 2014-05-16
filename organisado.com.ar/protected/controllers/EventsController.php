@@ -68,11 +68,11 @@ class EventsController extends Controller
 	public function actionCreate()
 	{
 		$model=new Events;
-		$inviteesModel=new Invitees;
+		$inviteesModels[]=new Invitees;
 
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation(array($model, $inviteesModel));
-
+		$this->performAjaxValidation(array($model, $inviteesModels));
+/*
 		if(isset($_POST['Events'], $_POST['Invitees']))
 		{
 			$model->attributes=$_POST['Events'];
@@ -91,11 +91,53 @@ class EventsController extends Controller
 					$model->delete();
 				}
 			}
+		}*/
+		
+		if(isset($_POST['Events'], $_POST['Invitees']))
+		{
+			$inviteesModels = $this->loadInviteesModelsFromPost(-1);
+
+		
+		
+			// add changes to event model
+			$model->attributes=$_POST['Events'];
+			
+			// save changes to model
+			if ($model->save())
+	        {
+	        	// add changes to invitees models
+				$validInvitees = true;
+				foreach($inviteesModels as $i=>$inviteesModel)
+				{
+				    if(isset($_POST['Invitees'][$i]))
+				    {
+				    	$inviteesModel->attributes = $_POST['Invitees'][$i];
+						$inviteesModel->event = $model->id;
+				    }
+				    
+				    $validInvitees = $inviteesModel->validate() && $validInvitees;
+				}
+	        
+	        	if($validInvitees)
+				{
+					// save changes to invitees models
+					foreach($inviteesModels as $inviteesModel)
+					{
+						$inviteesModel->save(false);
+					}
+	
+					$this->redirect(array('view','id'=>$model->id));
+				}
+				else
+				{
+					$model->delete();
+				} 
+			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
-			'inviteesModel'=>$inviteesModel
+			'inviteesModels'=>$inviteesModels
 		));
 	}
 
@@ -143,7 +185,7 @@ class EventsController extends Controller
 				// to invitees models
 				foreach($inviteesModels as $inviteesModel)
 				{
-					$inviteesModel->save();
+					$inviteesModel->save(false);
 				}
 
 				$this->redirect(array('view','id'=>$model->id));
