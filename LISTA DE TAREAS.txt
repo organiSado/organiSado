@@ -7,26 +7,21 @@
 1. Eventos:
 
 
- 	(JQ) Input tabular, Falta implementar el Create, Update y Delet.
-	http://www.yiiframework.com/doc/guide/1.1/en/form.table
+ 	(JQ) Input tabular, Falta implementar el Delete.
 
 
 	(LC)Implementar los modos de cuentas, integrar con tabla invitados.
 
-		 
 		
 	(MM, MH) [EN PRINCIPIIO QUE MANDE ALGO A LOS MAILS CORRECTOS],Lograr que se envien datos por mail. Invitar personas al evento, al agregar personas (Mediante su email), verificar por Ajax si la persona ya está dada de alta. Las personas invitadas podrán tener el rol organizador también.    * Invitar personas al evento, al agregar personas (Mediante su email), verificar por Ajax si la persona ya está dada de alta. Las personas invitadas podrán tener el rol organizador también.
     * Si la persona no está dada de alta, recibirá un email con un link invitándolo a completar la registración.
     * Si la persona ya está en el sistema, recibirá un email indicando que ha sido invitado al evento, para poder operar deberá darse de alta.
 
 
-	 
-
-
 
 2. USERS:
-	ACL - No solamente mostrar los eventos propios sino también a los que fue invitado- tener en cuenta 
-	para cuando se bloquea la visa de un evento.
+	(JQ) ACL - No solamente mostrar los eventos propios sino también a los que fue invitado- tener en cuenta 
+	para cuando se bloquea la vista de un evento.
 
 
 /* BUGS */
