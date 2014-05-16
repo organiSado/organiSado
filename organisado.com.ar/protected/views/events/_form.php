@@ -3,7 +3,6 @@
 /* @var $model Events */
 /* @var $form CActiveForm */
 
-
 	$cs = Yii::app()->getClientScript();
 	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/accordion.css');
 
@@ -33,12 +32,18 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>true,
-)); ?>
+));
+
+?>
 
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary(array($model, $inviteesModel)); ?>
+	<?php //echo $form->errorSummary(array($model, $inviteesModel)); ?>
+	<?php 
+
+//echo $form->errorSummary(array/*_merge*/($model, $inviteesModels));	
+?>
 		
 	<div class="row">
 		<div class="col pull-left">
@@ -143,82 +148,84 @@
 			<?php echo $form->checkBox($model,'confirmation_closed', array('class'=>'inline')); ?>
 			<?php echo $form->error($model,'confirmation_closed'); ?>
 		</div>
+		
 
         <table id="table-invitados" class="table table-striped">
         <thead>
           <tr>
-            <th><?php echo $form->labelEx($inviteesModel,'email'); ?><?php //echo $form->labelEx($model,'name'); ?></th>
-            <th><?php echo $form->labelEx($inviteesModel,'admin', array('class'=>'inline')); ?></th>
-            <th><?php echo $form->labelEx($inviteesModel,'confirmed', array('class'=>'inline')); ?></th>
-            <th><?php echo $form->labelEx($inviteesModel,'adults', array('class'=>'inline')); ?></th>
-            <th><?php echo $form->labelEx($inviteesModel,'kids', array('class'=>'inline')); ?></th>
-            <th><?php echo $form->labelEx($inviteesModel,'cost', array('class'=>'inline')); ?></th>
-            <th><?php echo $form->labelEx($inviteesModel,'spent', array('class'=>'inline')); ?></th>
+            <th><?php echo $form->labelEx($inviteesModels[0],'email'); ?><?php //echo $form->labelEx($model,'name'); ?></th>
+            <th><?php echo $form->labelEx($inviteesModels[0],'admin', array('class'=>'inline')); ?></th>
+            <th><?php echo $form->labelEx($inviteesModels[0],'confirmed', array('class'=>'inline')); ?></th>
+            <th><?php echo $form->labelEx($inviteesModels[0],'adults', array('class'=>'inline')); ?></th>
+            <th><?php echo $form->labelEx($inviteesModels[0],'kids', array('class'=>'inline')); ?></th>
+            <th><?php echo $form->labelEx($inviteesModels[0],'cost', array('class'=>'inline')); ?></th>
+            <th><?php echo $form->labelEx($inviteesModels[0],'spent', array('class'=>'inline')); ?></th>
             <th>Balance</th>
-            <th><?php echo $form->labelEx($inviteesModel,'money_ok', array('class'=>'inline')); ?></th>
+            <th><?php echo $form->labelEx($inviteesModels[0],'money_ok', array('class'=>'inline')); ?></th>
             <th colspan="2">Acciones</th>
           </tr>
 		</thead>
 		<tbody>
+			<?php foreach($inviteesModels as $i=>$inviteesModel): ?>
 			<tr>
-	            <td>
-	                <?php /*<input size="60" maxlength="255" value="" name="Invitees[name]" id="Invitees_name" type="text">*/?>
-	                
-					<?php echo $form->textField($inviteesModel,'email',array('size'=>60,'maxlength'=>255)); ?>
-					<?php echo $form->error($inviteesModel,'email'); ?>
-	            </td>
-	            <td>
-					<?php echo $form->checkBox($inviteesModel,'admin', array('class'=>'inline')); ?>
-					<?php echo $form->error($inviteesModel,'admin'); ?>
-				</td>
-	            <td>
-					<?php echo $form->checkBox($inviteesModel,'confirmed', array('class'=>'inline')); ?>
-					<?php echo $form->error($inviteesModel,'confirmed'); ?>
-				</td>
-	            <td>
-					<?php echo $form->numberField($inviteesModel,'adults', array('class'=>'inline')); ?>
-					<?php echo $form->error($inviteesModel,'adults'); ?>
-				</td>
-	            <td>
-					<?php echo $form->numberField($inviteesModel,'kids', array('class'=>'inline')); ?>
-					<?php echo $form->error($inviteesModel,'kids'); ?>
-				</td>
-	            <td>
-	            	$
-					<?php echo $form->numberField($inviteesModel,'cost', array('class'=>'inline'/*, 'onchanged'=>'calcCost();'*/)); ?>
-					<?php echo $form->error($inviteesModel,'cost'); ?>
-				</td>
-	            <td>
-	            	$
-					<?php echo $form->numberField($inviteesModel,'spent', array('class'=>'inline')); ?>
-					<?php echo $form->error($inviteesModel,'spent'); ?>
+		            <td>
+		                <?php /*<input size="60" maxlength="255" value="" name="Invitees[name]" id="Invitees_name" type="text">*/?>
+		                
+						<?php echo $form->textField($inviteesModel,"[$i]email",array('size'=>60,'maxlength'=>255)); ?>
+						<?php echo $form->error($inviteesModel,'email'); ?>
+		            </td>
+		            <td>
+						<?php echo $form->checkBox($inviteesModel,"[$i]admin", array('class'=>'inline')); ?>
+						<?php echo $form->error($inviteesModel,'admin'); ?>
 					</td>
-				<td>
-	            	$
-					<input disabled="disabled" id="Invitees_time" type="number" value="-1">
-				</td>
-	            <td>
-	            	<?php echo $form->checkBox($inviteesModel,'money_ok', array('class'=>'inline')); ?>
-					<?php echo $form->error($inviteesModel,'money_ok'); ?>
-				</td>
-	            <td class="buttons">
-	            	<a class="btn btn-default" href="#mailInvitee" title="mail cuentas o invitacion">
-	            		<i class="icon-envelope"></i>
-	            	</a>
-	            </td>
-	            <td class="buttons">
-	            	<a class="btn btn-danger remove-invitee" href="#removeInvitee" title="remove" >
-	            		<i class="icon-remove"></i>
-	            	</a>
-	            </td>
-	        </tr>
+		            <td>
+						<?php echo $form->checkBox($inviteesModel,"[$i]confirmed", array('class'=>'inline')); ?>
+						<?php echo $form->error($inviteesModel,'confirmed'); ?>
+					</td>
+		            <td>
+						<?php echo $form->numberField($inviteesModel,"[$i]adults", array('class'=>'inline')); ?>
+						<?php echo $form->error($inviteesModel,'adults'); ?>
+					</td>
+		            <td>
+						<?php echo $form->numberField($inviteesModel,"[$i]kids", array('class'=>'inline')); ?>
+						<?php echo $form->error($inviteesModel,'kids'); ?>
+					</td>
+		            <td>
+		            	$
+						<?php echo $form->numberField($inviteesModel,"[$i]cost", array('class'=>'inline'/*, 'onchanged'=>'calcCost();'*/)); ?>
+						<?php echo $form->error($inviteesModel,'cost'); ?>
+					</td>
+		            <td>
+		            	$
+						<?php echo $form->numberField($inviteesModel,"[$i]spent", array('class'=>'inline')); ?>
+						<?php echo $form->error($inviteesModel,'spent'); ?>
+						</td>
+					<td>
+		            	$
+						<input disabled="disabled" id="Invitees_time" type="number" value="-1">
+					</td>
+		            <td>
+		            	<?php echo $form->checkBox($inviteesModel,"[$i]money_ok", array('class'=>'inline')); ?>
+						<?php echo $form->error($inviteesModel,'money_ok'); ?>
+					</td>
+		            <td class="buttons">
+		            	<a class="btn btn-default" href="#mailInvitee" title="mail cuentas o invitacion">
+		            		<i class="icon-envelope"></i>
+		            	</a>
+		            </td>
+		            <td class="buttons">
+		            	<a class="btn btn-danger remove-invitee" href="#removeInvitee" title="remove" >
+		            		<i class="icon-remove"></i>
+		            	</a>
+		            </td>
+			</tr>
+			<?php endforeach; ?>
         </tbody>
         </table>
 
 		<a class="btn btn-info pull-right btn-invitees" href="#resendInvitation" title="Reenviar invitaciones a no confirmados" type=""><i class="icon-envelope"></i> Reenviar invitaciones</a>
 		<a class="btn btn-info pull-right btn-invitees" href="#sendBills" title="Enviar cuentas a confirmados" type=""><i class="icon-envelope"></i> Enviar cuentas</a>
     </div>
-
 	<hr>
 
 	<div class="row buttons">
