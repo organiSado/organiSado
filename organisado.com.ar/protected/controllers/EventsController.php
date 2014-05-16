@@ -346,12 +346,57 @@ echo "deleteCandidates count ".count($deleteCandidates);
 		{
 			$models = $this->loadInviteesModels($id);
 		}
+		
 /*
 		if($models===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		
 */
-		return $models;
+		return $this->uniqueObjectArrayBy($models, 'email');
+	}
+	
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer $id the ID of the model to be loaded
+	 * @return Events the loaded model
+	 * @throws CHttpException
+	 */
+	public function removeDuplicatesByEmail($items)
+	{
+		$index = array();
+		
+		foreach($items as $item)
+		{
+			if (in_array($item->email, $index))
+			{
+				unset($item);
+			}
+			else
+			{
+				$index[]=$item->email;
+			}
+		}
+	}
+	
+	public function uniqueObjectArrayBy($items, $attr)
+	{
+		$out = array();
+		
+		foreach($items as $candidate)
+		{
+			foreach($out as $outItem)
+			{
+				if ($candidate[$attr] != $outItem[$attr])
+				{
+					$out[]=$candidate;
+				}
+			}
+			
+			if(!count($out)) $out[]=$candidate; // insertamos el primero
+		}
+		
+		return $out;
 	}
 
 	/**
