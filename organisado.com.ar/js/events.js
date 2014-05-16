@@ -158,50 +158,61 @@ function addInvitee(table_id)
 {
 	if (!table_id) table_id = default_table_id;
 
+	var rowId = $('#'+table_id+' tbody tr').size();
 	$('#'+table_id+' tr:last').after('\
-		<tr>\
-            <td>\
-                <input size="60" maxlength="255" value="" name="Events[name]" id="Events_name" type="text">\
-            </td>\
-            <td>\
-				<input id="ytEvents_confirmation_closed" type="hidden" value="0" name="Events[confirmation_closed]"><input disabled="disabled" name="Events[confirmation_closed]" id="Events_confirmation_closed" value="1" checked="checked" type="checkbox">\
-			</td>\
-            <td>\
-				<input id="ytEvents_confirmation_closed" type="hidden" value="0" name="Events[confirmation_closed]"><input disabled="disabled" name="Events[confirmation_closed]" id="Events_confirmation_closed" value="1" checked="checked" type="checkbox">\
-			</td>\
-            <td>\
-				<input disabled="disabled" name="Events[time]" id="Events_time" type="number" value="13:29">\
-			</td>\
-            <td>\
-				<input disabled="disabled" name="Events[time]" id="Events_time" type="number" value="13:29">\
-			</td>\
-            <td>\
-            	$\
-				<input onchanged="calcCost();" name="Events[time]" id="Events_time" type="number" value="13:29">\
-			</td>\
-            <td>\
-            	$\
-				<input disabled="disabled" name="Events[time]" id="Events_time" type="number" value="13:29">\
-			</td>\
-			<td>\
-            	$\
-				<input disabled="disabled" name="Events[time]" id="Events_time" type="number" value="13:29">\
-			</td>\
-            <td>\
-				<input id="ytEvents_confirmation_closed" type="hidden" value="0" name="Events[confirmation_closed]">\
-				<input name="Events[confirmation_closed]" id="Events_confirmation_closed" value="1" checked="checked" type="checkbox">\
-			</td>\
-            <td class="buttons">\
-            	<a class="btn btn-default" href="#mailInvitee" title="mail cuentas o invitacion">\
-            		<i class="icon-envelope"></i>\
-            	</a>\
-            </td>\
-            <td class="buttons">\
-            	<a class="btn btn-danger remove-invitee" href="#removeInvitee" title="remove" >\
-            		<i class="icon-remove"></i>\
-            	</a>\
-            </td>  \
-        </tr>\
+	<tr>\
+		<td>\
+			<input size="60" maxlength="255" name="Invitees['+rowId+'][email]" id="Invitees_'+rowId+'_email" type="text">\
+			<div class="errorMessage" id="Invitees_email_em_" style="display:none"></div>\
+		</td>\
+        <td>\
+        	<input id="ytInvitees_'+rowId+'_admin" type="hidden" value="0" name="Invitees['+rowId+'][admin]">\
+        	<input class="inline" name="Invitees['+rowId+'][admin]" id="Invitees_'+rowId+'_admin" type="checkbox">\
+        	<div class="errorMessage" id="Invitees_admin_em_" style="display:none"></div>\
+        </td>\
+        <td>\
+			<input id="ytInvitees_'+rowId+'_confirmed" type="hidden" value="0" name="Invitees['+rowId+'][confirmed]">\
+			<input class="inline" name="Invitees['+rowId+'][confirmed]" id="Invitees_'+rowId+'_confirmed" type="checkbox">\
+			<div class="errorMessage" id="Invitees_confirmed_em_" style="display:none"></div>\
+		</td>\
+        <td>\
+			<input class="inline" name="Invitees['+rowId+'][adults]" id="Invitees_'+rowId+'_adults" type="number">\
+			<div class="errorMessage" id="Invitees_adults_em_" style="display:none"></div>\
+		</td>\
+        <td>\
+			<input class="inline" name="Invitees['+rowId+'][kids]" id="Invitees_'+rowId+'_kids" type="number">\
+			<div class="errorMessage" id="Invitees_kids_em_" style="display:none"></div>\
+		</td>\
+        <td>\
+        	$\
+			<input class="inline" name="Invitees['+rowId+'][cost]" id="Invitees_'+rowId+'_cost" type="number">\
+			<div class="errorMessage" id="Invitees_cost_em_" style="display:none"></div>\
+		</td>\
+        <td>\
+        	$\
+			<input class="inline" name="Invitees['+rowId+'][spent]" id="Invitees_'+rowId+'_spent" type="number">\
+			<div class="errorMessage" id="Invitees_spent_em_" style="display:none"></div>\
+		</td>\
+		<td>\
+        	$\
+			<input disabled="disabled" id="Invitees_time" type="number">\
+		</td>\
+        <td>\
+        	<input id="ytInvitees_'+rowId+'_money_ok" type="hidden" value="0" name="Invitees['+rowId+'][money_ok]">\
+        	<input class="inline" name="Invitees['+rowId+'][money_ok]" id="Invitees_'+rowId+'_money_ok" value="1" type="checkbox">\
+        	<div class="errorMessage" id="Invitees_money_ok_em_" style="display:none"></div>\
+        </td>\
+        <td class="buttons">\
+        	<a class="btn btn-default" href="#mailInvitee" title="mail cuentas o invitacion">\
+        		<i class="icon-envelope"></i>\
+        	</a>\
+        </td>\
+        <td class="buttons">\
+        	<a class="btn btn-danger remove-invitee" href="#removeInvitee" title="remove">\
+        		<i class="icon-remove"></i>\
+        	</a>\
+        </td>\
+	</tr>\
 	');
 
 }

@@ -109,9 +109,9 @@ class EventsController extends Controller
 		$model=$this->loadModel($id);
 
 		// Cargamos modelo de invitados
-		$inviteesModels=$this->loadInviteesModels($id);
+		$inviteesModels=$this->loadInviteesModelsFromPost($id);
 		if (!count($inviteesModels))
-			array_push($inviteesModels, new Invitees);
+			array_push($inviteesModels, new Invitees);// le puede faltar event
 			
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation(array/*_merge*/($model, $inviteesModels));
@@ -241,6 +241,51 @@ class EventsController extends Controller
 		if($models===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		
+		return $models;
+	}
+	
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer $id the ID of the model to be loaded
+	 * @return Events the loaded model
+	 * @throws CHttpException
+	 */
+	public function loadInviteesModelsFromPost($id)
+	{
+		$models = array();
+		
+		$table = Invitees::model()->tableName();
+		
+		if (isset($_POST['Invitees']) && is_array($_POST['Invitees']))
+		{
+			foreach ($_POST['Invitees'] as $invitee)
+			{
+				if ( array_key_exists('email', $invitee) )
+				{
+					// read invitee from database 
+					$inviteesModel = Invitees::model()->findBySql("SELECT * FROM $table WHERE email='".$invitee['email']."' AND event=$id;");
+										
+					// if it does not exist... create a new invitee record 
+					if($inviteesModel===null)
+					{
+						$inviteesModel = new Invitees();
+						$inviteesModel->event = $id;
+					}
+
+					$models[] = $inviteesModel;
+				}
+			}	
+		}
+		else
+		{
+			$models = $this->loadInviteesModels($id);
+		}
+/*
+		if($models===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		
+*/
 		return $models;
 	}
 
