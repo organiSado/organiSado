@@ -386,7 +386,7 @@ var totalInvitees = 0;
 			break;
 		}
 		
-		$(this).find('input').val(cost*(adults+kids));
+		$(this).find('input').val(cost);
 	});
 	
 	calcBalance();
