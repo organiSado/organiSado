@@ -80,6 +80,12 @@ class EventsController extends Controller
 			// add changes to event model
 			$model->attributes=$_POST['Events'];
 			
+			// prevenir crear a nombre de otro
+			if (Yii::app()->user->id != $model->creator)
+			{
+				throw new CHttpException(404,'The requested page does not exist.');
+			}
+			
 			// save changes to model
 			if ($model->save())
 	        {
@@ -127,6 +133,12 @@ class EventsController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		
+		// prevenir acceso/acciones de terceros
+		if (Yii::app()->user->id != $model->creator)
+		{
+			throw new CHttpException(404,'The requested page does not exist.');
+		}
 
 		// Cargamos modelo de invitados
 		$inviteesModels=$this->loadInviteesModelsFromPost($id);
@@ -139,6 +151,12 @@ class EventsController extends Controller
 		
 		if(isset($_POST['Events'], $_POST['Invitees']))
 		{
+			// prevenir phishing
+			if (Yii::app()->user->id != $_POST['Events']['creator'])
+			{
+				throw new CHttpException(404,'The requested page does not exist.');
+			}
+			
 			// add changes to event model
 			$model->attributes=$_POST['Events'];
 
