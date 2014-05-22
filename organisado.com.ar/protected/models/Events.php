@@ -109,19 +109,19 @@ class Events extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'date' => 'Date',
-			'time' => 'Time',
-			'description' => 'Description',
-			'creator' => 'Creator',
-			'location_name' => 'Location Name',
-			'location_address' => 'Location Address',
-			'location_lat' => 'Location Lat',
-			'location_long' => 'Location Long',
-			'confirmation_closed' => 'Confirmation Closed',
-			'cost_mode' => 'Cost Mode',
-			'cost_val1' => 'Cost Val1',
-			'cost_val2' => 'Cost Val2',
+			'name' => 'Nombre',
+			'date' => 'Fecha',
+			'time' => 'Hora',
+			'description' => 'Descripción',
+			'creator' => 'Creador',
+			'location_name' => 'Ubicación del Evento',
+			'location_address' => 'Dirección',
+			'location_lat' => 'Latitud de Ubicación',
+			'location_long' => 'Longitud de Ubicacion',
+			'confirmation_closed' => 'Confirmación Cerrada',
+			'cost_mode' => 'Modo de Costo',
+			'cost_val1' => 'Primer Valor de Costo',
+			'cost_val2' => 'Seundo Valor de Costo',
 		);
 	}
 

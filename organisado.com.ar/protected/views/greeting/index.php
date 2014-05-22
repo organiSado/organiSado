@@ -2,7 +2,7 @@
 /* @var $this GreetingController */
 
 $this->breadcrumbs=array(
-	'Greeting',
+	'Saludos',
 );
 ?>
 <h1><? echo $content ?></h1>
