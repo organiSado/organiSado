@@ -224,7 +224,7 @@
 	<hr>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => "btn")); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class' => "btn")); ?>
 	</div>
 
 <?php $this->endWidget(); ?><div class="row">
