@@ -15,7 +15,7 @@ $this->menu=array(
  */
 ?>
 
-<h1>Events</h1>
+<h1>Eventos</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
