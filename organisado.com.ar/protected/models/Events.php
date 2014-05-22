@@ -75,8 +75,7 @@ class Events extends CActiveRecord
 				array('label'=>'Se divide lo gastado segun asistentes',
 					  'description'=>  'Se establece un valor diferente de costo para cada uno de los tipos de
 										asistentes, adultos y menores, estos valores se calculan a partir del 
-										costo total del evento, y el costo correspondiente a los asistentes  menores,
-										se calculará como un porcentaje del costo de un asistente adulto, segun se lo
+										costo total del evento, y un porcentaje de este correspondiente a los asistentes menores, segun se lo
 										indique debajo.'), 
 
 				array('label'=>'Se divide un valor fijo en partes iguales',
