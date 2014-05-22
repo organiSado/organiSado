@@ -263,12 +263,12 @@ function addInvitee(table_id)
 		</td>\
         <td>\
         	<input id="ytInvitees_'+rowId+'_admin" type="hidden" value="0" name="Invitees['+rowId+'][admin]">\
-        	<input class="inline" name="Invitees['+rowId+'][admin]" id="Invitees_'+rowId+'_admin" type="checkbox">\
+        	<input class="inline" name="Invitees['+rowId+'][admin]" id="Invitees_'+rowId+'_admin" value="1" type="checkbox">\
         	<div class="errorMessage" id="Invitees_admin_em_" style="display:none"></div>\
         </td>\
         <td>\
 			<input id="ytInvitees_'+rowId+'_confirmed" type="hidden" value="0" name="Invitees['+rowId+'][confirmed]">\
-			<input class="inline" name="Invitees['+rowId+'][confirmed]" id="Invitees_'+rowId+'_confirmed" type="checkbox">\
+			<input class="inline" name="Invitees['+rowId+'][confirmed]" id="Invitees_'+rowId+'_confirmed" value="1" type="checkbox">\
 			<div class="errorMessage" id="Invitees_confirmed_em_" style="display:none"></div>\
 		</td>\
         <td>\
