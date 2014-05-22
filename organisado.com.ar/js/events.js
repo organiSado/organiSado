@@ -24,20 +24,15 @@ $(document).on('change', 'input[name*=confirmed], input[name*=cost_val], input[n
 {	
 	calcCost();
 });
-/*
-$(document).on('change', 'input[name*=adult], input[name*=kids]', function()
-{
-	var cost1 = $('#Events_cost_val1').val();
-	var cost2 = $('#Events_cost_val2').val();
-
-	alert("Hay "+adults+" adultos y "+kids+" ninios, con costos "+cost1+" y "+cost2);
-	//$(this).closest('tr').find('td:nth-of-type(8) input').val(cost-spent);
-});*/
 
 $(document).on("ready",function()
 {
-	// calcular costos y balance
-	//startWatchdog($('#'+default_table_id)[0], calcCost);
+	// map
+	$('input[name*=location_address]').on("keyup", function()
+	{
+		scheduleCall(this, findAddressInEditorMap);
+		return false;
+	});
 	
 	// al presionar el botton de agregar invitado
 	$('#'+default_addInvitee_id).on("click", function()

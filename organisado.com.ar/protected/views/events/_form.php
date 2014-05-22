@@ -82,7 +82,7 @@
 
 			<div class="row">
 				<?php echo $form->labelEx($model,'location_address'); ?>
-				<?php echo $form->textField($model,'location_address',array('size'=>60,'maxlength'=>255, 'onkeyup'=>"scheduleCall(this, findAddressInEditorMap);")); ?>
+				<?php echo $form->textField($model,'location_address',array('size'=>60,'maxlength'=>255)); ?>
 				<?php echo $form->error($model,'location_address'); ?>
 			</div>
 
@@ -187,7 +187,7 @@
 					</td>
 		            <td>
 		            	$
-						<?php echo $form->numberField($inviteesModel,"[$i]cost", array('class'=>'inline'/*, 'onchanged'=>'calcCost();'*/)); ?>
+						<?php echo $form->numberField($inviteesModel,"[$i]cost", array('class'=>'inline')); ?>
 						<?php echo $form->error($inviteesModel,'cost'); ?>
 					</td>
 		            <td>
