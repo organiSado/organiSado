@@ -35,105 +35,11 @@
 ));
 
 ?>
-
 	<p class="note">Los campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary(array_merge(array($model), $inviteesModels)); ?>
 	
-	<div class="row">
-		<div class="col pull-left">
-			<div class="row">
-				<?php echo $form->labelEx($model,'name'); ?>
-				<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
-				<?php echo $form->error($model,'name'); ?>
-			</div>
-
-			<div class="row">
-				<?php echo $form->labelEx($model,'date'); ?>
-				<?php echo $form->dateField($model,'date'); ?>
-				<?php echo $form->error($model,'date'); ?>
-			</div>
-
-			<div class="row">
-				<?php echo $form->labelEx($model,'time'); ?>
-				<?php echo $form->timeField($model,'time',array('size'=>45,'maxlength'=>45)); ?>
-				<?php echo $form->error($model,'time'); ?>
-			</div>
-
-			<div class="row">
-				<?php //echo $form->labelEx($model,'creator'); ?>
-				<?php echo $form->hiddenField($model,'creator',array('value'=> ($model->creator? $model->creator : Yii::app()->user->id) )); ?>
-				<?php //echo $form->error($model,'creator'); ?>
-			</div>
-
-			<div class="row">
-				<?php echo $form->labelEx($model,'description'); ?>
-				<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-				<?php echo $form->error($model,'description'); ?>
-			</div>
-		</div>
-
-		<div class="col pull-left">
-			<div class="row">
-				<?php echo $form->labelEx($model,'location_name'); ?>
-				<?php echo $form->textField($model,'location_name',array('size'=>60,'maxlength'=>255)); ?>
-				<?php echo $form->error($model,'location_name'); ?>
-			</div>
-
-			<div class="row">
-				<?php echo $form->labelEx($model,'location_address'); ?>
-				<?php echo $form->textField($model,'location_address',array('size'=>60,'maxlength'=>255)); ?>
-				<?php echo $form->error($model,'location_address'); ?>
-			</div>
-
-			<div class="row">
-				<?php //echo $form->labelEx($model,'location_lat'); ?>
-				<?php echo $form->hiddenField($model,'location_lat',array('size'=>45,'maxlength'=>45)); ?>
-				<?php //echo $form->error($model,'location_lat'); ?>
-
-				<?php //echo $form->labelEx($model,'location_long'); ?>
-				<?php echo $form->hiddenField($model,'location_long',array('size'=>45,'maxlength'=>45)); ?>
-				<?php //echo $form->error($model,'location_long'); ?>
-		      	<div id="map"></div>
-			</div>
-		</div>
-	</div>
-
-	<hr>
-
-	<div class="row">
-		<h2>Cuentas</h2>
-		<?php
-			/* Auto-Generador de accordion by organiSado Dev Team corp. inc. */
-			$cost_modes = $model->costModes();
-
-			echo '<ul class="accordion">';
-			for ($i=0; isset($cost_modes) && $i < count($cost_modes); $i++)
-			{
-				echo '<li class="nav-dropdown">';
-				echo '<input type="radio" class="accordion_label" id="accordion_label_'.$i.'" name="Events[cost_mode]"'.($model->cost_mode == $i || ($i==0 && !$model->cost_mode)? ' checked="true"' : '').' value="'.$i.'" />';
-				echo '<label for="accordion_label_'.$i.'">'.$cost_modes[$i]['label'].'</label>';
-				echo '<div><p>'.$cost_modes[$i]['description'].'</p></div>';
-				//echo '<div><p>'.'DEBUG,'.$model->cost_mode.', ==$i:'.($model->cost_mode == $i? 'true':'false').'==0 && !$model->cost_mode'.($i==0 && !$model->cost_mode? 'true':'false').'</p></div>';
-				echo '</li>';
-			}
-			echo '</ul>';
-		?>
-	</div> <!-- div final cuentas -->
 	
-	<div class="row">
-		<?php echo $form->labelEx($model,'cost_val1'); ?>
-		<?php echo $form->textField($model,'cost_val1'); ?>
-		<?php //echo $form->error($model,'cost_val1'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'cost_val2'); ?>
-		<?php echo $form->textField($model,'cost_val2'); ?>
-		<?php //echo $form->error($model,'cost_val2'); ?>
-	</div>
-
-	<hr>
 
 	<div class="row">
 		<h2 class="inline">Invitados <a id="add-invitee" class="btn btn-success" href="#addInvitee"><i class="icon-plus"></i></a></h2>

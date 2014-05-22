@@ -183,7 +183,7 @@ class EventsController extends Controller
 		{
 			$accessLevel = 1;
 		}
-			
+		
 		if (!$accessLevel)
 		{
 			throw new CHttpException(404,'The requested page does not exist.');				
@@ -192,11 +192,12 @@ class EventsController extends Controller
 		if(isset($_POST['Events'], $_POST['Invitees']))
 		{
 			// prevenir phishing
-			if (Yii::app()->user->id != $_POST['Events']['creator'])
+			if (isset($_POST['Events']['creator'])
+				&& $accessLevel == 2) // es invitado
 			{
 				throw new CHttpException(404,'The requested page does not exist.');
 			}
-			
+
 			// add changes to event model
 			$model->attributes=$_POST['Events'];
 
@@ -264,7 +265,8 @@ echo "deleteCandidates count ".count($deleteCandidates);
 
 		$this->render('update',array(
 			'model'=>$model,
-			'inviteesModels'=>$inviteesModels
+			'inviteesModels'=>$inviteesModels,
+			'accessLevel'=> $accessLevel,
 		));
 	}
 

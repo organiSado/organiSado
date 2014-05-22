@@ -62,7 +62,7 @@
 
 			<div class="row">
 				<?php //echo $form->labelEx($model,'creator'); ?>
-				<?php echo $form->hiddenField($model,'creator',array('value'=> ($model->creator? $model->creator : Yii::app()->user->id) )); ?>
+				<?php if (!$model->creator) echo $form->hiddenField($model,'creator',array('value'=> Yii::app()->user->id )); ?>
 				<?php //echo $form->error($model,'creator'); ?>
 			</div>
 

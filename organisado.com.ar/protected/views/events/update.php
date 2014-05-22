@@ -20,9 +20,16 @@ $this->menu=array(
 
 <?php 
 
-	// determinar si es creador, invitado-admin o invitado-normal, pero llevarlo al controller mejor
-	//echo Yii::App()->user->id;
-	$isAdmin = true;
-	$this->renderPartial($isAdmin? '_form': '_formInvitee', array('model'=>$model, 'inviteesModels'=>$inviteesModels));
+	$formView = '';
+	if ($accessLevel==1) // admin
+	{
+		$formView = '_form';
+	}
+	else if ($accessLevel==2) // invitado
+	{
+		$formView = '_formInvitee';
+	}
 	
+	$this->renderPartial($formView, array('model'=>$model, 'inviteesModels'=>$inviteesModels));
+
 ?>
