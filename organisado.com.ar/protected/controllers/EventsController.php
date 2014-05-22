@@ -51,10 +51,33 @@ class EventsController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$creator = Yii::app()->user->id;
-		if ($this->loadModel($id)->creator != $creator) 
-			throw new CHttpException(404,'The requested page does not exist.');
-
+		$model=$this->loadModel($id);
+		
+		// Cargamos modelo de invitados
+		$inviteesModels=$this->loadInviteesModelsFromPost($id);
+		
+		// prevenir acceso/acciones de terceros
+		$accessLevel = 0;
+		if (Yii::app()->user->id != $model->creator)
+		{
+			foreach($inviteesModels as $inviteesModel)
+			{
+				if ($inviteesModel->email == Yii::app()->user->id)
+				{
+					$accessLevel = 2;
+					break;
+				}
+			}
+		}
+		else
+		{
+			$accessLevel = 1;
+		}
+			
+		if (!$accessLevel)
+		{
+			throw new CHttpException(404,'The requested page does not exist.');				
+		}
 	
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
@@ -124,7 +147,7 @@ class EventsController extends Controller
 			'inviteesModels'=>$inviteesModels
 		));
 	}
-
+	
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -134,12 +157,6 @@ class EventsController extends Controller
 	{
 		$model=$this->loadModel($id);
 		
-		// prevenir acceso/acciones de terceros
-		if (Yii::app()->user->id != $model->creator)
-		{
-			throw new CHttpException(404,'The requested page does not exist.');
-		}
-
 		// Cargamos modelo de invitados
 		$inviteesModels=$this->loadInviteesModelsFromPost($id);
 		if (!count($inviteesModels))
@@ -148,6 +165,29 @@ class EventsController extends Controller
 		
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation(array/*_merge*/($model, $inviteesModels));
+		
+		// prevenir acceso/acciones de terceros
+		$accessLevel = 0;
+		if (Yii::app()->user->id != $model->creator)
+		{
+			foreach($inviteesModels as $inviteesModel)
+			{
+				if ($inviteesModel->email == Yii::app()->user->id)
+				{
+					$accessLevel = 2;
+					break;
+				}
+			}
+		}
+		else
+		{
+			$accessLevel = 1;
+		}
+			
+		if (!$accessLevel)
+		{
+			throw new CHttpException(404,'The requested page does not exist.');				
+		}
 		
 		if(isset($_POST['Events'], $_POST['Invitees']))
 		{
