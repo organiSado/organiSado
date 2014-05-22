@@ -121,7 +121,7 @@ class Events extends CActiveRecord
 			'confirmation_closed' => 'Confirmación Cerrada',
 			'cost_mode' => 'Modo de Costo',
 			'cost_val1' => 'Primer Valor de Costo',
-			'cost_val2' => 'Seundo Valor de Costo',
+			'cost_val2' => 'Segundo Valor de Costo',
 		);
 	}
 

@@ -3,20 +3,20 @@
 /* @var $model Events */
 
 $this->breadcrumbs=array(
-	'Events'=>array('index'),
+	'Eventos'=>array('index'),
 	$model->name=>array('view','id'=>$model->id),
-	'Update',
+	'Actualizar',
 );
-
+/*
 $this->menu=array(
 	array('label'=>'List Events', 'url'=>array('index')),
 	array('label'=>'Create Events', 'url'=>array('create')),
 	array('label'=>'View Events', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Manage Events', 'url'=>array('admin')),
-);
+);*/
 ?>
 
-<h1>Update Events <?php echo $model->id; ?></h1>
+<h1>Actualizar Evento <?php echo $model->id; ?></h1>
 
 <?php 
 

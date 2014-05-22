@@ -3,15 +3,15 @@
 /* @var $model Events */
 
 $this->breadcrumbs=array(
-	'Events'=>array('index'),
+	'Eventos'=>array('index'),
 	$model->name,
 );
 
 $this->menu=array(
 	array('label'=>'Lista de Eventos', 'url'=>array('index')),
-	array('label'=>'Crear Event', 'url'=>array('create')),
+	array('label'=>'Crear Evento', 'url'=>array('create')),
 	array('label'=>'Actualizar Evento', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Borrar Evento', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Borrar Evento', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Seguro que quieres borrar este evento?')),
 	//array('label'=>'Manage Events', 'url'=>array('admin')),
 );
 ?>

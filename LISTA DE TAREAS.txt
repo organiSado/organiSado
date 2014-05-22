@@ -16,7 +16,7 @@ Por citar algunas cosas
 - Del perfil invitado no se hizo nada (Salvo enviarle un email), los invitados deberían puedan modificar el evento (Indicando si van, si, no, con cuantos acompañantes, que llevan, etc).
 - La validación ajax de si el usuario ya era usuario no se hizo.
 - Agregar comentarios, fotos, logs de eventos .
-X- Los métodos de cálculo estaban 3 de los 7 (Y uno de ellos era "el organizado invita").
+X Los métodos de cálculo estaban 3 de los 7 (Y uno de ellos era "el organizado invita").
 
 
 
@@ -24,6 +24,6 @@ X- Los métodos de cálculo estaban 3 de los 7 (Y uno de ellos era "el organizad
 /* BUGS */
 Y luego tenía varios fallos, por ejemplo:
 - Si bien no se podía ver eventos de otros, al editar si se cambia el ID se puede editar eventos que no me pertenecen.(pasar el id Yii de GET a POST)
-- Los mensajes están en inglés, tal como lo dejó Yii (Traducir)
+X- Los mensajes están en inglés, tal como lo dejó Yii (Traducir)
 - Las pantallas tienen el menú estadard de Yii: OPERATIONS-> LIST/CREATE/UPDATE, etc, lo mismo que al listar, es la tabla estandard (Preguntar que tiene de malo)
-- La primera vez que se graba un evento, no se guardan las personas (corregir controller)
+X La primera vez que se graba un evento, no se guardan las personas (corregir controller)
