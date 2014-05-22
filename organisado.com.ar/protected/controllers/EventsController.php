@@ -76,7 +76,7 @@ class EventsController extends Controller
 		if(isset($_POST['Events'], $_POST['Invitees']))
 		{
 			$inviteesModels = $this->loadInviteesModelsFromPost(-1);
-		
+
 			// add changes to event model
 			$model->attributes=$_POST['Events'];
 			
@@ -330,11 +330,12 @@ echo "deleteCandidates count ".count($deleteCandidates);
 				{
 					// read invitee from database 
 					$inviteesModel = Invitees::model()->findBySql("SELECT * FROM $table WHERE email='".$invitee['email']."' AND event=$id;");
-										
+														
 					// if it does not exist... create a new invitee record 
 					if($inviteesModel===null)
 					{
 						$inviteesModel = new Invitees();
+						$inviteesModel->email = $invitee['email'];
 						$inviteesModel->event = $id;
 					}
 
@@ -385,15 +386,20 @@ echo "deleteCandidates count ".count($deleteCandidates);
 		
 		foreach($items as $candidate)
 		{
+			$insert = true;
 			foreach($out as $outItem)
 			{
-				if ($candidate[$attr] != $outItem[$attr])
+				if ($candidate[$attr] == $outItem[$attr])
 				{
-					$out[]=$candidate;
+					$insert = false;
+					break;
 				}
 			}
 			
-			if(!count($out)) $out[]=$candidate; // insertamos el primero
+			if(!count($out) || $insert)
+			{
+				$out[]=$candidate;
+			}
 		}
 		
 		return $out;
