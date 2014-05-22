@@ -18,4 +18,11 @@ $this->menu=array(
 
 <h1>Update Events <?php echo $model->id; ?></h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model, 'inviteesModels'=>$inviteesModels)); ?>
+<?php 
+
+	// determinar si es creador, invitado-admin o invitado-normal, pero llevarlo al controller mejor
+	//echo Yii::App()->user->id;
+	$isAdmin = true;
+	$this->renderPartial($isAdmin? '_form': '_formInvitee', array('model'=>$model, 'inviteesModels'=>$inviteesModels));
+	
+?>
