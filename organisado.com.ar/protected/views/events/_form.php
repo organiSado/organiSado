@@ -36,15 +36,10 @@
 
 ?>
 
-
 	<p class="note">Los campos con <span class="required">*</span> son requeridos.</p>
 
-	<?php //echo $form->errorSummary(array($model, $inviteesModel)); ?>
-	<?php 
-
-//echo $form->errorSummary(array/*_merge*/($model, $inviteesModels));	
-?>
-		
+	<?php echo $form->errorSummary(array_merge(array($model), $inviteesModels)); ?>
+	
 	<div class="row">
 		<div class="col pull-left">
 			<div class="row">
