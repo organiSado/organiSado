@@ -36,15 +36,10 @@
 
 ?>
 
+	<p class="note">Los campos con <span class="required">*</span> son requeridos.</p>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php //echo $form->errorSummary(array($model, $inviteesModel)); ?>
-	<?php 
-
-//echo $form->errorSummary(array/*_merge*/($model, $inviteesModels));	
-?>
-		
+	<?php echo $form->errorSummary(array_merge(array($model), $inviteesModels)); ?>
+	
 	<div class="row">
 		<div class="col pull-left">
 			<div class="row">
@@ -87,7 +82,7 @@
 
 			<div class="row">
 				<?php echo $form->labelEx($model,'location_address'); ?>
-				<?php echo $form->textField($model,'location_address',array('size'=>60,'maxlength'=>255, 'onkeyup'=>"scheduleCall(this, findAddressInEditorMap);")); ?>
+				<?php echo $form->textField($model,'location_address',array('size'=>60,'maxlength'=>255)); ?>
 				<?php echo $form->error($model,'location_address'); ?>
 			</div>
 
@@ -192,7 +187,7 @@
 					</td>
 		            <td>
 		            	$
-						<?php echo $form->numberField($inviteesModel,"[$i]cost", array('class'=>'inline'/*, 'onchanged'=>'calcCost();'*/)); ?>
+						<?php echo $form->numberField($inviteesModel,"[$i]cost", array('class'=>'inline')); ?>
 						<?php echo $form->error($inviteesModel,'cost'); ?>
 					</td>
 		            <td>
@@ -229,7 +224,7 @@
 	<hr>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('class' => "btn")); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class' => "btn")); ?>
 	</div>
 
 <?php $this->endWidget(); ?><div class="row">

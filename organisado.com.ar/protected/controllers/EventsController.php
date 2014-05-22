@@ -252,22 +252,26 @@ echo "deleteCandidates count ".count($deleteCandidates);
 	 */
 	public function actionIndex()
 	{
+	
 		$creator = Yii::app()->user->id;
 		$dataProvider=new CActiveDataProvider('Events', array(
 		    'criteria'=>array(
-		        'condition'=>"creator='$creator'",
-		       /* 'order'=>'create_time DESC',
-		        'with'=>array('author'),*/
+		        'with'=>array('invitees'),
+		        'condition'=>"( creator='$creator' OR email='$creator' )",
+		        'together'=>true,
+
+				'order'=>'date DESC',
+		        /*'with'=>array('author'),*/
 		    ),
 	/*	    'countCriteria'=>array(
 		        'condition'=>'status=1',
 		        // 'order' and 'with' clauses have no meaning for the count query
-		    ),
-		    'pagination'=>array(
-		        'pageSize'=>20,
+		    ),*/
+		    /*'pagination'=>array(
+		        'pageSize'=>5,
 		    ),*/
 		));
-		
+					
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
