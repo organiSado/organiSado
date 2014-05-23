@@ -104,10 +104,7 @@ class EventsController extends Controller
 			$model->attributes=$_POST['Events'];
 			
 			// prevenir crear a nombre de otro
-			if (Yii::app()->user->id != $model->creator)
-			{
-				throw new CHttpException(404,'The requested page does not exist.');
-			}
+			$model->creator = Yii::app()->user->id;
 			
 			// save changes to model
 			if ($model->save())
