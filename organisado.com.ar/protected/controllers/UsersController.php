@@ -33,6 +33,10 @@ class UsersController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('recover'),
+				'users'=>array('?'), // ? not authenticated
+			),
+			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('create'),
 				'users'=>array('?', 'admin'), // ? not authenticated
 			),
@@ -89,9 +93,10 @@ class UsersController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
+	public function actionUpdate()
 	{
-		$model=$this->loadModel($id);
+		$user = Yii::app()->user->id;
+		$model=$this->loadModel($user);
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
@@ -99,12 +104,98 @@ class UsersController extends Controller
 		if(isset($_POST['Users']))
 		{
 			$model->attributes=$_POST['Users'];
+			$model->email = $user;
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->email));
+				$this->redirect(array('events/index'));
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Updates a particular model.
+	 * If update is successful, the browser will be redirected to the 'view' page.
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function actionRecover()
+	{
+		$model=new Users;
+
+		$recoverStatus = 0;
+
+		// Uncomment the following line if AJAX validation is needed
+		$this->performAjaxValidation($model);
+
+		if(isset($_POST['Users']))
+		{
+			$model->attributes=$_POST['Users'];
+
+			$model=Users::model()->findByPk($_POST['Users']['email']);
+			if($model===null)
+			{
+				$recoverStatus = 1;
+				$model=new Users;
+				$model->attributes=$_POST['Users'];
+				// $info = "email no encontrado...";
+			}
+			else
+			{
+				$code = md5(uniqid(rand(), true));
+				$model->password = $code;
+				if ($model->save())
+				{
+					$t = $model->email;
+					$s = "Recuperar contraseña en organisado.com.ar";
+					$link = "http://organisado.com.ar/index.php?r=users/recover&e=$t&c=".$code;
+					$b = "Para reestablecer su contraseña ingrese al siguiente link: ".$link;
+
+					if ( mail($t, $s, $b) )
+					{
+						$recoverStatus = 3; //$info = "Enviado a ".$t;
+					}
+					else
+					{
+						$recoverStatus = 2;// reintentar $info = "No se pudo enviar a ".$t;
+					}
+				}
+			}
+		}
+		else if (isset($_GET['e'],$_GET['c']))
+		{
+			$model=Users::model()->findByPk($_GET['e']);
+			if($model===null)
+			{
+				$recoverStatus = 4;
+				$model=new Users;
+				$model->email=$_GET['e'];
+				// $info = "email no encontrado...";
+			}
+			else
+			{
+				if($model->password == $_GET['c'])
+				{
+					//login user
+					$login=new LoginForm;
+					$login->username = $model->email;
+					$login->password = $model->password;
+					if($login->validate() && $login->login())
+					{
+						// go to update
+						$this->redirect(array('update','id'=>$model->email));
+					}
+				}
+				else
+				{
+					$recoverStatus = 4;
+				}
+			}
+		}
+
+		$this->render('recover',array(
+			'model'=>$model,
+			'status'=>$recoverStatus,
 		));
 	}
 

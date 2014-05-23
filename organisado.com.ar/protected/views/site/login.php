@@ -46,6 +46,7 @@ $this->breadcrumbs=array(
 		
 		<div class="row buttons">
 			<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>'Login')); ?>
+			<a class="btn btn-small btn-link" href="<?php echo $this->createUrl('users/recover') ?>">¿Contraseña Olvidada?</a>
 		</div>
 		
 	<?php $this->endWidget(); ?>

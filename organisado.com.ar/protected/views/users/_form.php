@@ -18,12 +18,17 @@
 	<p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
+<?php if (Yii::app()->user->id == "admin")
+{
+?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>
 		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'email'); ?>
 	</div>
+<?php
+}
+?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'first_name'); ?>
