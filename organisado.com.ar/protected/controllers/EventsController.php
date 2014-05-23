@@ -275,7 +275,13 @@ echo "deleteCandidates count ".count($deleteCandidates);
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$model = $this->loadModel($id);
+		if ($model->creator != Yii::app()->user->id)
+		{
+			trigger_error("Usted no tiene permisos para borrar este evento, necesita ser el creador!");
+		}
+		
+		$model->delete();
 		$inviteesModels = $this->loadInviteesModels($id);
 		foreach($inviteesModels as $inviteesModel)
 		{
