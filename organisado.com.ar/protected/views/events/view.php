@@ -87,8 +87,8 @@ $modes=$model->costModes();
 <div id='chat'></div>
 <?php 
     $this->widget('YiiChatWidget',array(
-        'chat_id'=>'123',                   // a chat identificator
-        'identity'=>1,                      // the user, Yii::app()->user->id ?
+        'chat_id'=>$model->id,                   // a chat identificator
+        'identity'=>Yii::app()->user->id,
         'selector'=>'#chat',                // were it will be inserted
         'minPostLen'=>2,                    // min and
         'maxPostLen'=>80,                   // max string size for post
