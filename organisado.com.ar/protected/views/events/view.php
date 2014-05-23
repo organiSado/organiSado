@@ -40,10 +40,13 @@ return;*/
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/gmap.js');
 
 ?>
-
 <h1><?php echo $model->name; ?></h1>
 <br>
-<?php $this->widget('zii.widgets.CDetailView', array(
+
+<?php
+$modes=$model->costModes();
+
+ $this->widget('zii.widgets.CDetailView', array(
 	'htmlOptions'=>array('class' => 'table table-striped', 'id' => 'detalle-eventos'),
 	'data'=>$model,
 	'attributes'=>array(
@@ -63,7 +66,7 @@ return;*/
 			'name'=>'confirmation_closed'
 		),
 		array(
-			'value'=>$model->costModes()[$model->cost_mode]['label'],
+			'value'=>$modes[$model->cost_mode]['label'],
 			'name'=>'cost_mode'
 		),
 		/*'cost_val1',
@@ -82,19 +85,21 @@ return;*/
 <hr>
 <h2>Invitados</h2>
 
-<?php if (isset($inviteesModels) && is_array($inviteesModels) && count($inviteesModels)): ?>
+<?php 
+$labels=$inviteesModels[0]->attributeLabels();
+if (isset($inviteesModels) && is_array($inviteesModels) && count($inviteesModels)): ?>
 <table id="table-invitados" class="table table-striped">
 <thead>
   <tr>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['email']; ?><?php //echo $model,'name'); ?></th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['admin']; ?></th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['confirmed']; ?></th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['adults']; ?></th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['kids']; ?></th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['cost']; ?></th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['spent']; ?></th>
+    <th><?php echo $labels['email']; ?><?php //echo $model,'name'); ?></th>
+    <th><?php echo $labels['admin']; ?></th>
+    <th><?php echo $labels['confirmed']; ?></th>
+    <th><?php echo $labels['adults']; ?></th>
+    <th><?php echo $labels['kids']; ?></th>
+    <th><?php echo $labels['cost']; ?></th>
+    <th><?php echo $labels['spent']; ?></th>
     <th>Balance</th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['money_ok']; ?></th>
+    <th><?php echo $labels['money_ok']; ?></th>
   </tr>
 </thead>
 <tbody>
