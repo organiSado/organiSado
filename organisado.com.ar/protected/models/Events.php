@@ -115,7 +115,7 @@ class Events extends CActiveRecord
 			'time' => 'Hora',
 			'description' => 'Descripción',
 			'creator' => 'Creador',
-			'location_name' => 'Ubicación del Evento',
+			'location_name' => 'Lugar',
 			'location_address' => 'Dirección',
 			'location_lat' => 'Latitud de Ubicación',
 			'location_long' => 'Longitud de Ubicacion',

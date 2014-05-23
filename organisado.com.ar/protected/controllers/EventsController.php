@@ -81,6 +81,7 @@ class EventsController extends Controller
 	
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'inviteesModels'=>$inviteesModels
 		));
 	}
 	
@@ -294,13 +295,15 @@ echo "deleteCandidates count ".count($deleteCandidates);
 	
 		$creator = Yii::app()->user->id;
 		$dataProvider=new CActiveDataProvider('Events', array(
-		    'criteria'=>array(
+/*		    'criteria'=>array(
 		        'with'=>array('invitees'),
 		        'condition'=>"( creator='$creator' OR email='$creator' )",
 		        'together'=>true,
-
-				'order'=>'date DESC',
-		        /*'with'=>array('author'),*/
+*/				'criteria'=>array(
+					//'join' => 'INNER JOIN invitees i ON t.id=i.event',
+			        'condition'=>"( creator='$creator' OR email='$creator' )",
+			        'together'=>true,
+			        'with'=>array('invitees'),
 		    ),
 	/*	    'countCriteria'=>array(
 		        'condition'=>'status=1',
@@ -310,7 +313,26 @@ echo "deleteCandidates count ".count($deleteCandidates);
 		        'pageSize'=>5,
 		    ),*/
 		));
-					
+		
+		/*$sql = "SELECT *
+				FROM events INNER JOIN invitees ON events.id=invitees.event
+				WHERE ( creator='$creator' OR email='$creator' ) GROUP BY events.id";
+		$rawData=Yii::app()->db->createCommand($sql)->queryAll();
+				
+		// or using: $rawData=User::model()->findAll();
+		$dataProvider=new CArrayDataProvider($rawData, array(
+		    /*'id'=>'user',
+		    'sort'=>array(
+		        'attributes'=>array(
+		             'id', 'username', 'email',
+		        ),
+		    ),* /
+		    'pagination'=>array(
+		        'pageSize'=>10,
+		    ),
+		));
+		*/
+
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
