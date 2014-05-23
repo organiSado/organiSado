@@ -18,7 +18,7 @@
 	<p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-<?php if (Yii::app()->user->id == "admin")
+<?php if (Yii::app()->user->id == "admin" || Yii::app()->user->isGuest)
 {
 ?>
 	<div class="row">
