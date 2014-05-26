@@ -20,8 +20,9 @@ class ChatHandler extends YiiChatDbHandlerBase {
         // example: 
           //$model = Users::model()->findByPk($this->getIdentity());
          // return $model->userFullName();
-        return "usuario"; 
-        //return Yii::app()->Users->first_name." ".Yii::app()->Users->last_name; 
+        //return "usuario"; 
+        $user=Users::model()->findByPk(Yii::app()->user->id);
+        return $user->first_name." ".$user->last_name;
     }
     protected function getDateFormatted($value){
         // format the date numeric $value
