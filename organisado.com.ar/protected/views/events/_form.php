@@ -246,7 +246,7 @@
 	        //Note that we are using a custom view for our widget
 	        //Thats becase the default widget includes the 'form' 
 	        //which we don't want here
-			'formView' => 'application.extensions.xupload.views.form',
+			'formView' => 'application.extensions.xupload.views.form_es',
 			'showForm' => false, // esto hace que no imprima el tag form y rompa el formulario padre
 	        )    
 	    );

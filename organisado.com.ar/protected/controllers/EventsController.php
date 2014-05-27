@@ -254,10 +254,26 @@ class EventsController extends Controller
 				} 
 			}
 		}
+		
+		// galeria model
+		Yii::import( "xupload.models.XUploadForm" );
+	    $photos = new XUploadForm;
+	    
+	   /* $table = Gallery::model()->tableName();
+		$g = Gallery::model()->findAllBySql("SELECT * FROM $table WHERE event=$id;");
+		if($g===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		
+		$photos->filename = $g[0]->url;
+		$photos->name = $g[0]->name;
+		$photos->mime_type = $g[0]->mime;*/
+		
+		//var_dump($photos);die;
 
 		$this->render('create',array(
 			'model'=>$model,
-			'inviteesModels'=>$inviteesModels
+			'inviteesModels'=>$inviteesModels,
+			'photos' => $photos,
 		));
 	}
 	

@@ -168,7 +168,8 @@ class XUpload extends CJuiInputWidget {
             Yii::app() -> clientScript -> registerScriptFile($baseUrl . '/js/jquery.fileupload-ui.js', CClientScript::POS_END);
 
             //The localization script
-            $messages = CJavaScript::encode(array(
+            Yii::app() -> clientScript -> registerScriptFile($baseUrl . '/js/locale.js', CClientScript::POS_END);
+            /*$messages = CJavaScript::encode(array(
                 'fileupload' => array(
                     'errors' => array(
                         "maxFileSize" => $this->t('File is too big'),
@@ -186,7 +187,7 @@ class XUpload extends CJuiInputWidget {
             ));
             $js = "window.locale = {$messages}";
 
-            Yii::app()->clientScript->registerScript('XuploadI18N', $js, CClientScript::POS_END);
+            Yii::app()->clientScript->registerScript('XuploadI18N', $js, CClientScript::POS_END);*/
             /**
             <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
             <!--[if gte IE 8]><script src="<?php echo Yii::app()->baseUrl; ?>/js/cors/jquery.xdr-transport.js"></script><![endif]-->

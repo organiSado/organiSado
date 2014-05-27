@@ -17,4 +17,4 @@ $this->menu=array(
 
 <h1>Crear Evento</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model, 'inviteesModels'=>$inviteesModels)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model, 'inviteesModels'=>$inviteesModels, 'photos' => $photos)); ?>
