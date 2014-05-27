@@ -15,7 +15,7 @@ X- Recordar contraseña.
 - Lista de la compra.
 - Del perfil invitado no se hizo nada (Salvo enviarle un email), los invitados deberían puedan modificar el evento (Indicando si van, si, no, con cuantos acompañantes, que llevan, etc). (solo falta cuando es organizador invitado, y unsetear variables admin de invitados no admin)
 - La validación ajax de si el usuario ya era usuario no se hizo.
-- Agregar comentarios, fotos, logs de eventos .
+- Agregar comentarios, fotos(delete, mostrar en update), logs de eventos .
 X- Los métodos de cálculo estaban 3 de los 7 (Y uno de ellos era "el organizado invita").
 
 

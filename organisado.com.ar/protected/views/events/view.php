@@ -179,6 +179,8 @@ if (isset($inviteesModels) && is_array($inviteesModels) && count($inviteesModels
 <br>
 <hr>
 <h2>Fotos</h2>
+<?php  if(is_array($photos) && count($photos) ): ?>
+
 <div id="blueimp-gallery" class="blueimp-gallery">
     <div class="slides"></div>
     <h3 class="title"></h3>
@@ -212,5 +214,8 @@ if (isset($inviteesModels) && is_array($inviteesModels) && count($inviteesModels
 	    blueimp.Gallery(links, options);
 	};
 </script>
+<?php  else: ?>
+	<p>Este evento no posee fotos todavía.</p>
+<?php  endif; ?>
 <br>
 <br>
