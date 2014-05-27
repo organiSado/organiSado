@@ -236,6 +236,25 @@ function costModeChange(toMode)
 	}
 }
 
+
+
+$(document).keyup('input[name*="[email]"]', function()
+{
+	$.ajax({type:"POST",
+			url:"index.php?r=users/userexists",
+// parametros 			url:"index.php?r=users/userexists",
+			data:{ Users:{email:$(this).val()} },
+			success: function()
+			{
+				alert("Correo enviado!");
+				alert($(this).val());
+			}
+	});
+});
+
+
+
+
 /*! \brief Elimina invitado
 */
 function removeInvitee(obj)
