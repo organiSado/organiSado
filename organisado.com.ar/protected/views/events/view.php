@@ -91,7 +91,11 @@ document.getElementById('links').onclick = function (event) {
 
 <h1><?php echo $model->name; ?></h1>
 <br>
-<?php $this->widget('zii.widgets.CDetailView', array(
+
+<?php
+$modes=$model->costModes();
+
+ $this->widget('zii.widgets.CDetailView', array(
 	'htmlOptions'=>array('class' => 'table table-striped', 'id' => 'detalle-eventos'),
 	'data'=>$model,
 	'attributes'=>array(
@@ -111,7 +115,7 @@ document.getElementById('links').onclick = function (event) {
 			'name'=>'confirmation_closed'
 		),
 		array(
-			'value'=>$model->costModes()[$model->cost_mode]['label'],
+			'value'=>$modes[$model->cost_mode]['label'],
 			'name'=>'cost_mode'
 		),
 		/*'cost_val1',
@@ -128,21 +132,50 @@ document.getElementById('links').onclick = function (event) {
 <br>
 
 <hr>
+<h1>Muro de Mensajes</h1>
+<div id='chat'></div>
+<?php 
+    $this->widget('YiiChatWidget',array(
+        'chat_id'=>$model->id,                   // a chat identificator
+        'identity'=>1,                        //Yii::app()->user->id,
+        'selector'=>'#chat',                // were it will be inserted
+        'minPostLen'=>2,                    // min and
+        'maxPostLen'=>80,                   // max string size for post
+        'model'=>new ChatHandler(),    // the class handler. **** FOR DEMO, READ MORE LATER IN THIS DOC ****
+        'data'=>'any data',                 // data passed to the handler
+        // success and error handlers, both optionals.
+        'onSuccess'=>new CJavaScriptExpression(
+            "function(code, text, post_id){   }"),
+        'onError'=>new CJavaScriptExpression(
+            "function(errorcode, info){  }"),
+    ));
+?>
+<br>
+
+
+
+
+
+
+
+<hr>
 <h2>Invitados</h2>
 
-<?php if (isset($inviteesModels) && is_array($inviteesModels) && count($inviteesModels)): ?>
+<?php 
+$labels=$inviteesModels[0]->attributeLabels();
+if (isset($inviteesModels) && is_array($inviteesModels) && count($inviteesModels)): ?>
 <table id="table-invitados" class="table table-striped">
 <thead>
   <tr>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['email']; ?><?php //echo $model,'name'); ?></th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['admin']; ?></th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['confirmed']; ?></th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['adults']; ?></th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['kids']; ?></th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['cost']; ?></th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['spent']; ?></th>
+    <th><?php echo $labels['email']; ?><?php //echo $model,'name'); ?></th>
+    <th><?php echo $labels['admin']; ?></th>
+    <th><?php echo $labels['confirmed']; ?></th>
+    <th><?php echo $labels['adults']; ?></th>
+    <th><?php echo $labels['kids']; ?></th>
+    <th><?php echo $labels['cost']; ?></th>
+    <th><?php echo $labels['spent']; ?></th>
     <th>Balance</th>
-    <th><?php echo $inviteesModels[0]->attributeLabels()['money_ok']; ?></th>
+    <th><?php echo $labels['money_ok']; ?></th>
   </tr>
 </thead>
 <tbody>

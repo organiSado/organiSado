@@ -21,60 +21,60 @@ $this->breadcrumbs=array(
 	</div>
 </div>
 
-<span style="color:red;">(AGREGAR PREVISUALIZADOR DE IMAGENES LIGHTBOX)</span>
 <h2 class="featurette-heading">Con organiSado vas a poder...</h2>
 
 <div class="row">
 	<div class="span6 screenshotHolder">
-	    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/screenshots/crear.png">
+	    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/screenshots/crear_evento.png">
 	</div>
 
 	<div class="span4 pull-right description">
 	    <h2 class="featurette-heading">Crear eventos</h2>
-	    <p class="lead ">Texto sin limites.</p>
+	    <p class="lead ">En organiSado vas a poder crear tus eventos rápidamente para que tus invitados lleguen a tiempo.</p>
+	    <p class="lead ">Con la incorporación de Google Maps tus invitados no se van a perder.</p>
 	</div>
 </div>
 <hr>
 <div class="row">
 	<div class="span6 pull-right screenshotHolder">
-	    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/screenshots/eventos.png">
+	    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/screenshots/lista_eventos.png">
 	</div>
 
 	<div class="span4 description">
 	    <h2 class="featurette-heading">Ver eventos</h2>
-	    <p class="lead ">Texto Tuyos y a los que fuiste invitado en un solo lugar.</p>
+	    <p class="lead ">Tu lista de eventos ágil y rápida ó mejor dicho "cortita y al pie".</p>
 	</div>
 </div>
 <hr>
 <div class="row">
 	<div class="span6 screenshotHolder">
-	    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/screenshots/invitar.png">
+	    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/screenshots/invitados.png">
 	</div>
 
 	<div class="span4 pull-right description">
 	    <h2 class="featurette-heading">Invitar</h2>
-	    <p class="lead ">Texto por nombre de usuario o por email.</p>
+	    <p class="lead ">organiSado te brinda una lista de invitados totalmente detalla.</p>
+	    <p class="lead ">Vas a poder controlar el gasto de cada invitado y decidir si alguno te dá una mano con la organización.</p>
 	</div>
 </div>
 <hr>
 <div class="row">
 	<div class="span6 pull-right screenshotHolder">
-	    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/screenshots/cuentas.png">
+	    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/screenshots/acordeon_cuentas.png">
 	</div>
 
 	<div class="span4 description">
 	    <h2 class="featurette-heading">Decidir las cuentas</h2>
-	    <p class="lead ">Texto flexibilidad con multiples metodos para repartir las cuentas.</p>
+	    <p class="lead ">Sí los números no son tu fuerte, organiSado te ofrece varias formas de repartir los gastos.</p>
 	</div>
 </div>
 <hr>
 <div class="row">
 	<div class="span6 screenshotHolder">
-	    <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/screenshots/mas.png">
+	    <img src="<?php echo Yii::app()->request->baseUrl; ?>/logo.png">
 	</div>
 
 	<div class="span4 pull-right description">
-	    <h2 class="featurette-heading">Y Más</h2>
-	    <p class="lead ">Texto con un recopilado de todo lo demás.</p>
+	    <p class="lead ">...el aplauso ya no es mas para el asador. Es para el OrganiSador.</p>
 	</div>
 </div>

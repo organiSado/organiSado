@@ -18,8 +18,10 @@ class SiteController extends Controller
 			'page'=>array(
 				'class'=>'CViewAction',
 			),
+			'yiichat'=>array('class'=>'YiiChatAction'), // <- ADD THIS LINE
 		);
 	}
+
 
 	/**
 	 * This is the default 'index' action that is invoked

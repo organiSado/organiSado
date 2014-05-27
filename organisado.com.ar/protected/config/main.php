@@ -25,6 +25,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.extensions.yiichat.*',
 //		'application.extensions.xupload.*',
 	),
 	
