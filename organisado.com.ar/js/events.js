@@ -238,16 +238,17 @@ function costModeChange(toMode)
 
 
 
-$(document).keyup('input[name*="[email]"]', function()
+$(document).on('keyup', 'input[name*="[email]"]', function()
 {
+	var userInput = $(this);
+	var user = userInput.val();
+
 	$.ajax({type:"POST",
 			url:"index.php?r=users/userexists",
-// parametros 			url:"index.php?r=users/userexists",
-			data:{ Users:{email:$(this).val()} },
-			success: function()
+			data:{ Users:{email:user} },
+			success: function(data, textStatus, jqXHR )
 			{
-				alert("Correo enviado!");
-				alert($(this).val());
+				userInput.after( "<p>"+data+"</p>" );
 			}
 	});
 });
