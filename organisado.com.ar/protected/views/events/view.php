@@ -53,42 +53,6 @@ return;*/
 	$base_path = Yii::app()->request->baseUrl;
 ?>
 
-<div id="blueimp-gallery" class="blueimp-gallery">
-    <div class="slides"></div>
-    <h3 class="title"></h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="close">×</a>
-    <a class="play-pause"></a>
-    <ol class="indicator"></ol>
-</div>
-
-<div id="links">
-    <?php  foreach($photos as $photo): ?>
-		<?php
-			$url =  $base_path.$photo->url;
-			$photo_path = explode("/", $photo->url);
-			$thumb_url =  $base_path.implode("/", array_insert("thumbs", count($photo_path)-1, $photo_path) );
-		?>
-		<a href="<?php echo $url; ?>" title="<?php //echo $photo->name; ?>">
-        	<img src="<?php echo $thumb_url; ?>" alt="<?php echo $photo->name; ?>">
-		</a>
-	<?php endforeach; ?>
-</div>
-
-
-
-<script>
-document.getElementById('links').onclick = function (event) {
-    event = event || window.event;
-    var target = event.target || event.srcElement,
-        link = target.src ? target.parentNode : target,
-        options = {index: link, event: event},
-        links = this.getElementsByTagName('a');
-    blueimp.Gallery(links, options);
-};
-</script>
-
 <h1><?php echo $model->name; ?></h1>
 <br>
 
@@ -132,7 +96,7 @@ $modes=$model->costModes();
 <br>
 
 <hr>
-<h1>Muro de Mensajes</h1>
+<h2>Muro de Mensajes</h2>
 <div id='chat'></div>
 <?php 
     $this->widget('YiiChatWidget',array(
@@ -151,16 +115,8 @@ $modes=$model->costModes();
     ));
 ?>
 <br>
-
-
-
-
-
-
-
 <hr>
 <h2>Invitados</h2>
-
 <?php 
 $labels=$inviteesModels[0]->attributeLabels();
 if (isset($inviteesModels) && is_array($inviteesModels) && count($inviteesModels)): ?>
@@ -219,3 +175,42 @@ if (isset($inviteesModels) && is_array($inviteesModels) && count($inviteesModels
 </tbody>
 </table>
 <?php endif; ?>
+
+<br>
+<hr>
+<h2>Fotos</h2>
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+
+<div id="links">
+    <?php  foreach($photos as $photo): ?>
+		<?php
+			$url =  $base_path.$photo->url;
+			$photo_path = explode("/", $photo->url);
+			$thumb_url =  $base_path.implode("/", array_insert("thumbs", count($photo_path)-1, $photo_path) );
+		?>
+		<a href="<?php echo $url; ?>" title="<?php //echo $photo->name; ?>">
+        	<img src="<?php echo $thumb_url; ?>" alt="<?php echo $photo->name; ?>">
+		</a>
+	<?php endforeach; ?>
+</div>
+
+<script>
+	document.getElementById('links').onclick = function (event) {
+	    event = event || window.event;
+	    var target = event.target || event.srcElement,
+	        link = target.src ? target.parentNode : target,
+	        options = {index: link, event: event},
+	        links = this.getElementsByTagName('a');
+	    blueimp.Gallery(links, options);
+	};
+</script>
+<br>
+<br>
