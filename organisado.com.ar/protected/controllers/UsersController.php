@@ -41,7 +41,7 @@ class UsersController extends Controller
 				'users'=>array('?', 'admin'), // ? not authenticated
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('view','update', 'userexists'),
+				'actions'=>array('view','update', 'userexists', 'usersearch'),
 				'users'=>array('@', 'admin'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -264,6 +264,33 @@ class UsersController extends Controller
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
+		}
+	}
+
+	public function actionUserSearch()
+	{
+		$model=new Users;
+
+		if(isset($_POST['Users'], $_POST['Users']['email']) && strlen($_POST['Users']['email']))
+		{
+			$model->attributes=$_POST['Users'];
+
+			$table = Users::model()->tableName();
+			$models = Users::model()->findAllBySql("SELECT * FROM $table WHERE (email LIKE '%".$_POST['Users']['email']."%' OR  first_name LIKE '%".$_POST['Users']['email']."%' OR  last_name LIKE '%".$_POST['Users']['email']."%');");
+			if($models===null)
+			{
+				//echo $_POST['Users']['email'];
+			}
+			else
+			{
+				$out = array();
+				foreach($models as $i=>$model)
+				{
+					if ($i==5) break;
+					$out[] = $model->first_name." ".$model->last_name." (".$model->email.")";
+				}
+				echo implode(", ", $out);
+			}
 		}
 	}
 

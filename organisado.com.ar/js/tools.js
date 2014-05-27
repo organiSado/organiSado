@@ -3,8 +3,10 @@ var lastValue, typingTimer, scheduleTimeout = 500;
 
 /*! \brief function call scheduler, anti overwhelm
 */
-function scheduleCall(obj, f)
+function scheduleCall(obj, f, useObj)
 {
+	if (!useObj) useObj = false;
+
 	if( obj && obj.value != lastValue )
 	{
 		lastValue = obj.value;
@@ -12,7 +14,14 @@ function scheduleCall(obj, f)
 		clearTimeout(typingTimer);
 		
 		typingTimer = setTimeout(function() {
-			f(obj.value);
+			if (useObj)
+			{
+				f(obj);
+			}
+			else
+			{
+				f(obj.value);
+			}
 		}, scheduleTimeout);
 	}
 }

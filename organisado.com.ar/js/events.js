@@ -236,21 +236,27 @@ function costModeChange(toMode)
 	}
 }
 
-
-
-$(document).on('keyup', 'input[name*="[email]"]', function()
+/*! \brief 
+*/
+function findUserByEmail(obj)
 {
-	var userInput = $(this);
+	var userInput = $(obj);
 	var user = userInput.val();
 
 	$.ajax({type:"POST",
-			url:"index.php?r=users/userexists",
+			url:"index.php?r=users/usersearch",
 			data:{ Users:{email:user} },
 			success: function(data, textStatus, jqXHR )
 			{
 				userInput.after( "<p>"+data+"</p>" );
 			}
 	});
+}
+
+
+$(document).on('keyup', 'input[name*="[email]"]', function()
+{
+	scheduleCall(this, findUserByEmail, true);
 });
 
 
