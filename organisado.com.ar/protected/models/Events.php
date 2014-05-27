@@ -1,5 +1,7 @@
 <?php
 
+include("php/tools.php");
+
 /**
  * This is the model class for table "events".
  *
@@ -124,6 +126,80 @@ class Events extends CActiveRecord
 			'cost_val1' => 'Primer Valor de Costo',
 			'cost_val2' => 'Segundo Valor de Costo',
 		);
+	}
+	
+	// reimplementamos afterSave para agregar nuestras imagenes
+	public function afterSave()
+	{
+	    $this->addImages();
+	    parent::afterSave();
+	}
+	 
+	public function addImages()
+	{
+	    //If we have pending images
+	    if( Yii::app()->user->hasState( 'images' ) )
+	    {
+	        $userImages = Yii::app()->user->getState( 'images' );
+	        //Resolve the final path for our images
+	        $path = Yii::app( )->getBasePath( )."/../appdata/{$this->id}/";
+	        //Create the folder and give permissions if it doesnt exists
+	        if( !is_dir( $path ) )
+	        {
+	            mkdir( $path );
+	            chmod( $path, 0777 );
+	        }
+	        
+	        // miniatura
+	        $thumb_path = Yii::app( )->getBasePath( )."/../appdata/{$this->id}/thumbs/";	        
+	        if( !is_dir( $thumb_path ) )
+	        {
+	            mkdir( $thumb_path );
+	            chmod( $thumb_path, 0777 );
+	        }
+	 
+	        //Now lets create the corresponding models and move the files
+	        foreach( $userImages as $image )
+	        {
+	        	// miniatura
+	        	$url =  $image["path"];
+				$photo_path = explode("/", $url);
+				$thumb_url =  implode("/", array_insert("thumbs", count($photo_path)-1, $photo_path) );
+				
+	            if( is_file( $image["path"] )
+	            	&& is_file( $thumb_url ) ) // miniatura
+	            {
+	                if( rename( $image["path"], $path.$image["filename"] )
+	            		&& rename( $thumb_url, $path."thumbs/".$image["filename"] ) ) // miniatura
+	                {
+	                    chmod( $path.$image["filename"], 0777 );
+	                    $img = new Gallery();
+	                    //$img->size = $image["size"];
+	                    $img->url = "/appdata/{$this->id}/".$image["filename"];
+	                    $img->name = $image["name"];
+	                    $img->event = $this->id;
+	                    $img->mime = $image["mime"];
+	                    $img->creator = Yii::app()->user->id;
+	                    if( !$img->save() )
+	                    {
+	                        //Its always good to log something
+	                        Yii::log( "Could not save Image:\n".CVarDumper::dumpAsString( 
+	                            $img->getErrors( ) ), CLogger::LEVEL_ERROR );
+	                        //this exception will rollback the transaction
+	                        throw new Exception( 'Could not save Image');
+	                    }
+	                }
+	            }
+	            else
+	            {
+	                //You can also throw an execption here to rollback the transaction
+	                Yii::log( $image["path"]." is not a file", CLogger::LEVEL_WARNING );
+	            }
+	        }
+	        
+	        //Clear the user's session
+	        Yii::app()->user->setState( 'images', null );
+	    }
 	}
 
 	/**

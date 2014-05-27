@@ -25,6 +25,12 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+//		'application.extensions.xupload.*',
+	),
+	
+	'aliases' => array(
+	    //If you manually installed it
+	    'xupload' => 'ext.xupload'
 	),
 
 	'modules'=>array(

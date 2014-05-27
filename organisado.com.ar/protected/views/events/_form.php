@@ -32,6 +32,9 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>true,
+
+    //This is very important when uploading files
+	'htmlOptions' => array('enctype' => 'multipart/form-data'),
 ));
 
 ?>
@@ -222,6 +225,28 @@
 		<a class="btn btn-info pull-right btn-invitees" href="#sendBills" title="Enviar cuentas a confirmados" type=""><i class="icon-envelope"></i> Enviar cuentas</a>
     </div>
 	<hr>
+	
+	<!-- Other Fields... -->
+	<div class="row">
+	    <?php //echo $form->labelEx($model,'photos'); ?>
+	    <?php
+	    $this->widget( 'xupload.XUpload', array(
+	        'url' => Yii::app( )->createUrl( "/events/upload"),
+	        //our XUploadForm
+	        'model' => $photos,
+	        //We set this for the widget to be able to target our own form
+	        'htmlOptions' => array('id'=>'events-form'),
+	        'attribute' => 'file',
+	        'multiple' => true,
+	        //Note that we are using a custom view for our widget
+	        //Thats becase the default widget includes the 'form' 
+	        //which we don't want here
+			'formView' => 'application.extensions.xupload.views.form',
+			'showForm' => false, // esto hace que no imprima el tag form y rompa el formulario padre
+	        )    
+	    );
+	    ?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', array('class' => "btn")); ?>

@@ -1,4 +1,7 @@
 <?php
+
+include_once("php/tools.php");
+
 /* @var $this EventsController */
 /* @var $model Events */
 
@@ -24,6 +27,7 @@ return;*/
 
 	$cs = Yii::app()->getClientScript();
 	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/accordion.css');
+	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/blueimp-gallery.min.css');
 	//$cs->registerScriptFile('http://code.jquery.com/jquery.js');
 	$cs->registerScriptFile('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js');
 	/*
@@ -38,8 +42,52 @@ return;*/
 
 	$cs->registerScriptFile('https://maps.googleapis.com/maps/api/js?v=3&sensor=false');
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/gmap.js');
+	
 
+	//js del uploader de imagenes
+	//$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/imgup-jquery-1.10.2.min.js');
+	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/blueimp-gallery.min.js');
+
+	//$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/wall.js');
+
+	$base_path = Yii::app()->request->baseUrl;
 ?>
+
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+
+<div id="links">
+    <?php  foreach($photos as $photo): ?>
+		<?php
+			$url =  $base_path.$photo->url;
+			$photo_path = explode("/", $photo->url);
+			$thumb_url =  $base_path.implode("/", array_insert("thumbs", count($photo_path)-1, $photo_path) );
+		?>
+		<a href="<?php echo $url; ?>" title="<?php //echo $photo->name; ?>">
+        	<img src="<?php echo $thumb_url; ?>" alt="<?php echo $photo->name; ?>">
+		</a>
+	<?php endforeach; ?>
+</div>
+
+
+
+<script>
+document.getElementById('links').onclick = function (event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = {index: link, event: event},
+        links = this.getElementsByTagName('a');
+    blueimp.Gallery(links, options);
+};
+</script>
 
 <h1><?php echo $model->name; ?></h1>
 <br>
@@ -138,4 +186,3 @@ return;*/
 </tbody>
 </table>
 <?php endif; ?>
-

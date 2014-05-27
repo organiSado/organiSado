@@ -30,6 +30,6 @@ $this->menu=array(
 		$formView = '_formInvitee';
 	}
 	
-	$this->renderPartial($formView, array('model'=>$model, 'inviteesModels'=>$inviteesModels));
+	$this->renderPartial($formView, array('model'=>$model, 'inviteesModels'=>$inviteesModels, 'photos'=>$photos));
 
 ?>

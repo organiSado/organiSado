@@ -11,7 +11,7 @@
 
 Por citar algunas cosas
 - Confirmación de registro.
-- Recordar contraseña.
+X- Recordar contraseña.
 - Lista de la compra.
 - Del perfil invitado no se hizo nada (Salvo enviarle un email), los invitados deberían puedan modificar el evento (Indicando si van, si, no, con cuantos acompañantes, que llevan, etc). (solo falta cuando es organizador invitado, y unsetear variables admin de invitados no admin)
 - La validación ajax de si el usuario ya era usuario no se hizo.
