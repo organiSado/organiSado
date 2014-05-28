@@ -1,6 +1,7 @@
 <?php
 
 include("php/img_process.php");
+include("php/tools.php");
 
 class EventsController extends Controller
 {
@@ -10,7 +11,44 @@ class EventsController extends Controller
 	 */
 	public $layout='//layouts/column2';
     
-    public function actionUpload()
+    /**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
+
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+		return array(
+			/*array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array(),
+				'users'=>array('*'),
+			),*/
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('index','view','create','update','delete', 'upload', 'deleteuploaded'),
+				'users'=>array('@'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin'),
+				'users'=>array('admin'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
+	}
+	
+	public function actionUpload()
     {
 	    Yii::import( "xupload.models.XUploadForm" );
 	    //Here we define the paths where the files will be stored temporarily
@@ -28,11 +66,22 @@ class EventsController extends Controller
 	 
 	    //Here we check if we are deleting and uploaded file
 	    if( isset( $_GET["_method"] ) ) {
-	        if( $_GET["_method"] == "delete" ) {
-	            if( $_GET["file"][0] !== '.' ) {
-	                $file = $path.$_GET["file"];
-	                if( is_file( $file ) ) {
+	        if( $_GET["_method"] == "delete" )
+	        {
+	        	if( $_GET["file"][0] !== '.' )
+	        	{
+	        		$file = $path.$_GET["file"];
+	                if( is_file( $file ) )
+	                {
 	                    unlink( $file );
+	                }
+	                
+	        		// miniatura
+					$photo_path = explode("/", $file);
+					$thumb_url =  implode("/", array_insert("thumbs", count($photo_path)-1, $photo_path) );					
+	                if( is_file( $thumb_url ) )
+	                {
+	                    unlink( $thumb_url );
 	                }
 	            }
 	            echo json_encode( true );
@@ -112,44 +161,55 @@ class EventsController extends Controller
 	        }
 	    }
 	}
-
-
+	
 	/**
-	 * @return array action filters
+	 * Updates a particular model.
+	 * If update is successful, the browser will be redirected to the 'view' page.
+	 * @param integer $id the ID of the model to be updated
 	 */
-	public function filters()
+	public function actionDeleteUploaded($url)
 	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
-		);
-	}
+		// galeria model
+/*	    $table = Gallery::model()->tableName();
+	    $sql = "SELECT * FROM $table WHERE url='$url';";*/
+	    $photo = Gallery::model()->findByPk($url);
+	    if($photo===null)
+			throw new CHttpException(404,'The requested page does not exist.');
 
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			/*array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array(),
-				'users'=>array('*'),
-			),*/
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','create','update','delete', 'upload'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
+	    // event model
+	    $event = $this->loadModel($photo->event);
+	    
+	    // prevenir acceso/acciones de terceros
+		$accessLevel = 0;
+		if (Yii::app()->user->id == $photo->creator // si es el creador de la foto
+			|| $event->creator == Yii::app()->user->id ) // o si es el organizador del evento
+		{
+			$accessLevel = 1;
+		}
+		
+		if (!$accessLevel)
+		{
+			throw new CHttpException(404,'The requested page does not exist.');				
+		}
+				
+        if($accessLevel == 1)
+		{
+			$real_path = realpath( Yii::app( )->getBasePath( )."/../" );
+
+			// miniatura
+			$photo_path = explode("/", $photo->url);
+			$thumb_url =  implode("/", array_insert("thumbs", count($photo_path)-1, $photo_path) );
+
+	        if( is_file( $real_path.$photo->url ) && is_file( $real_path.$thumb_url ) )
+	        {
+	        	unlink( $real_path.$photo->url );
+	        	unlink( $real_path.$thumb_url );
+	        }
+	        
+	        $photo->delete();
+	    }
 	}
+	
 
 	/**
 	 * Displays a particular model.
@@ -185,18 +245,16 @@ class EventsController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');				
 		}
 		
-		Yii::import( "xupload.models.XUploadForm" );
-	    $photos = new XUploadForm;
-	    
+		// galeria model
 		$table = Gallery::model()->tableName();
-		$photos = Gallery::model()->findAllBySql("SELECT * FROM $table WHERE event=$id;");
-		if($photos===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+		$gallery = Gallery::model()->findAllBySql("SELECT * FROM $table WHERE event=$id;");
+		/*if($photos===null)
+			throw new CHttpException(404,'The requested page does not exist.');*/
 	
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 			'inviteesModels'=>$inviteesModels,
-			'photos' => $photos,
+			'gallery' => $gallery,
 		));
 	}
 	
@@ -255,25 +313,15 @@ class EventsController extends Controller
 			}
 		}
 		
-		// galeria model
+		// xupload model, contenedor para subir las fotos al modelo
 		Yii::import( "xupload.models.XUploadForm" );
-	    $photos = new XUploadForm;
-	    
-	   /* $table = Gallery::model()->tableName();
-		$g = Gallery::model()->findAllBySql("SELECT * FROM $table WHERE event=$id;");
-		if($g===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+	    $xupload = new XUploadForm;
 		
-		$photos->filename = $g[0]->url;
-		$photos->name = $g[0]->name;
-		$photos->mime_type = $g[0]->mime;*/
-		
-		//var_dump($photos);die;
 
 		$this->render('create',array(
 			'model'=>$model,
 			'inviteesModels'=>$inviteesModels,
-			'photos' => $photos,
+			'xupload' => $xupload,
 		));
 	}
 	
@@ -392,27 +440,28 @@ echo "deleteCandidates count ".count($deleteCandidates);
 			}
 		}
 		
-		// galeria model
+		// xupload model, contenedor para subir las fotos al modelo
 		Yii::import( "xupload.models.XUploadForm" );
-	    $photos = new XUploadForm;
+	    $xupload = new XUploadForm;
 	    
-	   /* $table = Gallery::model()->tableName();
-		$g = Gallery::model()->findAllBySql("SELECT * FROM $table WHERE event=$id;");
-		if($g===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		
-		$photos->filename = $g[0]->url;
-		$photos->name = $g[0]->name;
-		$photos->mime_type = $g[0]->mime;*/
-		
-		//var_dump($photos);die;
+	    // galeria model
+	    $table = Gallery::model()->tableName();
+	    $sql = "SELECT * FROM $table WHERE event=$id AND creator='".Yii::app()->user->id."';";
+	    if ($accessLevel == 1) // es organizador
+		{
+			$sql = "SELECT * FROM $table WHERE event=$id;";
+		}
+		$gallery = Gallery::model()->findAllBySql($sql);
+		/*if($g===null)
+			throw new CHttpException(404,'The requested page does not exist.');*/
 	    
 	
 		$this->render('update',array(
 			'model'=>$model,
 			'inviteesModels'=>$inviteesModels,
 			'accessLevel'=> $accessLevel,
-			'photos' => $photos,
+			'gallery' => $gallery,
+			'xupload' => $xupload,
 		));
 	}
 

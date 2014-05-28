@@ -15,6 +15,12 @@ Yii::import('zii.widgets.jui.CJuiInputWidget');
 class XUpload extends CJuiInputWidget {
 
     /**
+     * @var array of objects containing photo information 
+     */
+    public $gallery = '';
+
+
+    /**
      * the url to the upload handler
      * @var string
      */

@@ -6,6 +6,8 @@
 	$cs = Yii::app()->getClientScript();
 	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/accordion.css');
 
+	$cs->registerCssFile(Yii::app()->request->baseUrl.'/css/blueimp-gallery.min.css');
+
 	//$cs->registerScriptFile('http://code.jquery.com/jquery.js');
 	$cs->registerScriptFile('//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js');
 	/*
@@ -20,7 +22,9 @@
 
 	$cs->registerScriptFile('https://maps.googleapis.com/maps/api/js?v=3&sensor=false');
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/gmap.js');
-//	$cs->registerCssFile($baseUrl.'/css/yourcss.css');
+
+	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/blueimp-gallery.min.js');
+
 ?>
 
 <div class="form">
@@ -229,16 +233,27 @@
 		<a class="btn btn-info pull-right btn-invitees" href="#resendInvitation" title="Reenviar invitaciones a no confirmados" type=""><i class="icon-envelope"></i> Reenviar invitaciones</a>
 		<a class="btn btn-info pull-right btn-invitees" href="#sendBills" title="Enviar cuentas a confirmados" type=""><i class="icon-envelope"></i> Enviar cuentas</a>
     </div>
-	<hr>
-	
+<br>
+<hr>
+<h2>Fotos</h2>
 	<!-- Other Fields... -->
 	<div class="row">
 	    <?php //echo $form->labelEx($model,'photos'); ?>
+	    <div id="blueimp-gallery" class="blueimp-gallery">
+		    <div class="slides"></div>
+		    <h3 class="title"></h3>
+		    <a class="prev">‹</a>
+		    <a class="next">›</a>
+		    <a class="close">×</a>
+		    <a class="play-pause"></a>
+		    <ol class="indicator"></ol>
+		</div>
+		
 	    <?php
 	    $this->widget( 'xupload.XUpload', array(
 	        'url' => Yii::app( )->createUrl( "/events/upload"),
 	        //our XUploadForm
-	        'model' => $photos,
+	        'model' => $xupload,
 	        //We set this for the widget to be able to target our own form
 	        'htmlOptions' => array('id'=>'events-form'),
 	        'attribute' => 'file',
@@ -248,9 +263,21 @@
 	        //which we don't want here
 			'formView' => 'application.extensions.xupload.views.form_es',
 			'showForm' => false, // esto hace que no imprima el tag form y rompa el formulario padre
+	        'gallery' => isset($gallery)? $gallery : new Gallery,
 	        )    
 	    );
 	    ?>
+
+	    <script>
+			document.getElementById('links').onclick = function (event) {
+			    event = event || window.event;
+			    var target = event.target || event.srcElement,
+			        link = target.src ? target.parentNode : target,
+			        options = {index: link, event: event},
+			        links = this.getElementsByTagName('a');
+			    blueimp.Gallery(links, options);
+			};
+		</script>
 	</div>
 
 	<div class="row buttons">

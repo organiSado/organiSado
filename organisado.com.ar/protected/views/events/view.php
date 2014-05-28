@@ -43,12 +43,8 @@ return;*/
 	$cs->registerScriptFile('https://maps.googleapis.com/maps/api/js?v=3&sensor=false');
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/gmap.js');
 	
-
-	//js del uploader de imagenes
-	//$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/imgup-jquery-1.10.2.min.js');
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/blueimp-gallery.min.js');
 
-	//$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/wall.js');
 
 	$base_path = Yii::app()->request->baseUrl;
 ?>
@@ -179,7 +175,7 @@ if (isset($inviteesModels) && is_array($inviteesModels) && count($inviteesModels
 <br>
 <hr>
 <h2>Fotos</h2>
-<?php  if(is_array($photos) && count($photos) ): ?>
+<?php  if(is_array($gallery) && count($gallery) ): ?>
 
 <div id="blueimp-gallery" class="blueimp-gallery">
     <div class="slides"></div>
@@ -192,7 +188,7 @@ if (isset($inviteesModels) && is_array($inviteesModels) && count($inviteesModels
 </div>
 
 <div id="links">
-    <?php  foreach($photos as $photo): ?>
+    <?php  foreach($gallery as $photo): ?>
 		<?php
 			$url =  $base_path.$photo->url;
 			$photo_path = explode("/", $photo->url);
