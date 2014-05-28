@@ -1,7 +1,6 @@
 <?php
 
 include("php/img_process.php");
-include("php/tools.php");
 
 class EventsController extends Controller
 {
@@ -77,6 +76,7 @@ class EventsController extends Controller
 	                }
 	                
 	        		// miniatura
+	        		include_once("php/tools.php");
 					$photo_path = explode("/", $file);
 					$thumb_url =  implode("/", array_insert("thumbs", count($photo_path)-1, $photo_path) );					
 	                if( is_file( $thumb_url ) )
