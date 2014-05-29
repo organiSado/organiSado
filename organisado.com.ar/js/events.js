@@ -567,9 +567,13 @@ function loadItemList(container_id)
 	var event_id = $('#events-form').attr('action').split("id=")[1];
 	
 	// loading
-	$('#'+container_id).html('<div style="width:50%; margin:20px auto;"><div class="progress progress-striped active">\
+	$('#'+container_id).fadeOut('fast', function()
+	{
+		$('#'+container_id).html('<div style="width:50%; margin:20px auto;"><div class="progress progress-striped active">\
                 				<div class="bar" style="width: 100%;"></div>\
 							  </div></div>');
+		$('#'+container_id).fadeIn('slow');
+	});
 
 	// send ajax
 	$.ajax({type:"POST",
@@ -577,7 +581,11 @@ function loadItemList(container_id)
 			data:{ e:event_id },
 			success: function(data, textStatus, jqXHR )
 			{
-				$('#'+container_id).html(data);
+				$('#'+container_id).fadeOut('fast', function()
+				{
+					$('#'+container_id).html(data);
+					$('#'+container_id).fadeIn('slow');
+				});
 			}
 	});
 }

@@ -105,7 +105,14 @@ class ItemListController extends Controller
 			{
 				foreach($items_assigned as $assigned_item)
 				{
-					$assigned_item []= $assigned_item->email;
+					$email_html = "<div class='item-assignee'>";
+					$email_html .= $assigned_item->email." (".$assigned_item->quantity.")";
+					$email_html .= "<a class='' href='#unassign' title='Eliminar Asignado'>
+			            				<i class='icon-remove'></i>
+									</a>";
+					$email_html .= "</div>";
+					
+					$assigned_emails []= $email_html;
 					$total_assigned_quantity += $assigned_item->quantity;
 				}
 			}
@@ -114,17 +121,17 @@ class ItemListController extends Controller
 				
 			$rows .= "<tr>
 						<td>".$item->item."</td>
-						<td>".(count($assigned_emails)? implode(", ", $assigned_emails):"No se han asignado invitados a este item todavía.")."</td>
+						<td>".(count($assigned_emails)? implode("", $assigned_emails):"No se han asignado invitados a este item todavía.")."</td>
 						<td>".$item->quantity."</td>
-						<td>".($pending_quantity < 0?"Se pasaron!":$pending_quantity)."</td>
+						<td>".($pending_quantity < 0?"Se pasaron!":($pending_quantity==0?"Ya estamos!":$pending_quantity))."</td>
 						<td class='buttons'>
 			            	<a class='btn btn-default' href='#assignToMe' title='Yo llevo!'>
-			            		<i class='icon-envelope'></i>
+			            		<i class='icon-check'></i>
 			            	</a>
 			            </td>
 			            <td class='buttons'>
 			            	<a class='btn btn-default' href='#assignItem' title='Asignar'>
-			            		<i class='icon-envelope'></i>
+			            		<i class='icon-hand-left'></i>
 			            	</a>
 			            </td>
 			            <td class='buttons'>
