@@ -19,3 +19,12 @@ X- Si bien no se podía ver eventos de otros, al editar si se cambia el ID se pu
 X- Los mensajes están en inglés, tal como lo dejó Yii (Traducir)
 X- Las pantallas tienen el menú estadard de Yii: OPERATIONS-> LIST/CREATE/UPDATE, etc, lo mismo que al listar, es la tabla estandard (Preguntar que tiene de malo)
 X- La primera vez que se graba un evento, no se guardan las personas (corregir controller)
+
+
+
+
+
+
+/* detalles */
+
+al borrar el evento borrar tambien las fotos, listado de items, y chats
