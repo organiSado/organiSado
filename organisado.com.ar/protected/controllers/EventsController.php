@@ -463,6 +463,11 @@ echo "deleteCandidates count ".count($deleteCandidates);
 			'gallery' => $gallery,
 			'xupload' => $xupload,
 		));
+
+		//mensaje de update de evento en el log
+		$idlog = $model->id;
+		$mensaje = "Se realizo un cambio en el evento";
+		$this->logEvent($idlog, $mensaje);		
 	}
 
 	/**
@@ -702,5 +707,19 @@ echo "deleteCandidates count ".count($deleteCandidates);
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+		public function logEvent($chatid, $text)
+	{
+
+		$modelchat = new YiichatPost;
+		$modelchat->chat_id = $chatid;			
+		$modelchat->id = hash('sha1',$modelchat->chat_id.time().rand(1000,9999));      
+		$modelchat->post_identity = "info@organisado.com.ar";
+		$modelchat->owner = "organiSado";
+		$modelchat->text = $text;
+		$modelchat->created = strtotime("now");
+		$modelchat->save();
+
 	}
 }

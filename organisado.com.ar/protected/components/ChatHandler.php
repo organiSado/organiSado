@@ -1,4 +1,8 @@
 <?php
+
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+
+
 class ChatHandler extends YiiChatDbHandlerBase {
     //
     // IMPORTANT:
