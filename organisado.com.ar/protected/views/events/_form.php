@@ -156,6 +156,8 @@
 			<?php echo $form->error($model,'confirmation_closed'); ?>
 		</div>
 		
+		<datalist id="suggest">
+		</datalist>
 
         <table id="table-invitados" class="table table-striped">
         <thead>
@@ -178,7 +180,7 @@
 		            <td>
 		                <?php /*<input size="60" maxlength="255" value="" name="Invitees[name]" id="Invitees_name" type="text">*/?>
 		                
-						<?php echo $form->textField($inviteesModel,"[$i]email",array('size'=>60,'maxlength'=>255)); ?>
+						<?php echo $form->textField($inviteesModel,"[$i]email",array('size'=>60,'maxlength'=>255, 'list'=>'suggest', 'autocomplete'=>'off')); ?>
 						<?php echo $form->error($inviteesModel,'email'); ?>
 		            </td>
 		            <td>

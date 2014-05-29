@@ -248,7 +248,20 @@ function findUserByEmail(obj)
 			data:{ Users:{email:user} },
 			success: function(data, textStatus, jqXHR )
 			{
-				userInput.after( "<p>"+data+"</p>" );
+				//userInput.after( "<p>"+data+"</p>" );
+				var suggestions = data.split(",");
+				html = ""; 
+				for (var i = 0; i < suggestions.length; i++)
+				{
+					var suggestion = suggestions[i].split("(");
+
+					var email = suggestion[suggestion.length-1].replace(")", "").trim();
+					var name = suggestion.splice(0, 1)[0].trim();
+		        
+					//console.log('JQDEBUG: email='+email+', name='+name+'.');
+					html += '<option value="'+email+'">'+name+'</option>';
+		        }
+				$('#suggest').html(html);
 			}
 	});
 }
@@ -279,7 +292,7 @@ function addInvitee(table_id)
 	$('#'+table_id+' tr:last').after('\
 	<tr>\
 		<td>\
-			<input size="60" maxlength="255" name="Invitees['+rowId+'][email]" id="Invitees_'+rowId+'_email" type="text">\
+			<input size="60" maxlength="255" name="Invitees['+rowId+'][email]" id="Invitees_'+rowId+'_email" type="text" autocomplete="off" list="suggest">\
 			<div class="errorMessage" id="Invitees_email_em_" style="display:none"></div>\
 		</td>\
         <td>\
