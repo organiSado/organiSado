@@ -235,6 +235,16 @@
 		<a class="btn btn-info pull-right btn-invitees" href="#resendInvitation" title="Reenviar invitaciones a no confirmados" type=""><i class="icon-envelope"></i> Reenviar invitaciones</a>
 		<a class="btn btn-info pull-right btn-invitees" href="#sendBills" title="Enviar cuentas a confirmados" type=""><i class="icon-envelope"></i> Enviar cuentas</a>
     </div>
+    
+    
+	<hr>
+
+	<div class="row">
+		<h2 class="inline">Lista de items <a id="add-item" class="btn btn-success" href="#addItem"><i class="icon-plus"></i></a> <a id="refresh-items" class="btn btn-info" href="#refresh-items"><i class="icon-refresh"></i></a></h2>
+        <div id="table-items-container"></div>
+
+		<a class="btn btn-info pull-right btn-invitees" href="#sendItemList" title="Enviar cuentas a confirmados" type=""><i class="icon-envelope"></i> Enviar Lista de items</a>
+    </div>
 <br>
 <hr>
 <h2>Fotos</h2>

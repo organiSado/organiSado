@@ -1,5 +1,6 @@
 /* globals */
 var default_table_id 		= "table-invitados";
+var default_items_container_id 	= "table-items-container";
 var default_addInvitee_id 	= "add-invitee";
 var costMode = -1;
 
@@ -66,6 +67,17 @@ $(document).on("ready",function()
 	});
 	
 	costModeChange($('input[name="Events[cost_mode]"]:checked').val());
+	
+	// lista de items, cargar al iniciar
+	loadItemList();
+	
+	// al presionar el botton de agregar item
+	$('#refresh-items').on("click", function()
+	{
+		loadItemList();
+
+		return false;
+	});
  });
  
 
@@ -78,7 +90,7 @@ function mailUser(destino, asunto, cuerpo)
 			{
 				alert("Correo enviado!");
 			}
-	});
+	});	
 }
 
 $(document).on('click', 'a[href=#mailInvitee]', function()  
@@ -111,6 +123,7 @@ $(document).on('click', 'a[href=#resendInvitation]', function()
 
 	});
 	
+	return false;
 });
 
 //funcion que devuelve los 3 parametros para la funcion mailer
@@ -133,7 +146,8 @@ $(document).on('click', 'a[href=#sendBills]', function()
 		});
 
 	});
-		
+	
+	return false;	
 });
 
 
@@ -543,3 +557,28 @@ function calcCost()
 	
 	calcBalance();
 }
+
+/* LISTA DE ITEMS */
+function loadItemList(container_id)
+{
+	if (!container_id) container_id = default_items_container_id;	
+	
+	// event id
+	var event_id = $('#events-form').attr('action').split("id=")[1];
+	
+	// loading
+	$('#'+container_id).html('<div style="width:50%; margin:20px auto;"><div class="progress progress-striped active">\
+                				<div class="bar" style="width: 100%;"></div>\
+							  </div></div>');
+
+	// send ajax
+	$.ajax({type:"POST",
+			url:"index.php?r=itemList/view",
+			data:{ e:event_id },
+			success: function(data, textStatus, jqXHR )
+			{
+				$('#'+container_id).html(data);
+			}
+	});
+}
+

@@ -26,7 +26,7 @@ class ItemListController extends Controller
 				'users'=>array('*'),
 			),*/
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index', 'create','update','delete', 'assign', 'unassign'),
+				'actions'=>array('view', 'create','update','delete', 'assign', 'unassign'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -39,9 +39,116 @@ class ItemListController extends Controller
 		);
 	}
 	
-	public function actionIndex()
+	public function actionView()
 	{
-		echo "TABLA";
+		// modelos vacios por defecto
+		$items_requested []= new ItemRequested;
+		$items_assigned []= new ItemAssigned;
+		
+		// labels unidos
+		$labels = array_merge($items_assigned[0]->attributeLabels(), $items_requested[0]->attributeLabels());
+		
+		// evento
+		$e = -1; // por defecto ninguno
+		if ( isset($_POST['e']) )
+		{
+			$e = $_POST['e'];
+			
+			$event = Events::model()->findByPk($e);
+
+			// Cargamos modelo de invitados
+			$inviteesModels=$this->loadInviteesModels($event->id);
+			if (!count($inviteesModels))
+				array_push($inviteesModels, new Invitees);
+			
+			// prevenir acceso/acciones de terceros
+			$accessLevel = 0;
+			if (Yii::app()->user->id != $event->creator)
+			{
+				foreach($inviteesModels as $inviteesModel)
+				{
+					if ($inviteesModel->email == Yii::app()->user->id)
+					{
+						$accessLevel = 2; // acceso invitado
+						break;
+					}
+				}
+			}
+			else
+			{
+				$accessLevel = 1; // acceso organizador
+			}
+			
+			if (!$accessLevel)
+			{
+				throw new CHttpException(404,'The requested page does not exist.');				
+			}
+			
+			// cargamos items requeridos
+			$tb = ItemRequested::model()->tableName();
+			$items_requested = ItemRequested::model()->findAllBySql("SELECT * FROM $tb WHERE event=$e;");
+			/*if($items_requested===null)
+				throw new CHttpException(404,'The requested page does not exist.');*/
+		}
+		
+		// filas a imprimir
+		$rows = "";
+		foreach ($items_requested as $item)
+		{
+			$tb = ItemAssigned::model()->tableName();
+			$items_assigned = ItemAssigned::model()->findAllBySql("SELECT * FROM $tb WHERE event=$e AND item='".$item->item."';");
+			/*if($items_assigned===null)
+				throw new CHttpException(404,'The requested page does not exist.');*/
+			$assigned_emails = array();
+			$total_assigned_quantity = 0;
+			if (isset($items_assigned) && is_array($items_assigned))
+			{
+				foreach($items_assigned as $assigned_item)
+				{
+					$assigned_item []= $assigned_item->email;
+					$total_assigned_quantity += $assigned_item->quantity;
+				}
+			}
+			
+			$pending_quantity = $item->quantity-$total_assigned_quantity;
+				
+			$rows .= "<tr>
+						<td>".$item->item."</td>
+						<td>".(count($assigned_emails)? implode(", ", $assigned_emails):"No se han asignado invitados a este item todavía.")."</td>
+						<td>".$item->quantity."</td>
+						<td>".($pending_quantity < 0?"Se pasaron!":$pending_quantity)."</td>
+						<td class='buttons'>
+			            	<a class='btn btn-default' href='#assignToMe' title='Yo llevo!'>
+			            		<i class='icon-envelope'></i>
+			            	</a>
+			            </td>
+			            <td class='buttons'>
+			            	<a class='btn btn-default' href='#assignItem' title='Asignar'>
+			            		<i class='icon-envelope'></i>
+			            	</a>
+			            </td>
+			            <td class='buttons'>
+			            	<a class='btn btn-danger remove-invitee' href='#removeItem' title='Eliminar'>
+			            		<i class='icon-remove'></i>
+			            	</a>
+			            </td>
+					  </tr>";
+		}
+		
+		echo "<table id='table-items' class='table table-striped'>
+		        <thead>
+		          <tr>
+		            <th>".$labels['item']."</th>
+		            <th>".$labels['email']."</th>
+		            <th>".$labels['quantity']."</th>
+		            <th>Faltan</th>
+		            <th colspan='3'>Acciones</th>
+		          </tr>
+				</thead>
+				<tbody>
+					$rows
+				</tbody>
+			</table>";
 	}
 	
 	public function actionCreate($e, $i, $q)
