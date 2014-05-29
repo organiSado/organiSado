@@ -3,6 +3,7 @@ var default_table_id 		= "table-invitados";
 var default_items_container_id 	= "table-items-container";
 var default_addInvitee_id 	= "add-invitee";
 var costMode = -1;
+var event_id = '';
 
 // eventos dinamicos necesitan un bind distinto
 $(document).on('click', 'a[href=#removeInvitee]', function()
@@ -28,6 +29,9 @@ $(document).on('change', 'input[name*=confirmed], input[name*=cost_val], input[n
 
 $(document).on("ready",function()
 {
+	// event id
+	event_id = $('#events-form').attr('action').split("id=")[1];
+
 	// map
 	$('input[name*=location_address]').on("keyup", function()
 	{
@@ -70,14 +74,6 @@ $(document).on("ready",function()
 	
 	// lista de items, cargar al iniciar
 	loadItemList();
-	
-	// al presionar el botton de agregar item
-	$('#refresh-items').on("click", function()
-	{
-		loadItemList();
-
-		return false;
-	});
  });
  
 
@@ -559,21 +555,14 @@ function calcCost()
 }
 
 /* LISTA DE ITEMS */
-function loadItemList(container_id)
+function loadItemList(changedObj, container_id)
 {
 	if (!container_id) container_id = default_items_container_id;	
-	
-	// event id
-	var event_id = $('#events-form').attr('action').split("id=")[1];
+	if (!changedObj) changedObj = $('#'+container_id);	
 	
 	// loading
-	$('#'+container_id).fadeOut('fast', function()
-	{
-		$('#'+container_id).html('<div style="width:50%; margin:20px auto;"><div class="progress progress-striped active">\
-                				<div class="bar" style="width: 100%;"></div>\
-							  </div></div>');
-		$('#'+container_id).fadeIn('slow');
-	});
+	$('#table-items-progress').fadeIn();
+	if ( changedObj.css('opacity') == 1 ) changedObj.fadeTo('slow', .5);
 
 	// send ajax
 	$.ajax({type:"POST",
@@ -584,9 +573,113 @@ function loadItemList(container_id)
 				$('#'+container_id).fadeOut('fast', function()
 				{
 					$('#'+container_id).html(data);
-					$('#'+container_id).fadeIn('slow');
+					$('#'+container_id).fadeIn();
+					changedObj.fadeTo('slow', 1);
+					$('#table-items-progress').fadeOut();
 				});
 			}
 	});
 }
 
+// al presionar el botton de agregar item
+$(document).on("click", '#add-item', function()
+{
+	alert("adding item...? to event "+event_id);
+	loadItemList();
+
+	return false;
+});
+
+// al presionar el botton de agregar item
+$(document).on("click", '#refresh-items', function()
+{
+	loadItemList();
+
+	return false;
+});
+
+// al presionar el botton de yo llevo item
+$(document).on("click", 'a[href=#assignToMe]', function()
+{
+	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
+	alert("assigning to me the item... "+item+" to event "+event_id+", how many?");
+	loadItemList();
+
+	return false;
+});
+
+// al presionar el botton de asignar item
+$(document).on("click", 'a[href=#assignItem]', function()
+{
+	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
+	alert("assigning item... "+item+" to...? to event "+event_id+", how many?");
+	loadItemList();
+
+	return false;
+});
+
+// desasignar invitados de items	
+$(document).on('click', 'a[href=#unassign]', function()
+{	
+	loadItemList($(this).closest('div'));
+
+
+	return false;			
+											 
+	$('#table-invitados tr td:nth-of-type(1) input').each(function(index)		
+	{
+		var destino = $(this).val(); //anda
+
+		$('#table-invitados tr td:nth-of-type(8) input').each(function(index2)
+		{
+			if (index==index2)
+			{
+				mailUser(destino,
+						 "Saldo Pendiente en Evento", 
+						 "Correspondiente al evento, "+($('input[name="Events[name]"]').val())+", usted posee un saldo de: "+$(this).val() );
+			}
+				
+		});
+
+	});
+	
+	return false;	
+});
+
+// al presionar el botton de eliminar item
+$(document).on("click", 'a[href=#removeItem]', function()
+{
+	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
+	alert("removing item... "+item+" from event "+event_id);
+	loadItemList();
+
+	return false;
+});
+
+//funcion que devuelve los 3 parametros para la funcion mailer
+//envia la lista de items a todos	
+$(document).on('click', 'a[href=#sendItemList]', function()
+{
+	alert("DUMMY: enviando lista de items del event "+event_id);
+
+	return;			
+											 
+	$('#table-invitados tr td:nth-of-type(1) input').each(function(index)		
+	{
+		var destino = $(this).val(); //anda
+
+		$('#table-invitados tr td:nth-of-type(8) input').each(function(index2)
+		{
+			if (index==index2)
+			{
+				mailUser(destino,
+						 "Saldo Pendiente en Evento", 
+						 "Correspondiente al evento, "+($('input[name="Events[name]"]').val())+", usted posee un saldo de: "+$(this).val() );
+			}
+				
+		});
+
+	});
+	
+	return false;	
+});

@@ -241,7 +241,14 @@
 
 	<div class="row">
 		<h2 class="inline">Lista de items <a id="add-item" class="btn btn-success" href="#addItem"><i class="icon-plus"></i></a> <a id="refresh-items" class="btn btn-info" href="#refresh-items"><i class="icon-refresh"></i></a></h2>
-        <div id="table-items-container"></div>
+        <div id="table-items-progress">
+        		<div class="progress progress-striped active">
+            		<div class="bar" style="width: 100%;"></div>
+				</div>
+		</div>
+        <div id="table-items-container" style="opacity:0;"></div>
+        <div id="message-board"></div>
+
 
 		<a class="btn btn-info pull-right btn-invitees" href="#sendItemList" title="Enviar cuentas a confirmados" type=""><i class="icon-envelope"></i> Enviar Lista de items</a>
     </div>
