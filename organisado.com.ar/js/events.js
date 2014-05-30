@@ -6,6 +6,14 @@ var default_addInvitee_id 	= "add-invitee";
 var costMode = -1;
 var event_id = '';
 var in_progress = false;
+var mode = '';
+
+// obtiene parametros de la url
+$.urlParam = function(name)
+{
+    var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
+    return results[1] || 0;
+}
 
 // eventos dinamicos necesitan un bind distinto
 $(document).on('click', 'a[href=#removeInvitee]', function()
@@ -32,8 +40,16 @@ $(document).on('change', 'input[name*=confirmed], input[name*=cost_val], input[n
 $(document).on("ready",function()
 {
 	// event id
-	event_id = $('#events-form').attr('action').split("id=")[1];
-
+	if ($('#table-items-container.read-only').length)
+	{
+		event_id = $.urlParam('id');
+		mode = 'read-only';
+	}
+	else
+	{
+		event_id = $('#events-form').attr('action').split("id=")[1];
+	}
+	
 	// map
 	$('input[name*=location_address]').on("keyup", function()
 	{
@@ -581,7 +597,7 @@ function loadItemList(changedObj, container_id)
 	// send ajax
 	$.ajax({type:"POST",
 			url:"index.php?r=itemList/view",
-			data:{ e:event_id },
+			data:{ e:event_id,m:mode },
 			success: function(data, textStatus, jqXHR )
 			{
 				$('#'+container_id).fadeOut('fast', function()

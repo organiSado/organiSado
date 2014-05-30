@@ -175,6 +175,14 @@ if (isset($inviteesModels) && is_array($inviteesModels) && count($inviteesModels
 </tbody>
 </table>
 <?php endif; ?>
+<hr>
+<h2 class="inline">Lista de items</h2>
+<div id="table-items-progress">
+		<div class="progress progress-striped active">
+    		<div class="bar" style="width: 100%;"></div>
+		</div>
+</div>
+<div id="table-items-container" class="read-only" style="opacity:0;"></div>
 
 <br>
 <hr>

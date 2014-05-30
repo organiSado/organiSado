@@ -43,9 +43,10 @@ class ItemListController extends Controller
 	{			
 		// evento
 		$e = -1; // por defecto ninguno
-		if ( isset($_POST['e']) )
+		if ( isset($_POST['e'], $_POST['m']) )
 		{
 			$e = $_POST['e'];
+			$m = $_POST['m'];
 			
 			$event = Events::model()->findByPk($e);
 
@@ -101,9 +102,12 @@ class ItemListController extends Controller
 				{
 					$email_html = "<div class='item-assignee'>";
 					$email_html .= $assigned_item->email." (".$assigned_item->quantity.")";
-					$email_html .= "<a class='' href='#unassign' title='Eliminar Asignado'>
-			            				<i class='icon-remove'></i>
-									</a>";
+					if($m!='read-only')
+					{
+						$email_html .= "<a class='' href='#unassign' title='Eliminar Asignado'>
+				            				<i class='icon-remove'></i>
+										</a>";
+					}
 					$email_html .= "</div>";
 					
 					$assigned_emails []= $email_html;
@@ -117,8 +121,11 @@ class ItemListController extends Controller
 						<td>".$item->item."</td>
 						<td>".(count($assigned_emails)? implode("", $assigned_emails):"No se han asignado invitados a este item todavía.")."</td>
 						<td>".$total_assigned_quantity."/".$item->quantity."</td>
-						<td>".($pending_quantity < 0?"Se pasaron!":($pending_quantity==0?"Ya estamos!":$pending_quantity))."</td>
-						<td class='buttons'>
+						<td>".($pending_quantity < 0?"Se pasaron!":($pending_quantity==0?"Ya estamos!":$pending_quantity))."</td>";
+			
+			if($m!='read-only')
+			{
+				$rows .= "<td class='buttons'>
 			            	<a class='btn btn-default' href='#assignToMe' title='Yo llevo!'>
 			            		<i class='icon-check'></i>
 			            	</a>
@@ -132,8 +139,10 @@ class ItemListController extends Controller
 			            	<a class='btn btn-danger remove-invitee' href='#removeItem' title='Eliminar'>
 			            		<i class='icon-remove'></i>
 			            	</a>
-			            </td>
-					  </tr>";
+			            </td>";
+			}
+						
+			$rows .= "</tr>";
 		}
 		
 		// labels unidos
@@ -146,9 +155,14 @@ class ItemListController extends Controller
 		            <th>".$labels['item']."</th>
 		            <th>".$labels['email']."</th>
 		            <th>".$labels['quantity']."</th>
-		            <th>Faltan</th>
-		            <th colspan='3'>Acciones</th>
-		          </tr>
+		            <th>Faltan</th>";
+		
+		if($m!='read-only')
+		{
+			echo "<th colspan='3'>Acciones</th>";
+		}
+			
+		echo     "</tr>
 				</thead>
 				<tbody>
 					$rows
@@ -424,7 +438,7 @@ class ItemListController extends Controller
 						}
 					}
 					
-					if (!$isInvitee) // no es organizador y no se esta asignando a si mismo
+					if (!$isInvitee && $u != $event->creator) // no es organizador y no se esta asignando a si mismo
 					{
 						echo "ERROR: el usuario que se quiere asignar no es un invitado del evento. Asegurese de guardar los cambios al agregar invitados nuevos, antes de asignarle items!";
 						return;			
