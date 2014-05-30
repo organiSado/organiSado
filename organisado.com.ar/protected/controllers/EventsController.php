@@ -343,6 +343,13 @@ class EventsController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation(array/*_merge*/($model, $inviteesModels));
 		
+		// si borro o agrego otros invitados
+		$removed_or_added_invitees = false;
+		if ( isset($_POST['Invitees']) && count($_POST['Invitees']) != count($this->loadInviteesModels($model->id)) )
+		{
+			$this->redirect(array('view','id'=>$model->id));
+		}
+		
 		// prevenir acceso/acciones de terceros
 		$accessLevel = 0;
 		if (Yii::app()->user->id != $model->creator)
@@ -373,6 +380,42 @@ class EventsController extends Controller
 				&& $accessLevel == 2) // es invitado
 			{
 				throw new CHttpException(404,'The requested page does not exist.');
+			}
+			
+			// prevenir cambios no autorizados de invitados	
+			if ( ($accessLevel==2 && $model->confirmation_closed) ) // la confirmacion esta cerrada
+			{
+				$this->redirect(array('view','id'=>$model->id));
+			}
+			else if ($accessLevel==2) // es invitado
+			{
+				// eliminar cambios sobre evento
+				foreach($_POST['Events'] as $i=>$attribute)
+				{
+					unset($_POST['Events'][$i]);
+				}
+				
+				// eliminar cambios sobre invitados					
+				foreach($_POST['Invitees'] as $i=>$invitee)
+				{
+					if ($removed_or_added_invitees ||
+						$invitee['email']!=Yii::app()->user->id)
+					{	
+						unset($_POST['Invitees'][$i]);
+					}
+					else
+					{
+						// sobre atributos propios pero no modificables por invitados
+						$admin_fields = array("email", "admin", "cost", "cost", "money_ok");
+						foreach($invitee as $j=>$attribute)
+						{
+							if (in_array($j, $admin_fields))
+							{
+								unset($_POST['Invitees'][$i][$j]);
+							}
+						}
+					}
+				}				
 			}
 
 			// add changes to event model

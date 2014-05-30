@@ -49,24 +49,6 @@ $(document).on("ready",function()
 		return false;
 	});
 
-	// Mejorar: anular interaccion si se cierra la confirmacion de asistentes
-	$('#Events_confirmation_closed').on("click", function()
-	{
-		if ( $('#Events_confirmation_closed').prop('checked') )
-		{
-			$('#'+default_table_id+' input').prop('disabled', true);
-			$('#'+default_table_id+' a').prop('disabled', true);
-			//$('#'+default_addInvitee_id).prop('disabled', true);
-		}
-		else
-		{
-			$('#'+default_table_id+' input').prop('disabled', false);
-			$('#'+default_table_id+' a').prop('disabled', false);
-			//$('#'+default_addInvitee_id).prop('disabled', false);
-		}
-	});
-
-	// Mejorar: anular interaccion si se cierra la confirmacion de asistentes
 	$('input[name*=cost_mode]').on("click", function()
 	{
 		costModeChange($('input[name="Events[cost_mode]"]:checked').val());

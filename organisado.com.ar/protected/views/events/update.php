@@ -19,17 +19,7 @@ $this->menu=array(
 <h1>Actualizar Evento <?php echo $model->id; ?></h1>
 
 <?php 
-
-	$formView = '';
-	if ($accessLevel==1) // admin
-	{
-		$formView = '_form';
-	}
-	else if ($accessLevel==2) // invitado
-	{
-		$formView = '_form';
-	}
 	
-	$this->renderPartial($formView, array('model'=>$model, 'inviteesModels'=>$inviteesModels, 'gallery'=>$gallery, 'xupload'=>$xupload));
+	$this->renderPartial('_form', array('accessLevel'=>$accessLevel, 'model'=>$model, 'inviteesModels'=>$inviteesModels, 'gallery'=>$gallery, 'xupload'=>$xupload));
 
 ?>

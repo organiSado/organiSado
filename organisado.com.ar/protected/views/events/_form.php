@@ -43,6 +43,18 @@
 
 ?>
 
+<?php
+	
+	if ($accessLevel==1) // admin
+	{
+		$formView = '_form';
+	}
+	else if ($accessLevel==2) // invitado
+	{
+		$formView = '_form';
+	}
+?>
+
 	<p class="note">Los campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary(array_merge(array($model), $inviteesModels)); ?>

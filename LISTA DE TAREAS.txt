@@ -2,7 +2,7 @@
 (Jue)- Confirmación de registro.
 X- Recordar contraseña.
 X- Lista de la compra.
-(Jue)- Del perfil invitado no se hizo nada (Salvo enviarle un email), los invitados deberían puedan modificar el evento (Indicando si van, si, no, con cuantos acompañantes, que llevan, etc). (solo falta cuando es organizador invitado, y unsetear variables admin de invitados no admin)
+(Jue)- Del perfil invitado no se hizo nada (Salvo enviarle un email), los invitados deberían puedan modificar el evento (Indicando si van, si, no, con cuantos acompañantes, que llevan, etc). (solo falta cuando es organizador invitado)
 X- La validación ajax de si el usuario ya era usuario no se hizo.
 X- Agregar comentarios.
 X- Agregar fotos.
@@ -17,7 +17,6 @@ X- Si bien no se podía ver eventos de otros, al editar si se cambia el ID se pu
 X- Los mensajes están en inglés, tal como lo dejó Yii (Traducir)
 X- Las pantallas tienen el menú estadard de Yii: OPERATIONS-> LIST/CREATE/UPDATE, etc, lo mismo que al listar, es la tabla estandard (Preguntar que tiene de malo)
 X- La primera vez que se graba un evento, no se guardan las personas (corregir controller)
-notifyer
 
 
 
