@@ -307,6 +307,8 @@ class EventsController extends Controller
 						$inviteesModel->save(false);
 					}
 	
+					$this->logEvent($model->id, "El evento con sus invitados ha sido creado");
+
 					$this->redirect(array('view','id'=>$model->id));
 				}
 				else
@@ -512,9 +514,8 @@ echo "deleteCandidates count ".count($deleteCandidates);
 		));
 
 		//mensaje de update de evento en el log
-		$idlog = $model->id;
-		$mensaje = "Se realizo un cambio en el evento";
-		$this->logEvent($idlog, $mensaje);		
+
+		$this->logEvent($model->id, "Se realizo un cambio en el evento");		
 	}
 
 	/**
@@ -756,7 +757,7 @@ echo "deleteCandidates count ".count($deleteCandidates);
 		}
 	}
 
-		public function logEvent($chatid, $text)
+	public function logEvent($chatid, $text)
 	{
 
 		$modelchat = new YiichatPost;
