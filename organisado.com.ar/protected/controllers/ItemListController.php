@@ -40,14 +40,7 @@ class ItemListController extends Controller
 	}
 	
 	public function actionView()
-	{
-		// modelos vacios por defecto
-		$items_requested []= new ItemRequested;
-		$items_assigned []= new ItemAssigned;
-		
-		// labels unidos
-		$labels = array_merge($items_assigned[0]->attributeLabels(), $items_requested[0]->attributeLabels());
-		
+	{			
 		// evento
 		$e = -1; // por defecto ninguno
 		if ( isset($_POST['e']) )
@@ -84,13 +77,14 @@ class ItemListController extends Controller
 				throw new CHttpException(404,'The requested page does not exist.');				
 			}
 			
-			// cargamos items requeridos
-			$tb = ItemRequested::model()->tableName();
-			$items_requested = ItemRequested::model()->findAllBySql("SELECT * FROM $tb WHERE event=$e;");
 			/*if($items_requested===null)
 				throw new CHttpException(404,'The requested page does not exist.');*/
 		}
 		
+		// cargamos items requeridos
+		$tb = ItemRequested::model()->tableName();
+		$items_requested = ItemRequested::model()->findAllBySql("SELECT * FROM $tb WHERE event=$e;"); // si falla por evento indefinido el resultado es vacio nada mas
+
 		// filas a imprimir
 		$rows = "";
 		foreach ($items_requested as $item)
@@ -142,6 +136,10 @@ class ItemListController extends Controller
 					  </tr>";
 		}
 		
+		// labels unidos
+		$item_requested = new ItemRequested;
+		$item_assigned = new ItemAssigned;
+		$labels = array_merge($item_assigned->attributeLabels(), $item_requested->attributeLabels());
 		echo "<table id='table-items' class='table table-striped'>
 		        <thead>
 		          <tr>
