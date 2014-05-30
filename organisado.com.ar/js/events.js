@@ -655,7 +655,7 @@ function addItem(tableitems_id)
 // al presionar el botton de agregar item
 $(document).on("click", '#add-item', function()
 {
-	if (in_progress) return;
+	if (in_progress) return false;
 
 	addItem();
 
@@ -665,7 +665,7 @@ $(document).on("click", '#add-item', function()
 // al presionar el botton de cancelar agregar item
 $(document).on("click", 'a[href=#cancelCreate]', function()
 {
-	if (in_progress) return;
+	if (in_progress) return false;
 
 	$(this).closest("tr").remove();
 
@@ -675,7 +675,7 @@ $(document).on("click", 'a[href=#cancelCreate]', function()
 // al presionar el botton de confirmar agregar item
 $(document).on("click", 'a[href=#confirmCreate]', function()
 {	
-	if (in_progress) return;
+	if (in_progress) return false;
 
 	var item = $(this).closest('tr').find('td:nth-of-type(1) input').val();
 	var quantity = $(this).closest('tr').find('td:nth-of-type(3) input').val();
@@ -698,9 +698,8 @@ $(document).on("click", 'a[href=#confirmCreate]', function()
 				}
 				else
 				{
-									endWait(changedObj);
-
-					loadItemList(  );
+					endWait(changedObj);
+					loadItemList();
 				}				
 			}
 	});
@@ -713,7 +712,7 @@ $(document).on("click", 'a[href=#confirmCreate]', function()
 // al presionar el botton de agregar item
 $(document).on("click", '#refresh-items', function()
 {
-	if (in_progress) return;
+	if (in_progress) return false;
 
 	loadItemList();
 
@@ -723,7 +722,7 @@ $(document).on("click", '#refresh-items', function()
 // al presionar el botton de yo llevo item
 $(document).on("click", 'a[href=#assignToMe]', function()
 {
-	if (in_progress) return;
+	if (in_progress) return false;
 
 	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
 	alert("assigning to me the item... "+item+" to event "+event_id+", how many?");
@@ -735,7 +734,7 @@ $(document).on("click", 'a[href=#assignToMe]', function()
 // al presionar el botton de asignar item
 $(document).on("click", 'a[href=#assignItem]', function()
 {
-	if (in_progress) return;
+	if (in_progress) return false;
 
 	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
 	alert("assigning item... "+item+" to...? to event "+event_id+", how many?");
@@ -747,7 +746,7 @@ $(document).on("click", 'a[href=#assignItem]', function()
 // desasignar invitados de items	
 $(document).on('click', 'a[href=#unassign]', function()
 {	
-	if (in_progress) return;
+	if (in_progress) return false;
 
 	loadItemList($(this).closest('div'));
 
@@ -777,7 +776,7 @@ $(document).on('click', 'a[href=#unassign]', function()
 // al presionar el botton de eliminar item
 $(document).on("click", 'a[href=#removeItem]', function()
 {
-	if (in_progress) return;
+	if (in_progress) return false;
 
 	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
 	alert("removing item... "+item+" from event "+event_id);
