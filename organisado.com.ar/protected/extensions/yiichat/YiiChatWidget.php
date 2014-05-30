@@ -16,7 +16,7 @@ class YiiChatWidget extends CWidget {
 	public	$identity;	// ID, can be: Yii::app()->user->id
 	public	$selector;	// jQuery selector (holder)
 
-	public	$sendButtonText='Send';
+	public	$sendButtonText='Enviar';
 	public	$onError;
 	public	$onSuccess;
 	public  $defaultController='/site';	
