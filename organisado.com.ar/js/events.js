@@ -556,15 +556,40 @@ function calcCost()
 }
 
 /* LISTA DE ITEMS */
+function startWait(changedObj)
+{
+	if (!changedObj) changedObj = $('#'+default_items_container_id);	
+	
+	// loading	
+	changedObj.prop('disabled', true);
+
+	if ( changedObj.css('opacity') == 1 ) changedObj.fadeTo('slow', .5);
+		
+	$('#table-items-progress').fadeIn();
+}
+
+function endWait(changedObj)
+{
+	if (!changedObj) changedObj = $('#'+default_items_container_id);	
+
+	changedObj.prop('disabled', null);
+
+	changedObj.fadeTo('slow', 1);
+	
+	// loading				
+	$('#table-items-progress').fadeOut();
+}
+
 function loadItemList(changedObj, container_id)
 {
 	if (!container_id) container_id = default_items_container_id;	
 	if (!changedObj) changedObj = $('#'+container_id);	
 	
 	// loading
-	$('#table-items-progress').fadeIn();
+	startWait(changedObj);
+/*	$('#table-items-progress').fadeIn();
 	if ( changedObj.css('opacity') == 1 ) changedObj.fadeTo('slow', .5);
-// changedObj.disabled();
+// changedObj.disabled();*/
 
 	// send ajax
 	$.ajax({type:"POST",
@@ -576,8 +601,12 @@ function loadItemList(changedObj, container_id)
 				{
 					$('#'+container_id).html(data);
 					$('#'+container_id).fadeIn();
+
+						endWait(changedObj);
+
+					/*
 					changedObj.fadeTo('slow', 1);
-					$('#table-items-progress').fadeOut();
+					$('#table-items-progress').fadeOut();*/
 				});
 			}
 	});
@@ -627,6 +656,10 @@ $(document).on("click", 'a[href=#confirmCreate]', function()
 {	
 	var item = $(this).closest('tr').find('td:nth-of-type(1) input').val();
 	var quantity = $(this).closest('tr').find('td:nth-of-type(3) input').val();
+	var changedObj = $(this).closest('tr');
+	
+	// loading
+	startWait(changedObj);
 
 	// send ajax
 	$.ajax({type:"GET",
@@ -635,11 +668,20 @@ $(document).on("click", 'a[href=#confirmCreate]', function()
 			success: function(data, textStatus, jqXHR )
 			{
 				// error
-				if (data.length) alert(data);
+				if (data.length)
+				{
+					alert(data);
+					endWait(changedObj);
+				}
+				else
+				{
+									endWait(changedObj);
+
+					loadItemList(  );
+				}				
 			}
 	});
 
-	loadItemList( $(this).closest('tr') );
 
 	return false;
 });
