@@ -723,10 +723,36 @@ $(document).on("click", '#refresh-items', function()
 $(document).on("click", 'a[href=#assignToMe]', function()
 {
 	if (in_progress) return false;
-
+	
 	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
-	alert("assigning to me the item... "+item+" to event "+event_id+", how many?");
-	loadItemList();
+	var quantity = "";
+	var user = "";
+	var changedObj = $(this).closest('tr');
+
+	console.log("assigning item... "+item+" to...? to event "+event_id+", how many?");
+	
+	// loading
+	startWait(changedObj);
+
+	// send ajax
+	$.ajax({type:"POST",
+			url:"index.php?r=itemList/assignToMe",
+			data:{ e:event_id,i:item,q:quantity,u:user },
+			success: function(data, textStatus, jqXHR )
+			{
+				// error
+				if (data.length)
+				{
+					alert(data);
+					endWait(changedObj);
+				}
+				else
+				{
+					endWait(changedObj);
+					loadItemList();
+				}				
+			}
+	}); 
 
 	return false;
 });
@@ -735,10 +761,36 @@ $(document).on("click", 'a[href=#assignToMe]', function()
 $(document).on("click", 'a[href=#assignItem]', function()
 {
 	if (in_progress) return false;
-
+	
 	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
-	alert("assigning item... "+item+" to...? to event "+event_id+", how many?");
-	loadItemList();
+	var quantity = "";
+	var user = "";
+	var changedObj = $(this).closest('tr');
+
+	console.log("assigning item... "+item+" to...? to event "+event_id+", how many?");
+	
+	// loading
+	startWait(changedObj);
+
+	// send ajax
+	$.ajax({type:"POST",
+			url:"index.php?r=itemList/assign",
+			data:{ e:event_id,i:item,q:quantity,u:user },
+			success: function(data, textStatus, jqXHR )
+			{
+				// error
+				if (data.length)
+				{
+					alert(data);
+					endWait(changedObj);
+				}
+				else
+				{
+					endWait(changedObj);
+					loadItemList();
+				}				
+			}
+	}); 
 
 	return false;
 });
@@ -747,40 +799,71 @@ $(document).on("click", 'a[href=#assignItem]', function()
 $(document).on('click', 'a[href=#unassign]', function()
 {	
 	if (in_progress) return false;
-
-	loadItemList($(this).closest('div'));
-
-
-	return false;			
-											 
-	$('#table-invitados tr td:nth-of-type(1) input').each(function(index)		
-	{
-		var destino = $(this).val(); //anda
-
-		$('#table-invitados tr td:nth-of-type(8) input').each(function(index2)
-		{
-			if (index==index2)
-			{
-				mailUser(destino,
-						 "Saldo Pendiente en Evento", 
-						 "Correspondiente al evento, "+($('input[name="Events[name]"]').val())+", usted posee un saldo de: "+$(this).val() );
-			}
-				
-		});
-
-	});
 	
-	return false;	
+	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
+	var user = "";
+	var changedObj = $(this).closest('tr');
+
+	console.log("unassigning item... "+item+" to...? to event "+event_id);
+	
+	// loading
+	startWait(changedObj);
+
+	// send ajax
+	$.ajax({type:"POST",
+			url:"index.php?r=itemList/unassign",
+			data:{ e:event_id,i:item,u:user },
+			success: function(data, textStatus, jqXHR )
+			{
+				// error
+				if (data.length)
+				{
+					alert(data);
+					endWait(changedObj);
+				}
+				else
+				{
+					endWait(changedObj);
+					loadItemList();
+				}				
+			}
+	}); 
+
+	return false;
 });
 
 // al presionar el botton de eliminar item
 $(document).on("click", 'a[href=#removeItem]', function()
 {
 	if (in_progress) return false;
-
+	
 	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
-	alert("removing item... "+item+" from event "+event_id);
-	loadItemList();
+	var changedObj = $(this).closest('tr');
+
+	console.log("deleting... "+item+" of event "+event_id);
+	
+	// loading
+	startWait(changedObj);
+
+	// send ajax
+	$.ajax({type:"POST",
+			url:"index.php?r=itemList/delete",
+			data:{ e:event_id,i:item },
+			success: function(data, textStatus, jqXHR )
+			{
+				// error
+				if (data.length)
+				{
+					alert(data);
+					endWait(changedObj);
+				}
+				else
+				{
+					endWait(changedObj);
+					loadItemList();
+				}				
+			}
+	}); 
 
 	return false;
 });
