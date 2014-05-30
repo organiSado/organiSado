@@ -330,9 +330,9 @@ class ItemListController extends Controller
 	public function actionEmailItemList()
 	{
 		$e = -1; // por defecto ninguno
-		if ( isset($_GET['e']) ) 
+		if ( isset($_POST['e']) ) 
 		{
-			$e = $_GET['e'];
+			$e = $_POST['e'];
 			
 			// validación básica
 			if (!is_numeric($e))
