@@ -176,12 +176,6 @@ class ItemListController extends Controller
 			return;
 		}
 		
-		if (!is_numeric($q) || $q <= 0 )
-		{
-			echo "ERROR: cantidad no válida!";
-			return;
-		}
-		
 		
 		$event = $this->loadEventModel($e);
 					
@@ -234,6 +228,13 @@ class ItemListController extends Controller
 					return;
 				}
 			}
+		}
+		
+		// validacion basica
+		if (!is_numeric($q) || $q <= 0 )
+		{
+			echo "ERROR: cantidad no válida!";
+			return;
 		}
 
 		$item->save(false);
@@ -369,7 +370,7 @@ class ItemListController extends Controller
 				$accessLevel = 1; // acceso organizador
 			}
 			
-			if ($accessLevel != 1 || ($accessLevel == 2 && Yii::app()->user->id != $u)) // no es organizador y no se esta asignando a si mismo
+			if ($accessLevel != 1 && ($accessLevel == 2 && Yii::app()->user->id != $u)) // no es organizador y no se esta asignando a si mismo
 			{
 				echo "ERROR: no tienes permiso para asignar items a este usuario!";
 				return;			
@@ -481,7 +482,7 @@ class ItemListController extends Controller
 				$accessLevel = 1; // acceso organizador
 			}
 			
-			if ($accessLevel != 1 || ($accessLevel == 2 && Yii::app()->user->id != $u)) // no es organizador
+			if ($accessLevel != 1 && ($accessLevel == 2 && Yii::app()->user->id != $u)) // no es organizador
 			{
 				echo "ERROR: no tienes permiso para desasignar items de este usuario!";
 				return;			
