@@ -122,7 +122,7 @@ class ItemListController extends Controller
 			$rows .= "<tr>
 						<td>".$item->item."</td>
 						<td>".(count($assigned_emails)? implode("", $assigned_emails):"No se han asignado invitados a este item todavía.")."</td>
-						<td>".$item->quantity."</td>
+						<td>".$total_assigned_quantity."/".$item->quantity."</td>
 						<td>".($pending_quantity < 0?"Se pasaron!":($pending_quantity==0?"Ya estamos!":$pending_quantity))."</td>
 						<td class='buttons'>
 			            	<a class='btn btn-default' href='#assignToMe' title='Yo llevo!'>
@@ -160,12 +160,27 @@ class ItemListController extends Controller
 	
 	public function actionCreate($e, $i, $q)
 	{
-echo "CREATING event=$e, item=$i, cantidad=$q";
+		//$e = -1; // por defecto ninguno
+		//if ( isset($_POST['e']) )  $e = $_POST['e'];
+
+//echo "CREATING event=$e, item=$i, cantidad=$q";
+
+		// validación básica
+		if (!is_numeric($e))
+		{
+			echo "ERROR: evento no válido!";
+			return;
+		}
+		
+		if (!is_numeric($q) || $q <= 0 )
+		{
+			echo "ERROR: cantidad no válida!";
+			return;
+		}
+		
 		
 		$event = $this->loadEventModel($e);
-			
-echo "el organizador es ".$event->creator;
-		
+					
 		// Cargamos modelo de invitados
 		$inviteesModels=$this->loadInviteesModels($event->id);
 		if (!count($inviteesModels))
@@ -188,11 +203,11 @@ echo "el organizador es ".$event->creator;
 		{
 			$accessLevel = 1; // acceso organizador
 		}
-echo "access=$accessLevel\n\n";
 		
 		if ($accessLevel != 1) // no es organizador
 		{
-			throw new CHttpException(404,'The requested page does not exist.');				
+			echo "ERROR: no tienes permiso para agregar items requeridos!";
+			return;			
 		}
 		
 		// creamos el item requerido
@@ -201,8 +216,23 @@ echo "access=$accessLevel\n\n";
 		$item->event = $event->id;
 		$item->quantity = $q;
 		
-		echo $item->save();
-		
+		if (!$item->validate())
+		{
+			// get errors, de a uno
+			$errors = $item->getErrors();
+			$errStr = "";
+			foreach ($errors as $attr_errors)
+			{
+				$errStr .= implode(", ", $attr_errors); // o todos?
+				if (count($errStr))
+				{
+					echo "ERROR: $errStr";
+					return;
+				}
+			}
+		}
+
+		$item->save(false);
 		
 		
 		
