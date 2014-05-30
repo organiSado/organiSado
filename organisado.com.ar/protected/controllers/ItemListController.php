@@ -26,7 +26,7 @@ class ItemListController extends Controller
 				'users'=>array('*'),
 			),*/
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('view', 'create','update','delete', 'assign', 'unassign'),
+				'actions'=>array('view', 'create','update','delete', 'assignToMe', 'assign', 'unassign'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -308,6 +308,13 @@ class ItemListController extends Controller
 	public function actionDelete()
 	{
 		echo "DELETE";
+	}
+	
+	public function actionAssignToMe()
+	{
+		echo "ASSIGN TO ME (".Yii::app()->user->id.") => ";
+		
+		$this->actionAssign();
 	}
 	
 	public function actionAssign()
