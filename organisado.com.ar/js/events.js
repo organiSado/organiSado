@@ -872,26 +872,32 @@ $(document).on("click", 'a[href=#removeItem]', function()
 //envia la lista de items a todos	
 $(document).on('click', 'a[href=#sendItemList]', function()
 {
-	alert("DUMMY: enviando lista de items del event "+event_id);
-
-	return;			
-											 
-	$('#table-invitados tr td:nth-of-type(1) input').each(function(index)		
-	{
-		var destino = $(this).val(); //anda
-
-		$('#table-invitados tr td:nth-of-type(8) input').each(function(index2)
-		{
-			if (index==index2)
-			{
-				mailUser(destino,
-						 "Saldo Pendiente en Evento", 
-						 "Correspondiente al evento, "+($('input[name="Events[name]"]').val())+", usted posee un saldo de: "+$(this).val() );
-			}
-				
-		});
-
-	});
+	if (in_progress) return false;
 	
+	var changedObj = $(this).closest('a');
+	
+	// loading
+	startWait(changedObj);
+
+	// send ajax
+	$.ajax({type:"POST",
+			url:"index.php?r=itemList/emailItemList",
+			data:{ e:event_id },
+			success: function(data, textStatus, jqXHR )
+			{
+				// error
+				if (data.length)
+				{
+					alert(data);
+					endWait(changedObj);
+				}
+				else
+				{
+					endWait(changedObj);
+					loadItemList();
+				}				
+			}
+	}); 
+
 	return false;	
 });
