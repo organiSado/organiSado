@@ -27,7 +27,7 @@ $this->menu=array(
 	}
 	else if ($accessLevel==2) // invitado
 	{
-		$formView = '_formInvitee';
+		$formView = '_form';
 	}
 	
 	$this->renderPartial($formView, array('model'=>$model, 'inviteesModels'=>$inviteesModels, 'gallery'=>$gallery, 'xupload'=>$xupload));
