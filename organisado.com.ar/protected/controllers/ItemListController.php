@@ -26,7 +26,7 @@ class ItemListController extends Controller
 				'users'=>array('*'),
 			),*/
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('view', 'create','update','delete', 'assignToMe', 'assign', 'unassign'),
+				'actions'=>array('view', 'create','update','delete', 'assignToMe', 'assign', 'unassign', 'emailItemList'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -325,7 +325,107 @@ class ItemListController extends Controller
 	public function actionUnassign()
 	{
 		echo "UN-ASSIGN";
-	}	
+	}
+	
+	public function actionEmailItemList()
+	{
+		$e = -1; // por defecto ninguno
+		if ( isset($_GET['e']) ) 
+		{
+			$e = $_GET['e'];
+			
+			// validación básica
+			if (!is_numeric($e))
+			{
+				echo "ERROR: evento no válido!";
+				return;
+			}
+			
+			
+			$event = $this->loadEventModel($e);
+
+			// Cargamos modelo de invitados
+			$inviteesModels=$this->loadInviteesModels($event->id);
+			if (!count($inviteesModels))
+				array_push($inviteesModels, new Invitees);
+			
+			// prevenir acceso/acciones de terceros
+			$accessLevel = 0;
+			if (Yii::app()->user->id != $event->creator)
+			{
+				foreach($inviteesModels as $inviteesModel)
+				{
+					if ($inviteesModel->email == Yii::app()->user->id)
+					{
+						$accessLevel = 2; // acceso invitado
+						break;
+					}
+				}
+			}
+			else
+			{
+				$accessLevel = 1; // acceso organizador
+			}
+			
+			if ($accessLevel != 1) // no es organizador
+			{
+				echo "ERROR: no tienes permiso para enviar la lista de items por email!";
+				return;
+			}
+			
+			// obtenemos todos los usuarios con asignaciones en este evento
+			$tb = ItemAssigned::model()->tableName();
+			$items_assigned_gb_emails = ItemAssigned::model()->findAllBySql("SELECT * FROM $tb WHERE event=$e GROUP BY email;");
+			$emailed = array();
+			$not_emailed = array();
+			if (isset($items_assigned_gb_emails) && is_array($items_assigned_gb_emails))
+			{
+				foreach ($items_assigned_gb_emails as $item_assigned_gb_email)
+				{
+					$link = "http://organisado.com.ar/index.php?r=events/view&id=".$e;
+					$t = $item_assigned_gb_email->email;
+					$s = "Lista de items para llevar a $event->name";
+				
+					// obtenemos todos los items de este evento para este usuario
+					$tb = ItemAssigned::model()->tableName();
+					$items_assigned = ItemAssigned::model()->findAllBySql("SELECT * FROM $tb WHERE event=$e AND email='$item_assigned_gb_email->email';");
+					if (isset($items_assigned) && is_array($items_assigned))
+					{
+						$b = "Te asignaron los siguientes items en $event->name (".$link.").\n\n";
+						$b .= "Tenés que llevar los siguientes items:\n";
+						foreach($items_assigned as $assigned_item)
+						{
+							$b .= "\t- ".$assigned_item->item." (".$assigned_item->quantity.")";
+						}
+					}
+					
+					// si obtuve bien la info enviar
+					if (count($b))
+					{
+						if ( mail($t, $s, $b) )
+						{
+							$emailed []= $t;
+						}
+						else
+						{
+							$not_emailed []= $t;
+						}
+					}
+				}
+			}
+			
+			if ( count($not_emailed) )
+			{
+				echo "ERROR: no se pudo enviar la lista a ".implode(", ", $not_emailed);
+			}
+			else if ( count($emailed) )
+			{
+				echo "Lista de items enviada con éxito a todos los usuarios!";
+			}
+		}		
+	}
+	
+	
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
