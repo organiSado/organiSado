@@ -38,7 +38,7 @@ return;*/
 	*/
 
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/tools.js');
-	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/events-view.js');
+	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/events.js');
 
 	$cs->registerScriptFile('https://maps.googleapis.com/maps/api/js?v=3&sensor=false');
 	$cs->registerScriptFile(Yii::app()->request->baseUrl.'/js/gmap.js');
@@ -88,6 +88,10 @@ $modes=$model->costModes();
 
 <hr>
 <h2>Mapa</h2>
+				<?php echo Chtml::activehiddenField($model,'location_lat',array('size'=>45,'maxlength'=>45)); ?>
+
+				<?php echo Chtml::activehiddenField($model,'location_long',array('size'=>45,'maxlength'=>45)); ?>
+				<?php //echo $form->error($model,'location_long'); ?>
 <div id="map"></div>
 <br>
 
