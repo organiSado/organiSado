@@ -53,7 +53,7 @@ class ItemRequested extends CActiveRecord
 	{
 		return array(
 			'item' => 'Item',
-			'event' => 'Event',
+			'event' => 'Evento',
 			'quantity' => 'Requerido',
 		);
 	}

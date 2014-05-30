@@ -411,6 +411,23 @@ class ItemListController extends Controller
 							}
 						}
 					}
+					
+					// prevenir asignaciones de no invitados
+					$isInvitee = false;
+					foreach($inviteesModels as $inviteesModel)
+					{
+						if ($inviteesModel->email == $u)
+						{
+							$isInvitee = true; // es invitado
+							break;
+						}
+					}
+					
+					if (!$isInvitee) // no es organizador y no se esta asignando a si mismo
+					{
+						echo "ERROR: el usuario que se quiere asignar no es un invitado del evento. Asegurese de guardar los cambios al agregar invitados nuevos, antes de asignarle items!";
+						return;			
+					}
 			
 					$item->save(false);
 				}

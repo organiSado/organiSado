@@ -30,6 +30,7 @@ class ItemAssigned extends CActiveRecord
 			array('item, event, email, quantity', 'required'),
 			array('event, quantity', 'numerical', 'integerOnly'=>true),
 			array('item, email', 'length', 'max'=>255),
+			array('email', 'email'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('item, event, email, quantity', 'safe', 'on'=>'search'),
@@ -54,9 +55,9 @@ class ItemAssigned extends CActiveRecord
 	{
 		return array(
 			'item' => 'Item',
-			'event' => 'Event',
+			'event' => 'Evento',
 			'email' => 'Email',
-			'quantity' => 'Quantity',
+			'quantity' => 'Cantidad',
 		);
 	}
 
