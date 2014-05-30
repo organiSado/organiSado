@@ -237,67 +237,6 @@ class ItemListController extends Controller
 		}
 
 		$item->save(false);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		return;
-		
-		
-		
-		$inviteesModels[]=new Invitees;
-
-		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation(array($model, $inviteesModels));
-		
-		if(isset($_POST['Events'], $_POST['Invitees']))
-		{
-			$inviteesModels = $this->loadInviteesModelsFromPost(-1);
-
-			// add changes to event model
-			$model->attributes=$_POST['Events'];
-			
-			// prevenir crear a nombre de otro
-			$model->creator = Yii::app()->user->id;
-			
-			// save changes to model
-			if ($model->save())
-	        {
-	        	// add changes to invitees models
-				$validInvitees = true;
-				foreach($inviteesModels as $i=>$inviteesModel)
-				{
-				    if(isset($_POST['Invitees'][$i]))
-				    {
-				    	$inviteesModel->attributes = $_POST['Invitees'][$i];
-						$inviteesModel->event = $model->id;
-				    }
-				    
-				    $validInvitees = $inviteesModel->validate() && $validInvitees;
-				}
-	        
-	        	if($validInvitees)
-				{
-					// save changes to invitees models
-					foreach($inviteesModels as $inviteesModel)
-					{
-						$inviteesModel->save(false);
-					}
-	
-					$this->redirect(array('view','id'=>$model->id));
-				}
-				else
-				{
-					$model->delete();
-				} 
-			}
-		}
-
 	}
 	
 	public function actionUpdate()
@@ -378,19 +317,172 @@ class ItemListController extends Controller
 	
 	public function actionAssignToMe()
 	{
-		echo "ASSIGN TO ME (".Yii::app()->user->id.") => ";
-		
+		$_POST['u'] = Yii::app()->user->id;
 		$this->actionAssign();
 	}
 	
 	public function actionAssign()
-	{
-		echo "ASSIGN";
+	{		
+		//e:event_id,i:item,q:quantity,u:user },
+		if ( isset($_POST['e'], $_POST['i'], $_POST['q'], $_POST['u']) )
+		{
+			$e = $_POST['e'];
+			$i = $_POST['i'];
+			$q = $_POST['q'];
+			$u = $_POST['u'];
+			
+			// validación básica
+			if (!is_numeric($e))
+			{
+				echo "ERROR: evento no válido!";
+				return;
+			}
+			
+			if (!is_numeric($q) || $q <= 0 )
+			{
+				echo "ERROR: cantidad no válida!";
+				return;
+			}
+			
+			$event = $this->loadEventModel($e);
+						
+			// Cargamos modelo de invitados
+			$inviteesModels=$this->loadInviteesModels($event->id);
+			if (!count($inviteesModels))
+				array_push($inviteesModels, new Invitees);
+			
+			// prevenir acceso/acciones de terceros
+			$accessLevel = 0;
+			if (Yii::app()->user->id != $event->creator)
+			{
+				foreach($inviteesModels as $inviteesModel)
+				{
+					if ($inviteesModel->email == Yii::app()->user->id)
+					{
+						$accessLevel = 2; // acceso invitado
+						break;
+					}
+				}
+			}
+			else
+			{
+				$accessLevel = 1; // acceso organizador
+			}
+			
+			if ($accessLevel != 1 || ($accessLevel == 2 && Yii::app()->user->id != $u)) // no es organizador y no se esta asignando a si mismo
+			{
+				echo "ERROR: no tienes permiso para asignar items a este usuario!";
+				return;			
+			}
+			
+			// cargamos item requerido
+			$tb = ItemRequested::model()->tableName();
+			$item_requested = ItemRequested::model()->findBySql("SELECT * FROM $tb WHERE event=$e AND item='$i';");
+			if ($item_requested!==null)
+			{
+				$tb = ItemAssigned::model()->tableName();
+				$item_assigned = ItemAssigned::model()->findBySql("SELECT * FROM $tb WHERE event=$e AND item='$i' AND email='$u';");
+				if ($item_assigned!==null)
+				{
+					echo "ERROR: ya se asignó este item a este usuario!";
+					return;
+				}
+				else
+				{
+					// creamos el item asignado
+					$item = new ItemAssigned;
+					$item->item = $i;
+					$item->event = $e;
+					$item->email = $u;
+					$item->quantity = $q;
+					
+					if (!$item->validate())
+					{
+						// get errors, de a uno
+						$errors = $item->getErrors();
+						$errStr = "";
+						foreach ($errors as $attr_errors)
+						{
+							$errStr .= implode(", ", $attr_errors); // o todos?
+							if (count($errStr))
+							{
+								echo "ERROR: $errStr";
+								return;
+							}
+						}
+					}
+			
+					$item->save(false);
+				}
+			}
+		}
 	}
 	
 	public function actionUnassign()
-	{
-		echo "UN-ASSIGN";
+	{		
+		if ( isset($_POST['e'],$_POST['i'],$_POST['u']) )
+		{
+			$e = $_POST['e'];
+			$i = $_POST['i'];
+			$u = $_POST['u'];
+			
+			// validación básica
+			/*if (!is_numeric($e))
+			{
+				echo "ERROR: evento no válido!";
+				return;
+			}
+			
+			if (!count($i))
+			{
+				echo "ERROR: cantidad no válida!";
+				return;
+			}*/
+			
+			$event = $this->loadEventModel($e);
+			
+			// Cargamos modelo de invitados
+			$inviteesModels=$this->loadInviteesModels($event->id);
+			if (!count($inviteesModels))
+				array_push($inviteesModels, new Invitees);
+			
+			// prevenir acceso/acciones de terceros
+			$accessLevel = 0;
+			if (Yii::app()->user->id != $event->creator)
+			{
+				foreach($inviteesModels as $inviteesModel)
+				{
+					if ($inviteesModel->email == Yii::app()->user->id)
+					{
+						$accessLevel = 2; // acceso invitado
+						break;
+					}
+				}
+			}
+			else
+			{
+				$accessLevel = 1; // acceso organizador
+			}
+			
+			if ($accessLevel != 1 || ($accessLevel == 2 && Yii::app()->user->id != $u)) // no es organizador
+			{
+				echo "ERROR: no tienes permiso para desasignar items de este usuario!";
+				return;			
+			}
+
+			// cargamos items requeridos
+			$tb = ItemRequested::model()->tableName();
+			$item_requested = ItemRequested::model()->findBySql("SELECT * FROM $tb WHERE event=$e AND item='$i';");
+			if ($item_requested!==null)
+			{
+				$tb = ItemAssigned::model()->tableName();
+				$item_assigned = ItemAssigned::model()->findBySql("SELECT * FROM $tb WHERE event=$e AND item='$i' AND email='$u';");
+				if ($item_assigned!==null)
+				{
+					$item_assigned->delete();
+				}
+			}
+		}
 	}
 	
 	public function actionEmailItemList()

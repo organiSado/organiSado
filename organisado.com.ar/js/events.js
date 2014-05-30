@@ -645,8 +645,7 @@ function addItem(tableitems_id)
         	</a>\
         </td>\
 	</tr>\
-	'); 
-
+	');
 } 
 
 
@@ -724,12 +723,30 @@ $(document).on("click", 'a[href=#assignToMe]', function()
 {
 	if (in_progress) return false;
 	
-	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
-	var quantity = "";
-	var user = "";
-	var changedObj = $(this).closest('tr');
+	$(this).closest('tr').find('td:nth-of-type(2)').append('\
+		<div class="item-assignee">\
+			(<input class="inline" name="quantity" type="number" placeholder="Cantidad">)\
+			<a href="#confirmAssignToMe" title="Asignar">\
+				<i class="icon-ok"></i>\
+			</a>\
+			<a href="#cancelAssignToMe" title="No Asignar">\
+				<i class="icon-remove"></i>\
+			</a>\
+		</div>\
+	');
 
-	console.log("assigning item... "+item+" to...? to event "+event_id+", how many?");
+	return false;
+});
+
+
+// al presionar el botton de yo llevo item
+$(document).on("click", 'a[href=#confirmAssignToMe]', function()
+{
+	if (in_progress) return false;
+	
+	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
+	var quantity = $(this).closest('div').find('input[type=number]').val();
+	var changedObj = $(this).closest('div');
 	
 	// loading
 	startWait(changedObj);
@@ -737,7 +754,7 @@ $(document).on("click", 'a[href=#assignToMe]', function()
 	// send ajax
 	$.ajax({type:"POST",
 			url:"index.php?r=itemList/assignToMe",
-			data:{ e:event_id,i:item,q:quantity,u:user },
+			data:{ e:event_id,i:item,q:quantity },
 			success: function(data, textStatus, jqXHR )
 			{
 				// error
@@ -757,17 +774,37 @@ $(document).on("click", 'a[href=#assignToMe]', function()
 	return false;
 });
 
+
 // al presionar el botton de asignar item
 $(document).on("click", 'a[href=#assignItem]', function()
 {
 	if (in_progress) return false;
 	
-	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
-	var quantity = "";
-	var user = "";
-	var changedObj = $(this).closest('tr');
+	$(this).closest('tr').find('td:nth-of-type(2)').append('\
+		<div class="item-assignee">\
+			<input size="60" maxlength="255" name="email" type="text" autocomplete="off" placeholder="Ingrese un Email">\
+			(<input class="inline" name="quantity" type="number" placeholder="Cantidad">)\
+			<a href="#confirmAssignItem" title="Asignar">\
+				<i class="icon-ok"></i>\
+			</a>\
+			<a href="#cancelAssignItem" title="No Asignar">\
+				<i class="icon-remove"></i>\
+			</a>\
+		</div>\
+	');
 
-	console.log("assigning item... "+item+" to...? to event "+event_id+", how many?");
+	return false;
+});
+
+// al presionar el botton de asignar item
+$(document).on("click", 'a[href=#confirmAssignItem]', function()
+{
+	if (in_progress) return false;
+	
+	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
+	var user = $(this).closest('div').find('input[type=text]').val();
+	var quantity = $(this).closest('div').find('input[type=number]').val();
+	var changedObj = $(this).closest('div');
 	
 	// loading
 	startWait(changedObj);
@@ -795,16 +832,24 @@ $(document).on("click", 'a[href=#assignItem]', function()
 	return false;
 });
 
+// al presionar el botton de cancelar agregar item
+$(document).on("click", 'a[href*=#cancelAssign]', function()
+{
+	if (in_progress) return false;
+
+	$(this).closest("div").remove();
+
+	return false;
+});
+
 // desasignar invitados de items	
 $(document).on('click', 'a[href=#unassign]', function()
 {	
 	if (in_progress) return false;
 	
 	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
-	var user = "";
-	var changedObj = $(this).closest('tr');
-
-	console.log("unassigning item... "+item+" to...? to event "+event_id);
+	var user = $(this).closest('div').text().split("(")[0].trim();
+	var changedObj = $(this).closest('div');
 	
 	// loading
 	startWait(changedObj);
@@ -839,8 +884,6 @@ $(document).on("click", 'a[href=#removeItem]', function()
 	
 	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
 	var changedObj = $(this).closest('tr');
-
-	console.log("deleting... "+item+" of event "+event_id);
 	
 	// loading
 	startWait(changedObj);
