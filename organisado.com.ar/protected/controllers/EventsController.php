@@ -266,6 +266,9 @@ class EventsController extends Controller
 	{
 		$model=new Events;
 		$inviteesModels[]=new Invitees;
+		
+		// para crear por defecto son organizadores
+		$accessLevel = 1;
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation(array($model, $inviteesModels));
@@ -319,6 +322,7 @@ class EventsController extends Controller
 		
 
 		$this->render('create',array(
+			'accessLevel'=>$accessLevel, 
 			'model'=>$model,
 			'inviteesModels'=>$inviteesModels,
 			'xupload' => $xupload,
@@ -342,13 +346,6 @@ class EventsController extends Controller
 		
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation(array/*_merge*/($model, $inviteesModels));
-		
-		// si borro o agrego otros invitados
-		$removed_or_added_invitees = false;
-		if ( isset($_POST['Invitees']) && count($_POST['Invitees']) != count($this->loadInviteesModels($model->id)) )
-		{
-			$this->redirect(array('view','id'=>$model->id));
-		}
 		
 		// prevenir acceso/acciones de terceros
 		$accessLevel = 0;
@@ -389,6 +386,13 @@ class EventsController extends Controller
 			}
 			else if ($accessLevel==2) // es invitado
 			{
+				// si borro o agrego otros invitados
+				$removed_or_added_invitees = false;
+				if ( isset($_POST['Invitees']) && count($_POST['Invitees']) != count($this->loadInviteesModels($model->id)) )
+				{
+					$this->redirect(array('view','id'=>$model->id));
+				}
+			
 				// eliminar cambios sobre evento
 				foreach($_POST['Events'] as $i=>$attribute)
 				{
