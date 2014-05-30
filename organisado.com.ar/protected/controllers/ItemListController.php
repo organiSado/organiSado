@@ -158,12 +158,18 @@ class ItemListController extends Controller
 			</table>";
 	}
 	
-	public function actionCreate($e, $i, $q)
+	public function actionCreate(/*$e, $i, $q*/)
 	{
-		//$e = -1; // por defecto ninguno
-		//if ( isset($_POST['e']) )  $e = $_POST['e'];
+		$e = -1; // por defecto ninguno
+		if ( isset($_POST['e']) )  $e = $_POST['e'];
 
-//echo "CREATING event=$e, item=$i, cantidad=$q";
+		$i = ""; // por defecto ninguno
+		if ( isset($_POST['i']) )  $i = $_POST['i'];
+		
+		$q = -1; // por defecto ninguno
+		if ( isset($_POST['q']) )  $q = $_POST['q'];
+
+//echo "CREATING event=$e, item=$i, cantidad=$q";return;
 
 		// validación básica
 		if (!is_numeric($e))

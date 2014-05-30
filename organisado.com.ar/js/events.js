@@ -639,7 +639,11 @@ function addItem(tableitems_id)
         		<i class="icon-ok"></i>\
         	</a>\
         </td>\
-        <td></td>\
+        <td class="buttons">\
+        	<a class="btn btn-danger" href="#cancelCreate" title="Cancelar Creación">\
+        		<i class="icon-remove"></i>\
+        	</a>\
+        </td>\
 	</tr>\
 	'); 
 
@@ -658,7 +662,17 @@ $(document).on("click", '#add-item', function()
 	return false;
 });
 
+// al presionar el botton de cancelar agregar item
+$(document).on("click", 'a[href=#cancelCreate]', function()
+{
+	if (in_progress) return;
 
+	$(this).closest("tr").remove();
+
+	return false;
+});
+
+// al presionar el botton de confirmar agregar item
 $(document).on("click", 'a[href=#confirmCreate]', function()
 {	
 	if (in_progress) return;
@@ -671,7 +685,7 @@ $(document).on("click", 'a[href=#confirmCreate]', function()
 	startWait(changedObj);
 
 	// send ajax
-	$.ajax({type:"GET",
+	$.ajax({type:"POST",
 			url:"index.php?r=itemList/create",
 			data:{ e:event_id,i:item,q:quantity },
 			success: function(data, textStatus, jqXHR )
