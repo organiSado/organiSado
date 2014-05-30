@@ -45,6 +45,11 @@ input[disabled="disabled"]
     max-width: 1150px;
 }
 
+div#chat textarea
+{
+	width: 100%;
+}
+
 div#header
 {
     position: fixed;
