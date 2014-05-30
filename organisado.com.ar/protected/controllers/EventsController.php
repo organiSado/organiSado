@@ -350,12 +350,13 @@ class EventsController extends Controller
 		$this->performAjaxValidation(array/*_merge*/($model, $inviteesModels));
 		
 		// prevenir acceso/acciones de terceros
+		$currentInvitees = $this->loadInviteesModels($model->id);
 		$accessLevel = 0;
 		if (Yii::app()->user->id != $model->creator)
 		{
-			foreach($inviteesModels as $inviteesModel)
+			foreach($currentInvitees as $currentInvitee)
 			{
-				if ($inviteesModel->email == Yii::app()->user->id)
+				if ($currentInvitee->email == Yii::app()->user->id)
 				{
 					$accessLevel = 2;
 					break;
@@ -372,13 +373,22 @@ class EventsController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');				
 		}
 		
-		if(isset($_POST['Events'], $_POST['Invitees']))
+		if( ($accessLevel==2 && isset($_POST['Invitees']) && count($_POST['Invitees'])==1)
+			|| ($accessLevel==1 && isset($_POST['Events'], $_POST['Invitees'])) )
 		{
 			// prevenir phishing
 			if (isset($_POST['Events']['creator'])
 				&& $accessLevel == 2) // es invitado
 			{
 				throw new CHttpException(404,'The requested page does not exist.');
+			}
+			
+			// agregar email para invitados
+			if ( $accessLevel==2 ) // es invitado (bajo condiciones normales, sin manipular inputs)
+			{
+				$_POST['Invitees'][0]['email'] = Yii::app()->user->id;
+				$_POST['Invitees'][0]['event'] = $model->id;
+				$inviteesModels=$currentInvitees;
 			}
 			
 			// prevenir cambios no autorizados de invitados	
@@ -389,8 +399,8 @@ class EventsController extends Controller
 			else if ($accessLevel==2) // es invitado
 			{
 				// si borro o agrego otros invitados
-				$removed_or_added_invitees = false;
-				if ( isset($_POST['Invitees']) && count($_POST['Invitees']) != count($this->loadInviteesModels($model->id)) )
+				/*$removed_or_added_invitees = false;
+				if ( isset($_POST['Invitees']) && count($_POST['Invitees']) != count($currentInvitees) )
 				{
 					$this->redirect(array('view','id'=>$model->id));
 				}
@@ -399,15 +409,15 @@ class EventsController extends Controller
 				foreach($_POST['Events'] as $i=>$attribute)
 				{
 					unset($_POST['Events'][$i]);
-				}
+				}*/
 				
 				// eliminar cambios sobre invitados					
 				foreach($_POST['Invitees'] as $i=>$invitee)
 				{
-					if ($removed_or_added_invitees ||
-						$invitee['email']!=Yii::app()->user->id)
+					if (/*$removed_or_added_invitees ||
+						*/$invitee['email']!=Yii::app()->user->id)
 					{	
-						unset($_POST['Invitees'][$i]);
+						//unset($_POST['Invitees'][$i]);
 					}
 					else
 					{
@@ -421,23 +431,45 @@ class EventsController extends Controller
 							}
 						}
 					}
-				}				
+				}		
 			}
 
 			// add changes to event model
-			$model->attributes=$_POST['Events'];
-
-			// add changes to invitees models
-			$validInvitees = true;
-			foreach($inviteesModels as $i=>$inviteesModel)
+			if ($accessLevel==1)
 			{
-			    if(isset($_POST['Invitees'][$i]))
-			    {
-/* echo $_POST['Invitees'][$i]["email"]; */
-			    	$inviteesModel->attributes = $_POST['Invitees'][$i];
-			    }
-			    
-			    $validInvitees = $inviteesModel->validate() && $validInvitees;
+				$model->attributes=$_POST['Events'];
+	
+				// add changes to invitees models
+				$validInvitees = true;
+				foreach($inviteesModels as $i=>$inviteesModel)
+				{
+				    if(isset($_POST['Invitees'][$i]))
+				    {
+	/* echo $_POST['Invitees'][$i]["email"]; */
+				    	$inviteesModel->attributes = $_POST['Invitees'][$i];
+				    }
+				    
+				    $validInvitees = $inviteesModel->validate() && $validInvitees;
+				}
+			}
+			else if ($accessLevel==2)
+			{	
+				// add changes to invitees models
+				$validInvitees = true;
+				foreach($inviteesModels as $i=>$inviteesModel)
+				{
+					if ($inviteesModel->email == Yii::app()->user->id)
+					{
+				    	$inviteesModel->attributes = $_POST['Invitees'][0];
+					}
+				
+				    if(isset($_POST['Invitees'][$i]))
+				    {
+	/* echo $_POST['Invitees'][$i]["email"]; */
+				    }
+				    
+				    $validInvitees = $inviteesModel->validate() && $validInvitees;
+				}
 			}
 			
 			// save changes

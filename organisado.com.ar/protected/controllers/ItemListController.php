@@ -43,11 +43,12 @@ class ItemListController extends Controller
 	{			
 		// evento
 		$e = -1; // por defecto ninguno
+		$m = ''; // por defecto ninguno
 		if ( isset($_POST['e'], $_POST['m']) )
 		{
 			$e = $_POST['e'];
 			$m = $_POST['m'];
-			
+
 			$event = Events::model()->findByPk($e);
 
 			// Cargamos modelo de invitados
@@ -125,21 +126,34 @@ class ItemListController extends Controller
 			
 			if($m!='read-only')
 			{
-				$rows .= "<td class='buttons'>
-			            	<a class='btn btn-default' href='#assignToMe' title='Yo llevo!'>
-			            		<i class='icon-check'></i>
-			            	</a>
-			            </td>
-			            <td class='buttons'>
-			            	<a class='btn btn-default' href='#assignItem' title='Asignar'>
-			            		<i class='icon-hand-left'></i>
-			            	</a>
-			            </td>
-			            <td class='buttons'>
-			            	<a class='btn btn-danger remove-invitee' href='#removeItem' title='Eliminar'>
-			            		<i class='icon-remove'></i>
-			            	</a>
-			            </td>";
+				if($accessLevel==1)//admin
+				{
+					$rows .= "<td class='buttons'>
+				            	<a class='btn btn-default' href='#assignToMe' title='Yo llevo!'>
+				            		<i class='icon-check'></i>
+				            	</a>
+				            </td>
+				            <td class='buttons'>
+				            	<a class='btn btn-default' href='#assignItem' title='Asignar'>
+				            		<i class='icon-hand-left'></i>
+				            	</a>
+				            </td>
+				            <td class='buttons'>
+				            	<a class='btn btn-danger remove-invitee' href='#removeItem' title='Eliminar'>
+				            		<i class='icon-remove'></i>
+				            	</a>
+				            </td>";
+				}
+				else
+				{
+					$rows .= "<td class='buttons'></td>
+				            <td class='buttons'>
+				            	<a class='btn btn-default' href='#assignToMe' title='Yo llevo!'>
+				            		<i class='icon-check'></i>
+				            	</a>
+				            </td>
+				            <td class='buttons'></td>";
+				}
 			}
 						
 			$rows .= "</tr>";

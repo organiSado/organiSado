@@ -8,7 +8,7 @@ X- Agregar comentarios.
 X- Agregar fotos.
 X- Agregar logs de eventos.
 X- Los métodos de cálculo estaban 3 de los 7 (Y uno de ellos era "el organizado invita").
-(Jue)- Vista de evento
+X- Vista de evento
 
 
 /* BUGS */

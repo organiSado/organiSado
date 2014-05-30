@@ -43,18 +43,7 @@
 
 ?>
 
-<?php
-	
-	if ($accessLevel==1) // admin
-	{
-		$formView = '_form';
-	}
-	else if ($accessLevel==2) // invitado
-	{
-		$formView = '_form';
-	}
-?>
-
+<?php if ($accessLevel==1): // admin ?>
 	<p class="note">Los campos con <span class="required">*</span> son requeridos.</p>
 
 	<?php echo $form->errorSummary(array_merge(array($model), $inviteesModels)); ?>
@@ -120,11 +109,6 @@
 
 	<hr>
 
-
-
-
-
-
 	<div class="row">
 		<h2>Cuentas</h2>
 		<?php
@@ -158,14 +142,17 @@
 	</div>
 
 	<hr>
+<?php endif; // admin ?>
 
 	<div class="row">
-		<h2 class="inline">Invitados <a id="add-invitee" class="btn btn-success" href="#addInvitee"><i class="icon-plus"></i></a></h2>
+		<h2 class="inline">Invitados<?php if ($accessLevel==1): // admin ?><a id="add-invitee" class="btn btn-success" href="#addInvitee"><i class="icon-plus"></i></a><?php endif; // admin ?></h2>
 
 		<div class="inline pull-right">
+<?php if ($accessLevel==1): // admin ?>
 			<?php echo $form->labelEx($model,'confirmation_closed', array('class'=>'inline')); ?>
 			<?php echo $form->checkBox($model,'confirmation_closed', array('class'=>'inline')); ?>
 			<?php echo $form->error($model,'confirmation_closed'); ?>
+<?php endif; // admin ?>
 		</div>
 		
 		<datalist id="suggest">
@@ -174,21 +161,30 @@
         <table id="table-invitados" class="table table-striped">
         <thead>
           <tr>
+<?php if ($accessLevel==1): // admin ?>
             <th><?php echo $form->labelEx($inviteesModels[0],'email'); ?><?php //echo $form->labelEx($model,'name'); ?></th>
             <th><?php echo $form->labelEx($inviteesModels[0],'admin', array('class'=>'inline')); ?></th>
+<?php endif; // admin ?>
             <th><?php echo $form->labelEx($inviteesModels[0],'confirmed', array('class'=>'inline')); ?></th>
             <th><?php echo $form->labelEx($inviteesModels[0],'adults', array('class'=>'inline')); ?></th>
             <th><?php echo $form->labelEx($inviteesModels[0],'kids', array('class'=>'inline')); ?></th>
+<?php if ($accessLevel==1): // admin ?>
             <th><?php echo $form->labelEx($inviteesModels[0],'cost', array('class'=>'inline')); ?></th>
+<?php endif; // admin ?>
             <th><?php echo $form->labelEx($inviteesModels[0],'spent', array('class'=>'inline')); ?></th>
+<?php if ($accessLevel==1): // admin ?>
             <th>Balance</th>
             <th><?php echo $form->labelEx($inviteesModels[0],'money_ok', array('class'=>'inline')); ?></th>
             <th colspan="2">Acciones</th>
+<?php endif; // admin ?>
           </tr>
 		</thead>
 		<tbody>
 			<?php foreach($inviteesModels as $i=>$inviteesModel): ?>
+			<?php if ($accessLevel==1 || ($accessLevel==2 && $inviteesModel->email == Yii::app()->user->id )): // admin ?>
+
 			<tr>
+<?php if ($accessLevel==1): // admin ?>
 		            <td>
 		                <?php /*<input size="60" maxlength="255" value="" name="Invitees[name]" id="Invitees_name" type="text">*/?>
 		                
@@ -199,6 +195,7 @@
 						<?php echo $form->checkBox($inviteesModel,"[$i]admin", array('class'=>'inline')); ?>
 						<?php echo $form->error($inviteesModel,'admin'); ?>
 					</td>
+<?php endif; // admin ?>
 		            <td>
 						<?php echo $form->checkBox($inviteesModel,"[$i]confirmed", array('class'=>'inline')); ?>
 						<?php echo $form->error($inviteesModel,'confirmed'); ?>
@@ -211,16 +208,19 @@
 						<?php echo $form->numberField($inviteesModel,"[$i]kids", array('class'=>'inline')); ?>
 						<?php echo $form->error($inviteesModel,'kids'); ?>
 					</td>
+<?php if ($accessLevel==1): // admin ?>
 		            <td>
 		            	$
 						<?php echo $form->numberField($inviteesModel,"[$i]cost", array('class'=>'inline')); ?>
 						<?php echo $form->error($inviteesModel,'cost'); ?>
 					</td>
+<?php endif; // admin ?>
 		            <td>
 		            	$
 						<?php echo $form->numberField($inviteesModel,"[$i]spent", array('class'=>'inline')); ?>
 						<?php echo $form->error($inviteesModel,'spent'); ?>
 						</td>
+<?php if ($accessLevel==1): // admin ?>
 					<td>
 		            	$
 						<input disabled="disabled" id="Invitees_time" type="number" value="-1">
@@ -239,20 +239,25 @@
 		            		<i class="icon-remove"></i>
 		            	</a>
 		            </td>
+<?php endif; // admin ?>
 			</tr>
+			<?php endif; // admin ?>
+
 			<?php endforeach; ?>
         </tbody>
         </table>
-
+        
+<?php if ($accessLevel==1): // admin ?>
 		<a class="btn btn-info pull-right btn-invitees" href="#resendInvitation" title="Reenviar invitaciones a no confirmados" type=""><i class="icon-envelope"></i> Reenviar invitaciones</a>
 		<a class="btn btn-info pull-right btn-invitees" href="#sendBills" title="Enviar cuentas a confirmados" type=""><i class="icon-envelope"></i> Enviar cuentas</a>
     </div>
+<?php endif; // admin ?>
     
     
 	<hr>
 
 	<div class="row">
-		<h2 class="inline">Lista de items <a id="add-item" class="btn btn-success" href="#addItem"><i class="icon-plus"></i></a> <a id="refresh-items" class="btn btn-info" href="#refresh-items"><i class="icon-refresh"></i></a></h2>
+		<h2 class="inline">Lista de items<?php if ($accessLevel==1): // admin ?> <a id="add-item" class="btn btn-success" href="#addItem"><i class="icon-plus"></i></a><?php endif; // admin ?> <a id="refresh-items" class="btn btn-info" href="#refresh-items"><i class="icon-refresh"></i></a></h2>
         <div id="table-items-progress">
         		<div class="progress progress-striped active">
             		<div class="bar" style="width: 100%;"></div>
@@ -261,9 +266,11 @@
         <div id="table-items-container" style="opacity:0;"></div>
         <div id="message-board"></div>
 
-
+<?php if ($accessLevel==1): // admin ?>
 		<a class="btn btn-info pull-right btn-invitees" href="#sendItemList" title="Enviar cuentas a confirmados" type=""><i class="icon-envelope"></i> Enviar Lista de items</a>
     </div>
+<?php endif; // admin ?>
+
 <br>
 <hr>
 <h2>Fotos</h2>

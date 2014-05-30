@@ -47,6 +47,7 @@ $(document).on("ready",function()
 	}
 	else
 	{
+		mode = 'admin';
 		event_id = $('#events-form').attr('action').split("id=")[1];
 	}
 	
