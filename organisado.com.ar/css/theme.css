@@ -348,12 +348,14 @@ div.screenshotHolder img
 	vertical-align: middle;
 }
 
-#table-invitados input[type=text]
+#table-invitados input[type=text],
+#table-items-container input[type=text]
 {
 	width: 170px;
 }
 
-#table-invitados input[type=number]
+#table-invitados input[type=number],
+#table-items-container input[type=number]
 {
 	width: 40px;
 }

@@ -1,5 +1,6 @@
 /* globals */
 var default_table_id 		= "table-invitados";
+var default_tableitems_id   = "table-items";
 var default_items_container_id 	= "table-items-container";
 var default_addInvitee_id 	= "add-invitee";
 var costMode = -1;
@@ -563,6 +564,7 @@ function loadItemList(changedObj, container_id)
 	// loading
 	$('#table-items-progress').fadeIn();
 	if ( changedObj.css('opacity') == 1 ) changedObj.fadeTo('slow', .5);
+// changedObj.disabled();
 
 	// send ajax
 	$.ajax({type:"POST",
@@ -581,14 +583,67 @@ function loadItemList(changedObj, container_id)
 	});
 }
 
+
+function addItem(tableitems_id)
+{
+	if (!tableitems_id) tableitems_id = default_tableitems_id;
+
+	var rowId = $('#'+tableitems_id+' tbody tr').size();
+	$('#'+tableitems_id+' tr:last').after('\
+	<tr>\
+		<td>\
+			<input size="60" maxlength="255" name="name" type="text" autocomplete="off">\
+		</td>\
+        <td></td>\
+        <td>\
+			<input class="inline" name="quantity" type="number">\
+		</td>\
+        <td></td>\
+        <td></td>\
+        <td class="buttons">\
+        	<a class="btn btn-success" href="#confirmCreate" title="Confirmar Creación">\
+        		<i class="icon-ok"></i>\
+        	</a>\
+        </td>\
+        <td></td>\
+	</tr>\
+	'); 
+
+} 
+
+
+
+
 // al presionar el botton de agregar item
 $(document).on("click", '#add-item', function()
 {
-	alert("adding item...? to event "+event_id);
-	loadItemList();
+	addItem();
 
 	return false;
 });
+
+
+$(document).on("click", 'a[href=#confirmCreate]', function()
+{	
+	var item = $(this).closest('tr').find('td:nth-of-type(1) input').val();
+	var quantity = $(this).closest('tr').find('td:nth-of-type(3) input').val();
+
+	// send ajax
+	$.ajax({type:"GET",
+			url:"index.php?r=itemList/create",
+			data:{ e:event_id,i:item,q:quantity },
+			success: function(data, textStatus, jqXHR )
+			{
+				// error
+				if (data.length) alert(data);
+			}
+	});
+
+	loadItemList( $(this).closest('tr') );
+
+	return false;
+});
+
 
 // al presionar el botton de agregar item
 $(document).on("click", '#refresh-items', function()
