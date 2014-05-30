@@ -210,7 +210,7 @@ class ItemListController extends Controller
 		
 		if ($accessLevel != 1) // no es organizador
 		{
-			echo "ERROR: no tienes permiso para agregar items requeridos!";
+			echo "ERROR: no tienes permiso para agregar items a la lista!";
 			return;			
 		}
 		
@@ -306,8 +306,74 @@ class ItemListController extends Controller
 	}
 	
 	public function actionDelete()
-	{
-		echo "DELETE";
+	{		
+		if ( isset($_POST['e'],$_POST['i']) )
+		{
+			$e = $_POST['e'];
+			$i = $_POST['i'];
+			
+			// validación básica
+			/*if (!is_numeric($e))
+			{
+				echo "ERROR: evento no válido!";
+				return;
+			}
+			
+			if (!count($i))
+			{
+				echo "ERROR: cantidad no válida!";
+				return;
+			}*/
+			
+			$event = $this->loadEventModel($e);
+			
+			// Cargamos modelo de invitados
+			$inviteesModels=$this->loadInviteesModels($event->id);
+			if (!count($inviteesModels))
+				array_push($inviteesModels, new Invitees);
+			
+			// prevenir acceso/acciones de terceros
+			$accessLevel = 0;
+			if (Yii::app()->user->id != $event->creator)
+			{
+				foreach($inviteesModels as $inviteesModel)
+				{
+					if ($inviteesModel->email == Yii::app()->user->id)
+					{
+						$accessLevel = 2; // acceso invitado
+						break;
+					}
+				}
+			}
+			else
+			{
+				$accessLevel = 1; // acceso organizador
+			}
+			
+			if ($accessLevel != 1) // no es organizador
+			{
+				echo "ERROR: no tienes permiso para eliminar items de la lista!";
+				return;			
+			}
+
+			// cargamos items requeridos
+			$tb = ItemRequested::model()->tableName();
+			$item_requested = ItemRequested::model()->findBySql("SELECT * FROM $tb WHERE event=$e AND item='$i';");
+			if ($item_requested!==null)
+			{
+				$tb = ItemAssigned::model()->tableName();
+				$items_assigned = ItemAssigned::model()->findAllBySql("SELECT * FROM $tb WHERE event=$e AND item='$i';");
+				if (isset($items_assigned) && is_array($items_assigned))
+				{
+					foreach ($items_assigned as $item_assigned)
+					{
+						$item_assigned->delete();
+					}
+				}
+		
+				$item_requested->delete();
+			}
+		}
 	}
 	
 	public function actionAssignToMe()
