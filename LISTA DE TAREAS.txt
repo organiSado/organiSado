@@ -1,7 +1,7 @@
 ﻿Por citar algunas cosas
 (Jue)- Confirmación de registro.
 X- Recordar contraseña.
-(Jue)- Lista de la compra.
+X- Lista de la compra.
 (Jue)- Del perfil invitado no se hizo nada (Salvo enviarle un email), los invitados deberían puedan modificar el evento (Indicando si van, si, no, con cuantos acompañantes, que llevan, etc). (solo falta cuando es organizador invitado, y unsetear variables admin de invitados no admin)
 X- La validación ajax de si el usuario ya era usuario no se hizo.
 X- Agregar comentarios.
