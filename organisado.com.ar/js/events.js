@@ -5,6 +5,7 @@ var default_items_container_id 	= "table-items-container";
 var default_addInvitee_id 	= "add-invitee";
 var costMode = -1;
 var event_id = '';
+var in_progress = false;
 
 // eventos dinamicos necesitan un bind distinto
 $(document).on('click', 'a[href=#removeInvitee]', function()
@@ -558,7 +559,9 @@ function calcCost()
 /* LISTA DE ITEMS */
 function startWait(changedObj)
 {
-	if (!changedObj) changedObj = $('#'+default_items_container_id);	
+	if (!changedObj) changedObj = $('#'+default_items_container_id);
+	
+	in_progress = true;	
 	
 	// loading	
 	changedObj.prop('disabled', true);
@@ -578,13 +581,15 @@ function endWait(changedObj)
 	
 	// loading				
 	$('#table-items-progress').fadeOut();
+	
+	in_progress = false;	
 }
 
 function loadItemList(changedObj, container_id)
 {
 	if (!container_id) container_id = default_items_container_id;	
-	if (!changedObj) changedObj = $('#'+container_id);	
-	
+	if (!changedObj) changedObj = $('#'+container_id);
+		
 	// loading
 	startWait(changedObj);
 /*	$('#table-items-progress').fadeIn();
@@ -646,6 +651,8 @@ function addItem(tableitems_id)
 // al presionar el botton de agregar item
 $(document).on("click", '#add-item', function()
 {
+	if (in_progress) return;
+
 	addItem();
 
 	return false;
@@ -654,6 +661,8 @@ $(document).on("click", '#add-item', function()
 
 $(document).on("click", 'a[href=#confirmCreate]', function()
 {	
+	if (in_progress) return;
+
 	var item = $(this).closest('tr').find('td:nth-of-type(1) input').val();
 	var quantity = $(this).closest('tr').find('td:nth-of-type(3) input').val();
 	var changedObj = $(this).closest('tr');
@@ -690,6 +699,8 @@ $(document).on("click", 'a[href=#confirmCreate]', function()
 // al presionar el botton de agregar item
 $(document).on("click", '#refresh-items', function()
 {
+	if (in_progress) return;
+
 	loadItemList();
 
 	return false;
@@ -698,6 +709,8 @@ $(document).on("click", '#refresh-items', function()
 // al presionar el botton de yo llevo item
 $(document).on("click", 'a[href=#assignToMe]', function()
 {
+	if (in_progress) return;
+
 	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
 	alert("assigning to me the item... "+item+" to event "+event_id+", how many?");
 	loadItemList();
@@ -708,6 +721,8 @@ $(document).on("click", 'a[href=#assignToMe]', function()
 // al presionar el botton de asignar item
 $(document).on("click", 'a[href=#assignItem]', function()
 {
+	if (in_progress) return;
+
 	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
 	alert("assigning item... "+item+" to...? to event "+event_id+", how many?");
 	loadItemList();
@@ -718,6 +733,8 @@ $(document).on("click", 'a[href=#assignItem]', function()
 // desasignar invitados de items	
 $(document).on('click', 'a[href=#unassign]', function()
 {	
+	if (in_progress) return;
+
 	loadItemList($(this).closest('div'));
 
 
@@ -746,6 +763,8 @@ $(document).on('click', 'a[href=#unassign]', function()
 // al presionar el botton de eliminar item
 $(document).on("click", 'a[href=#removeItem]', function()
 {
+	if (in_progress) return;
+
 	var item = $(this).closest('tr').find('td:nth-of-type(1)').html();
 	alert("removing item... "+item+" from event "+event_id);
 	loadItemList();
